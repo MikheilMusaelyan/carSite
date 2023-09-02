@@ -5,16 +5,21 @@ main{
 }
 .right{
     width: 35%;
+    height: max-content;
+    padding: 10px 0 0 30px;
 }
 .left{
     width: 65%;
     /* height: 95vh; */
     max-height: 800px;
-    position: sticky;
-    top: 2.5vh;
     display: flex;
     flex-direction: column;
     /* justify-content: space-between; */
+}
+
+.left,.right{
+    position: sticky;
+    top: 0;
 }
 .big-image-wrap{
     display: flex;
@@ -75,8 +80,8 @@ h1, h5{
     font-weight: 100;
 }
 .title{
-    margin: 18px 0 12px 0;
-    font-size: 40px;
+    margin: 0 0 15px 0;
+    font-size: 35px;
     color: rgb(53, 53, 53);
     /* background: linear-gradient(to top, black, rgb(109, 108, 108));
     -webkit-background-clip: text;
@@ -87,7 +92,7 @@ h1, h5{
 }
 
 .price-wrap{
-    padding-bottom: 7px;
+    padding-bottom: 10px;
 }
 .free-shipping-text{
     color:  rgb(111, 111, 111);
@@ -100,9 +105,7 @@ h1, h5{
     font-size: 19px;
     color: var(--mainColor);
 }
-.right{
-    padding: 0 0 0 30px;
-}
+
 .low-price{
     /* transform: translateY(-5px); */
     margin-right: 9px;
@@ -142,19 +145,19 @@ h1, h5{
 
 .car-details{
     list-style-type: none;
-    margin: 0;
-    padding: 10px 0;
+    padding: 0;
+    margin: 10px 0;
 }
 .car-detail{
     padding: 7px 0 10px 0;
-    border-bottom: 1px solid #ececec
+    border-bottom: 1px solid var(--lg)
 }
 .car-detail:hover{
     background: transparent;
     cursor: initial
 }
 .detail-p{
-    padding: 0 5px 0 10px
+    padding: 0 7px 0 0
 }
 .detail-v{
     font-weight: 500
@@ -165,12 +168,12 @@ h1, h5{
 
 /* addtocart button */
 .message-button{
-    padding: 16px;
-    border-radius: 8px;
+    padding: 12px;
+    border-radius: 4px;
     background: var(--blue);
     color: white;
     border: none;
-    margin: 25px 0 10px 0;
+    margin: 25px 0 0 0;
     width: 100%;
     cursor: pointer;
     font-size: 16px;
