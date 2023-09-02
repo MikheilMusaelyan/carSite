@@ -166,7 +166,19 @@ export default function Item() {
                         />
                     </div>
                 </div>
-                
+                <div className="small-images">
+                    {selectedItem['variations']?.map((item: Variation, i: number) => (
+                        <div
+                            key={i} 
+                            className={`small-image-wrap ${selectedItem['selectedVariation']['id'] === item['id'] ? 'selected' : ''}`}
+                            onClick={() => selectVariation(item)}
+                            onMouseOver={() => hoverOver(item)}
+                            onMouseOut={hoverOut}
+                        >
+                            <img src={item['variationImage']} alt="No image"/>
+                        </div>
+                    ))}
+                </div>
             </section>
 
             <section className="right">
