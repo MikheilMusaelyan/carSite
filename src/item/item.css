@@ -4,10 +4,10 @@ main{
     position: relative;
 }
 .right{
-    width: 45%;
+    width: 35%;
 }
 .left{
-    width: 55%;
+    width: 65%;
     /* height: 95vh; */
     max-height: 800px;
     position: sticky;
@@ -76,8 +76,7 @@ h1, h5{
 }
 .title{
     margin: 18px 0 12px 0;
-    font-size: 52px;
-    line-height: 60px;
+    font-size: 40px;
     color: rgb(53, 53, 53);
     /* background: linear-gradient(to top, black, rgb(109, 108, 108));
     -webkit-background-clip: text;
@@ -137,17 +136,41 @@ h1, h5{
     padding-top: 50px;
 }
 
-.offers{
-    padding: 13px 0 16px 0;
+
+
+/* details */
+
+.car-details{
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 0;
 }
+.car-detail{
+    padding: 7px 0 10px 0;
+    border-bottom: 1px solid #ececec
+}
+.car-detail:hover{
+    background: transparent;
+    cursor: initial
+}
+.detail-p{
+    padding: 0 5px 0 10px
+}
+.detail-v{
+    font-weight: 500
+}
+.detail-text{
+    
+}
+
 /* addtocart button */
 .message-button{
     padding: 16px;
     border-radius: 8px;
-    background: #007bff;
+    background: var(--blue);
     color: white;
     border: none;
-    margin: 25px 0;
+    margin: 25px 0 10px 0;
     width: 100%;
     cursor: pointer;
     font-size: 16px;
@@ -157,34 +180,10 @@ h1, h5{
     box-shadow: 0 0 10px rgb(245, 245, 245);
 }
 
-.offer-button-wrap{
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 20px;
-}
-.offer-button{
-    width: calc(50% - 15px);
-    border-radius: 8px;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid #B4B8C7;
-    cursor: pointer;
-}
-.offer-button:hover{
-    background: rgb(245, 245, 245);
-}
-.vipoffer:hover{
-    background: #0869d1;
-}
-.vipoffer{
-    color: white;
-    background: #007bff;
-    border: 2px solid black;
-}
+
+
 .offer-text{
-    padding: 10px 15px;
+    padding: 10px 15px 0px 15px;
     font-size: 13px;
     letter-spacing: .6px;
     line-height: 23px;
@@ -224,14 +223,6 @@ h1, h5{
 }
 .amountC > span{
     font-size: 24px;
-}
-
-.paragraph{
-    margin-top: 20px;
-    font-size: 15px;
-    color: var(--minitext-color);
-    letter-spacing: .7px;
-    line-height: 27px;
 }
 
 
@@ -288,7 +279,7 @@ h1, h5{
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #007bff;
+  background: var(--blue);
   border-radius: 4px;
 }
 
@@ -319,16 +310,6 @@ h1, h5{
     }
     .small-images{
         padding-top: 40px;
-    }
-}
-
-@media screen and (max-width: 1000px){
-    .offer-button-wrap{
-        flex-direction: column;
-    }
-    .offer-button{
-        width: 100%;
-        margin-bottom: 15px;
     }
 }
 

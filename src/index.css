@@ -1,6 +1,8 @@
 :root{
-    --mainColor: rgb(53, 53, 53);
+    --black: rgb(53, 53, 53);
+    --blue: #007bff;
     --minitext-color: rgb(124, 124, 124);
+
 }
 body{
     margin: 0;

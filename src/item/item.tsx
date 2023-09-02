@@ -80,7 +80,7 @@ export default function Item() {
         ],
         reviewCount: 12,
         description: 
-        `The best fucking description
+        `The best description
         second line
         third line`,
         rating: 4.7,
@@ -184,53 +184,33 @@ export default function Item() {
             <section className="right">
                 <h1 className="title">{selectedItem['name']}</h1>
                 
-
                 <div className="price-wrap">
-                  {/* {true ? (
-                    <div className="low-price">
-                      <h1 className="old-price">${selectedItem['oldPrice'].toFixed(2)} USD</h1>
-                    </div>
-                  ) : (
-                    <h1 className="price">${selectedItem['price'].toFixed(2)} USD</h1>
-                  )} */}
                   <h1 className="price">${selectedItem['vipOfferPrice']?.toFixed(2)} USD</h1>
                 </div>
-              
-              
                 
-
-                <div className="offers">
-                    <div className="offer-button-wrap">
-                        <div className="offer-button">VIP Offer</div>
-                    </div>
-                    <span className="offer-text">
-                        Purchase this product for the lowest price and the highest quality on the market! You will have exclusive access to new products in the future, subscribe to our vip program and you will receive fifty percent off all future purchases. You will have access to these benefits and you will be rebilled nineteen ninety nine per month, you can pause or cancel at anytime. We focus on quality!
-                    </span>
-                </div>
-                            
                 <button className="message-button">
                     Message
                 </button>
-                <div className="paragraph-wrap">
-                    <p className="paragraph">{selectedItem['description']}</p>
+
+                <div className="offers">
+                    <span className="offer-text">
+                        {selectedItem['description']}
+                    </span>
                 </div>
+
+                <ul className="car-details">
+                  <li className="car-detail">
+                    <span className="detail-p detail-text">Color:</span>
+                    <span className="detail-v detail-text">Black</span>
+                  </li>
+                  <li className="car-detail">
+                    <span className="detail-p detail-text">Color:</span>
+                    <span className="detail-v detail-text">Black</span>
+                  </li>
+                </ul>
                             
             </section>
         </main>
-
-        {/* <section className="twelve">
-            <div className="reviews-wrap">
-              <AppReviews
-                reviews={selectedItem['reviews']}
-                reviewCount={selectedItem['reviewCount']}
-                rating={selectedItem['rating']}
-              />
-            </div>
-
-            <div className="single-items-wrap">
-              <AppRelatedItems id={selectedItem['id']} />
-            </div>
-        </section> */}
     </>
   )
 }

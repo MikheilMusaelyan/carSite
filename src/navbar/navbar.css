@@ -31,7 +31,7 @@ li:hover a {
 a {
     text-decoration: none;
     font-size: 16px;
-    color: #007bff;
+    color: var(--blue);
 }
 
 
@@ -46,7 +46,7 @@ a {
 
 .free-shipping{
     padding: 10px;
-    background: #007bff;
+    background: var(--blue);
     color: white;
     display: flex;
     font-weight: bold;
