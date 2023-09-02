@@ -166,36 +166,46 @@ export default function Item() {
                         />
                     </div>
                 </div>
+                
             </section>
 
             <section className="right">
+                <div className="seller-profile">
+                  <div className="seller-img-wrap">
+                    <img className="seller-img" src="/src/assets/irownbracelet.png"/>
+                  </div>
+                  <div className="seller-name-wrap">
+                    <span className="seller-name">Dato</span>
+                  </div>
+                </div>
+
                 <h1 className="title">{selectedItem['name']}</h1>
                 
                 <div className="price-wrap">
                   <h1 className="price">${selectedItem['vipOfferPrice']?.toFixed(2)} USD</h1>
                 </div>
-                
-                
 
-                <ul className="car-details">
-                  <li className="car-detail">
-                    <FontAwesomeIcon className="detail-p detail-text" icon={faStar}></FontAwesomeIcon>
-                    <span className="detail-v detail-text">Black</span>
-                  </li>
-                  <li className="car-detail">
-                    <FontAwesomeIcon className="detail-p detail-text" icon={faStar}></FontAwesomeIcon>
-                    <span className="detail-v detail-text">Black</span>
-                  </li>
-                </ul>
+                <table className="car-details">
+                  <tbody>
+                    <tr className="car-detail">
+                      <td><FontAwesomeIcon className="detail-p detail-text" icon={faStar}></FontAwesomeIcon></td>
+                      <td><span className="detail-v detail-text">Black</span></td>
+                    </tr>
+                    <tr className="car-detail">
+                      <td><FontAwesomeIcon className="detail-p detail-text" icon={faStar}></FontAwesomeIcon></td>
+                      <td><span className="detail-v detail-text">Black</span></td>
+                    </tr>
+                  </tbody>
+                </table>
 
                 <div className="offers">
                     <span className="offer-text">
                         {selectedItem['description']}
                     </span>
                 </div>
-                <button className="message-button">
-                    Message
-                </button>   
+
+                <button className="message-button">Message</button>
+
             </section>
         </main>
     </>
