@@ -175,20 +175,6 @@ export default function Item() {
                             onMouseOver={() => hoverOver(item)}
                             onMouseOut={hoverOut}
                         >
-                          {/* Your content here */}
-                        </div>
-                    ))}
-                </div>
-                    
-                <div className="small-images">
-                    {selectedItem['variations']?.map((item: Variation, key: number) => (
-                        <div
-                            key={key}
-                            className={'small-image-wrap ' + (selectedItem['selectedVariation']['id'] == item.id ? 'selected' : '')}
-                            onClick={() => selectVariation(item)}
-                            onMouseOver={() => hoverOver(item)}
-                            onMouseOut={() => hoverOut()}
-                        >
                             <img src={item['variationImage']} alt="No image"/>
                         </div>
                     ))}
