@@ -183,17 +183,7 @@ export default function Item() {
 
             <section className="right">
                 <h1 className="title">{selectedItem['name']}</h1>
-                <div className="ratings-wrap">
-                    <div className="star-wrap">
-                      <FontAwesomeIcon icon={faStar} className="starIcon" />
-                      <FontAwesomeIcon icon={faStar} className="starIcon" />
-                      <FontAwesomeIcon icon={faStar} className="starIcon" />
-                      <FontAwesomeIcon icon={faStar} className="starIcon" />
-                      <FontAwesomeIcon icon={faStar} className="starIcon" />
-                      <FontAwesomeIcon icon={faStar} className="lastStar" />
-                    </div>
-                    <h1 className="ratings">{selectedItem['reviewCount']}</h1>
-                </div>
+                
 
                 <div className="price-wrap">
                   {/* {true ? (
@@ -207,20 +197,7 @@ export default function Item() {
                 </div>
               
               
-                {selectedItem['variations']?.length > 0 && (
-                    <div className="preferences">
-                        <p className="preference-name">{selectedItem['variations'][0]['variationName'] || 'Variations'}</p>
-                        <div className="preference-wrap">
-                            {selectedItem['variations'].map((variation: Variation, i: number) => (
-                                <button
-                                key={i}
-                                className={'preference ' + (selectedItem['selectedVariation']['id'] == variation['id'] ? 'selected-button' : '')}
-                                onClick={() => selectVariation(variation)}
-                                >{variation['variationValue']}</button>
-                            ))}
-                        </div>
-                    </div>
-                )}
+                
 
                 <div className="offers">
                     <div className="offer-button-wrap">
@@ -231,7 +208,7 @@ export default function Item() {
                     </span>
                 </div>
                             
-                <button className="add-to-cart">
+                <button className="message-button">
                     Message
                 </button>
                 <div className="paragraph-wrap">

@@ -121,36 +121,6 @@ h1, h5{
     margin: 10px 0;
 }
 
-.preferences{
-    padding: 12px 0;
-}
-.preference-name{
-    margin: 0 0 12px 0;
-    font-size: 14px;
-    color: var(--minitext-color);
-}
-.preferences-wrap{
-    display: flex;
-}
-.preference{
-    padding: 10px 20px;
-    border-radius: 8px;
-    margin: 0 10px 5px 0;
-    cursor: pointer;
-    background: transparent;
-    border: 2px solid var(--mainColor);
-    color: var(--mainColor);
-}
-.preference:hover{
-    background: rgb(37, 37, 37);
-    color: white;
-}
-.selected-button{
-    color: white;
-    background: var(--mainColor);
-    font-weight: 500;
-}
-
 /* .old-price::before{
     content: "";
     width: calc(100%);
@@ -163,44 +133,28 @@ h1, h5{
     display: flex;
 }
 
-
-.ratings-wrap{
-    margin: 0 0 28px 0;
-    width: max-content;
-    display: flex;
-    align-items: center;
-}
-.star-wrap{
-    position: relative;
-}
-.ratings{
-    font-size: 15.5px;
-    font-weight: normal;
-    padding-left: 7px;
-}
-
-.starIcon, .lastStar{
-    color: var(--mainColor);
-    font-size: 18px;
-}
-.lastStar{
-    /* width: 50%; */
-    position: absolute;
-    background-color: white;
-    right: 0;
-    width: 9px;
-    overflow: hidden;
-    transform: scaleX(-1) translate(-0.2px, 0px);
-}
-
-
-
 .single-items-wrap{
     padding-top: 50px;
 }
 
 .offers{
     padding: 13px 0 16px 0;
+}
+/* addtocart button */
+.message-button{
+    padding: 16px;
+    border-radius: 8px;
+    background: #007bff;
+    color: white;
+    border: none;
+    margin: 25px 0;
+    width: 100%;
+    cursor: pointer;
+    font-size: 16px;
+}
+.message-button:hover{
+    background: #0869d1;
+    box-shadow: 0 0 10px rgb(245, 245, 245);
 }
 
 .offer-button-wrap{
