@@ -6,8 +6,8 @@ import { BrowserRouter as Router, Routes } from 'react-router-dom'
 function App() {
   return (
     <>
-    <Item />
       <Navbar />
+      <Item />
       <Router>
         <Routes>
             {/* <Route path='/' element={<Navbar />}></Route> */}

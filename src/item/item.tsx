@@ -103,10 +103,10 @@ export default function Item() {
           }
         ],
         selectedVariation: {
-          variationName: 'Color',
-          variationValue: 'Black',
-          variationImage: '/src/assets/irownbracelet.png',
-          id: 1.1
+          variationName: '',
+          variationValue: '',
+          variationImage: '',
+          id: -1
         },
       });
 
@@ -115,6 +115,7 @@ export default function Item() {
         top: 0,
         behavior: 'auto',
       });
+      selectVariation(selectedItem['variations'][0])
     }, [])
 
     const selectVariation = (variation: Variation) => {
@@ -155,7 +156,7 @@ export default function Item() {
         <main className="twelve">
             <section className="left">
                 <div className="big-image-wrap">
-                    {/* <div className="image-wrap">
+                    <div className="image-wrap">
                         <img
                         className="big-image"
                         onMouseMove={zoomIn}
@@ -163,45 +164,7 @@ export default function Item() {
                         src={hovered || selectedItem['selectedVariation']?.variationImage}
                         alt="No image"
                         />
-                    </div> */}
-
-                  <div id="carouselExampleIndicators" className="carousel slide">
-                    <div className="carousel-indicators">
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     </div>
-                    <div className="carousel-inner">
-                      {selectedItem['variations']?.map((item: Variation, i: number) => (
-                        <div className="carousel-item active" key={i}>
-                          <img src={item['variationImage']} className="d-block w-100"/>
-                        </div>
-                    ))}
-                    </div>
-                    <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-                      <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                      <span className="visually-hidden">Previous</span>
-                    </button>
-                    <button className="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-                      <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                      <span className="visually-hidden">Next</span>
-                    </button>
-                  </div>
-
-                </div>
-
-                <div className="small-images">
-                    {selectedItem['variations']?.map((item: Variation, i: number) => (
-                        <div
-                            key={i} 
-                            className={`small-image-wrap ${selectedItem['selectedVariation']['id'] === item['id'] ? 'selected' : ''}`}
-                            onClick={() => selectVariation(item)}
-                            onMouseOver={() => hoverOver(item)}
-                            onMouseOut={hoverOut}
-                        >
-                            <img src={item['variationImage']} alt="No image"/>
-                        </div>
-                    ))}
                 </div>
             </section>
 
