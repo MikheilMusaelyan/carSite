@@ -33,6 +33,9 @@ export default function Item() {
   });
   const [editing, setEditing] = useState(true);
 
+
+
+
   useEffect(() => {
     window.scrollTo({
       top: 0,
@@ -51,6 +54,13 @@ export default function Item() {
     }));
   };
 
+  function handleInputChange(event: any) {
+    const { name, value } = event.target;
+    setSelectedItem((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  }
   // styles
   const hoverOver = (i: any) => {
     changeHovered(i);
@@ -120,8 +130,14 @@ export default function Item() {
           </div>
 
           <div className="title-wrap">
-            {!editing  && <h1 className="title">{selectedItem["name"]}</h1>}
-            {editing && <input className="title-input detail-input" placeholder="Title"></input>}
+            {(!editing || editing && true) && <h1 className="title">{selectedItem["name"]}</h1>}
+            {editing && 
+            <input
+            className="title-input detail-input" 
+            placeholder="Title"
+            name="name"
+            onChange={handleInputChange}
+            ></input>}
           </div>
 
           <div className="price-wrap">
