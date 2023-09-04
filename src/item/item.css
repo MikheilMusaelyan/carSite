@@ -164,6 +164,12 @@ td{
 .detail-v{
     font-weight: 500
 }
+.detail-input{
+    border: 1px solid lightgrey;
+    border-radius: 3px;
+    font-size: 14px;
+    padding: 6px 7px;
+}
 
 /* addtocart button */
 .message-button{
