@@ -1,5 +1,5 @@
 import "./item.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 // import { ItemShape } from "./item-shape";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -24,7 +24,6 @@ export default function Item() {
     animationType: "",
     horsepower: 0,
     name: "d",
-    quantity: 1,
     description: `The best description
       second line
       third line`,
@@ -33,8 +32,16 @@ export default function Item() {
   });
   const [editing, setEditing] = useState(true);
 
-
-
+  // refs
+  const inputRefs = {
+    nameRef: useRef(),
+    priceRef: useRef(),
+    milageRef: useRef(),
+    makeRef: useRef(),
+    modelRef: useRef(),
+    yearRef: useRef(),
+    hpRef: useRef()
+  };
 
   useEffect(() => {
     window.scrollTo({
@@ -42,17 +49,27 @@ export default function Item() {
       behavior: "auto",
     });
     selectImage(selectedItem["images"][0]);
-    // setTimeout(() => {
-    //   setEditing(true)
-    // }, 2000);
   }, []);
 
-  const selectImage = (variation: string) => {
-    setSelectedItem((prevState: any) => ({
-      ...prevState,
-      selectedImage: variation,
-    }));
-  };
+  useEffect(() => {
+    function handleClickOutside(event: any) {
+      for (const inputName in inputRefs) {
+        if (
+          !inputRefs[inputName].current.contains(event.target)
+        ) {
+          // User clicked outside of the input field with the given name
+          console.log(`Clicked outside of ${inputName}`);
+        }
+      }
+    }
+
+    document.addEventListener('click', handleClickOutside);
+
+    // clear
+    return () => { 
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [])
 
   function handleInputChange(event: any) {
     const { name, value } = event.target;
@@ -62,6 +79,13 @@ export default function Item() {
     }));
   }
   // styles
+  const selectImage = (variation: string) => {
+    setSelectedItem((prevState: any) => ({
+      ...prevState,
+      selectedImage: variation,
+    }));
+  };
+
   const hoverOver = (i: any) => {
     changeHovered(i);
   };
@@ -133,16 +157,24 @@ export default function Item() {
             {(!editing || editing && true) && <h1 className="title">{selectedItem["name"]}</h1>}
             {editing && 
             <input
+            ref={inputRefs.nameRef}
+            onChange={handleInputChange}
             className="title-input detail-input" 
             placeholder="Title"
             name="name"
-            onChange={handleInputChange}
             ></input>}
           </div>
 
           <div className="price-wrap">
             {!editing && <h1 className="price">${selectedItem["price"]?.toFixed(2)} USD</h1>}
-            {editing && <input min={1} className="price-input detail-input" type="number" placeholder="Price" />}
+            {editing && 
+            <input 
+            min={1} 
+            className="price-input detail-input" 
+            type="number" 
+            placeholder="Price"
+            ref={inputRefs.priceRef}
+            onChange={handleInputChange} />}
           </div>
 
           <table className="car-details">
