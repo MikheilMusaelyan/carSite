@@ -34,13 +34,38 @@ export default function Item() {
 
   // refs
   const inputRefs = {
-    nameRef: useRef(),
-    priceRef: useRef(),
-    milageRef: useRef(),
-    makeRef: useRef(),
-    modelRef: useRef(),
-    yearRef: useRef(),
-    hpRef: useRef()
+    nameRef: {
+      value: useRef(),
+      selected: false
+    },
+    priceRef: {
+      value: useRef(),
+      selected: false
+    },
+    brandRef: {
+      value: useRef(),
+      selected: false
+    },
+    milageRef: {
+      value: useRef(),
+      selected: false
+    },
+    modelRef: {
+      value: useRef(),
+      selected: false
+    },
+    yearRef: {
+      value: useRef(),
+      selected: false
+    },
+    descRef: {
+      value: useRef(),
+      selected: false
+    },
+    hpRef: {
+      value: useRef(),
+      selected: false
+    }
   };
 
   useEffect(() => {
@@ -52,24 +77,23 @@ export default function Item() {
   }, []);
 
   useEffect(() => {
-    function handleClickOutside(event: any) {
-      for (const inputName in inputRefs) {
-        if (
-          !inputRefs[inputName].current.contains(event.target)
-        ) {
-          // User clicked outside of the input field with the given name
-          console.log(`Clicked outside of ${inputName}`);
-        }
-      }
-    }
-
     document.addEventListener('click', handleClickOutside);
-
     // clear
     return () => { 
       document.removeEventListener('click', handleClickOutside);
     };
   }, [])
+
+  // changing selected field
+  function handleClickOutside(event: any) {
+    if(!editing) return
+    for (const inputName in inputRefs) {
+      inputRefs[inputName]['selected'] = false;
+      if (inputRefs[inputName]['value'].current.contains(event.target)) {
+        inputRefs[inputName]['selected'] = true;
+      }
+    }
+  }
 
   function handleInputChange(event: any) {
     const { name, value } = event.target;
@@ -157,24 +181,25 @@ export default function Item() {
             {(!editing || editing && true) && <h1 className="title">{selectedItem["name"]}</h1>}
             {editing && 
             <input
-            ref={inputRefs.nameRef}
+            ref={inputRefs.nameRef.value}
             onChange={handleInputChange}
             className="title-input detail-input" 
             placeholder="Title"
             name="name"
-            ></input>}
+            />}
           </div>
 
           <div className="price-wrap">
             {!editing && <h1 className="price">${selectedItem["price"]?.toFixed(2)} USD</h1>}
             {editing && 
             <input 
+            ref={inputRefs.priceRef.value}
+            onChange={handleInputChange}
             min={1} 
             className="price-input detail-input" 
             type="number" 
             placeholder="Price"
-            ref={inputRefs.priceRef}
-            onChange={handleInputChange} />}
+            />}
           </div>
 
           <table className="car-details">
@@ -189,9 +214,11 @@ export default function Item() {
                 <td>
                   {!editing && <span className="detail-v">Brand</span>}
                   {editing && <input
+                    ref={inputRefs.brandRef.value}
+                    onChange={handleInputChange} 
                     style={{ outlineColor: 'green' }}
                     type="text"
-                    className="detail-input"
+                    className="brand-input detail-input"
                     placeholder="Brand"
                   />}
                 </td>
@@ -206,8 +233,10 @@ export default function Item() {
                 <td>
                   {!editing && <span className="detail-v">Milage</span>}
                   {editing && <input
+                    ref={inputRefs.milageRef.value}
+                    onChange={handleInputChange} 
                     type="text"
-                    className="detail-input"
+                    className="milage=input detail-input"
                     placeholder="Milage"
                   />}
                 </td>
@@ -222,8 +251,10 @@ export default function Item() {
                 <td>
                   {!editing && <span className="detail-v">Model</span>}
                   {editing && <input
+                    ref={inputRefs.modelRef.value}
+                    onChange={handleInputChange} 
                     type="text"
-                    className="detail-input"
+                    className="model-input detail-input"
                     placeholder="Model"
                   />}
                 </td>
@@ -238,6 +269,8 @@ export default function Item() {
                 <td>
                   {!editing && <span className="detail-v">Year</span>}
                   {editing && <input
+                    ref={inputRefs.yearRef.value}
+                    onChange={handleInputChange} 
                     type="text"
                     className="detail-input"
                     placeholder="Year"
@@ -254,6 +287,8 @@ export default function Item() {
                 <td>
                   {!editing && <span className="detail-v">HP</span>}
                   {editing && <input
+                    ref={inputRefs.hpRef.value}
+                    onChange={handleInputChange}
                     type="text"
                     className="detail-input"
                     placeholder="Horse power"
@@ -266,7 +301,12 @@ export default function Item() {
           <div className="description-wrap">
             {!editing && <span className="description">{selectedItem["description"]}</span>}
             {editing && 
-              <textarea className="description-textarea detail-input" placeholder="Description (optional)">
+              <textarea 
+              className="description-textarea detail-input" 
+              placeholder="Description (optional)"
+              ref={inputRefs.descRef.value}
+              onChange={handleInputChange}
+              >
 
               </textarea>
             }
