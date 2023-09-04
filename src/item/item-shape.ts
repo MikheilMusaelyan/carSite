@@ -2,16 +2,16 @@ export class ItemShape {
   constructor(
     public id: number,
     public name: string,
-    public quantity: number,
     public price: number,
-    public vipOffer: boolean = true,
-    public oldPrice?: number,
-    public reviews?: any[],
-    public reviewCount?: number,
+    public milage: number,
+    public make: number,
+    public model: string,
+    public year: number,
+    public animationType: string,
+    public horsepower?: number,
     public description?: string,
-    public rating?: number,
-    public sizes?: any[],
-    public vipOfferPrice?: number,
-    public selectedSize?: string
+    // info about listing
+    // number
+    // listing count
   ) {}
 }

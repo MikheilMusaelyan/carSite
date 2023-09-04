@@ -2,11 +2,10 @@ import './item.css'
 import { useState, useEffect } from "react";
 // import { ItemShape } from "./item-shape";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, } from '@fortawesome/free-solid-svg-icons'
+import { faCalendar, faCar, faFaceFlushed, faGauge, faHorse, faHorseHead, faStar, faTag, faWallet, } from '@fortawesome/free-solid-svg-icons'
 
 export default function Item() {
-      
-      // styles
+    // styles
     const [hovered, changeHovered] = useState('');
     const [selectedItem, setSelectedItem] = useState({
         id: 1,
@@ -89,25 +88,10 @@ export default function Item() {
         sizes: ['Small', 'Medium', 'Large'],
         vipOfferPrice: 0.99,
         variations: [
-          {
-            variationName: 'Color',
-            variationValue: 'Black',
-            variationImage: '/src/assets/irownbracelet.png',
-            id: 1.1
-          },
-          {
-            variationName: 'Color',
-            variationValue: 'Gold',
-            variationImage: '/src/assets/ironwrist2.png',
-            id: 1.2
-          }
+          '/src/assets/irownbracelet.png',
+          '/src/assets/ironwrist2.png'
         ],
-        selectedVariation: {
-          variationName: '',
-          variationValue: '',
-          variationImage: '',
-          id: -1
-        },
+        selectedVariation: '/src/assets/irownbracelet.png',
       });
 
     useEffect(() => {
@@ -118,7 +102,7 @@ export default function Item() {
       selectVariation(selectedItem['variations'][0])
     }, [])
 
-    const selectVariation = (variation: Variation) => {
+    const selectVariation = (variation: string) => {
         setSelectedItem((prevState: any) => ({
             ...prevState,
             selectedVariation: variation
@@ -127,7 +111,7 @@ export default function Item() {
 
     // styles
     const hoverOver = (i: any) => {
-      changeHovered(i['variationImage'])
+      changeHovered(i)
     }
 
     const hoverOut = () => {
@@ -161,21 +145,21 @@ export default function Item() {
                         className="big-image"
                         onMouseMove={zoomIn}
                         onMouseOut={zoomOut}
-                        src={hovered || selectedItem['selectedVariation']?.variationImage}
+                        src={hovered || selectedItem['selectedVariation']}
                         alt="No image"
                         />
                     </div>
                 </div>
                 <div className="small-images">
-                    {selectedItem['variations']?.map((item: Variation, i: number) => (
+                    {selectedItem['variations']?.map((item: string, i: number) => (
                         <div
                             key={i} 
-                            className={`small-image-wrap ${selectedItem['selectedVariation']['id'] === item['id'] ? 'selected' : ''}`}
+                            className={`small-image-wrap ${selectedItem['selectedVariation'] === item ? 'selected' : ''}`}
                             onClick={() => selectVariation(item)}
                             onMouseOver={() => hoverOver(item)}
                             onMouseOut={hoverOut}
                         >
-                            <img src={item['variationImage']} alt="No image"/>
+                            <img src={item} alt="No image"/>
                         </div>
                     ))}
                 </div>
@@ -188,6 +172,7 @@ export default function Item() {
                   </div>
                   <div className="seller-name-wrap">
                     <span className="seller-name">Dato</span>
+                    <span className="listing-count">35 Listings</span>
                   </div>
                 </div>
 
@@ -200,12 +185,28 @@ export default function Item() {
                 <table className="car-details">
                   <tbody>
                     <tr className="car-detail">
-                      <td><FontAwesomeIcon className="detail-p detail-text" icon={faStar}></FontAwesomeIcon></td>
-                      <td><span className="detail-v detail-text">Black</span></td>
+                      <td><FontAwesomeIcon className="detail-p detail-text" icon={faWallet}></FontAwesomeIcon></td>
+                      <td><span className="detail-v detail-text">Price</span></td>
                     </tr>
                     <tr className="car-detail">
-                      <td><FontAwesomeIcon className="detail-p detail-text" icon={faStar}></FontAwesomeIcon></td>
-                      <td><span className="detail-v detail-text">Black</span></td>
+                      <td><FontAwesomeIcon className="detail-p detail-text" icon={faTag}></FontAwesomeIcon></td>
+                      <td><span className="detail-v detail-text">Brand</span></td>
+                    </tr>
+                    <tr className="car-detail">
+                      <td><FontAwesomeIcon className="detail-p detail-text" icon={faGauge}></FontAwesomeIcon></td>
+                      <td><span className="detail-v detail-text">Milage</span></td>
+                    </tr>
+                    <tr className="car-detail">
+                      <td><FontAwesomeIcon className="detail-p detail-text" icon={faCar}></FontAwesomeIcon></td>
+                      <td><span className="detail-v detail-text">Model</span></td>
+                    </tr>
+                    <tr className="car-detail">
+                      <td><FontAwesomeIcon className="detail-p detail-text" icon={faCalendar}></FontAwesomeIcon></td>
+                      <td><span className="detail-v detail-text">Year</span></td>
+                    </tr>
+                    <tr className="car-detail">
+                      <td><FontAwesomeIcon className="detail-p detail-text" icon={faHorseHead}></FontAwesomeIcon></td>
+                      <td><span className="detail-v detail-text">HP</span></td>
                     </tr>
                   </tbody>
                 </table>
@@ -223,10 +224,3 @@ export default function Item() {
     </>
   )
 }
-
-export class Variation {
-    variationName: string
-    variationValue: string;
-    variationImage: string;
-    id: number
-  }
