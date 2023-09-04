@@ -17,5 +17,7 @@ body{
 }
 
 button, div, input, select {
+    user-select: none;
+    -webkit-user-select: none;
     touch-action: manipulation; /* Prevents double-tap zoom */
 }

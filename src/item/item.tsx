@@ -5,11 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCalendar,
   faCar,
-  faFaceFlushed,
   faGauge,
-  faHorse,
   faHorseHead,
-  faStar,
   faTag,
   faWallet,
 } from "@fortawesome/free-solid-svg-icons";
@@ -19,15 +16,22 @@ export default function Item() {
   const [hovered, changeHovered] = useState("");
   const [selectedItem, setSelectedItem] = useState({
     id: 1,
-    name: "IronWrist Bracelet (Pack of 5)",
-    quantity: 1,
     price: 15,
+    milage: 0,
+    make: "",
+    model: "",
+    year: 0,
+    animationType: "",
+    horsepower: 0,
+    name: "d",
+    quantity: 1,
     description: `The best description
       second line
       third line`,
     images: ["/src/assets/irownbracelet.png", "/src/assets/ironwrist2.png"],
     selectedImage: "/src/assets/irownbracelet.png",
   });
+  const [editing, setEditing] = useState(true);
 
   useEffect(() => {
     window.scrollTo({
@@ -35,6 +39,9 @@ export default function Item() {
       behavior: "auto",
     });
     selectImage(selectedItem["images"][0]);
+    // setTimeout(() => {
+    //   setEditing(true)
+    // }, 2000);
   }, []);
 
   const selectImage = (variation: string) => {
@@ -112,30 +119,18 @@ export default function Item() {
             </div>
           </div>
 
-          <h1 className="title">{selectedItem["name"]}</h1>
+          <div className="title-wrap">
+            {!editing  && <h1 className="title">{selectedItem["name"]}</h1>}
+            {editing && <input className="title-input detail-input" placeholder="Title"></input>}
+          </div>
 
           <div className="price-wrap">
-            <h1 className="price">${selectedItem["price"]?.toFixed(2)} USD</h1>
+            {!editing && <h1 className="price">${selectedItem["price"]?.toFixed(2)} USD</h1>}
+            {editing && <input min={1} className="price-input detail-input" type="number" placeholder="Price" />}
           </div>
 
           <table className="car-details">
             <tbody>
-              <tr className="car-detail">
-                <td style={{ color: "pink" }}>
-                  <FontAwesomeIcon
-                    className="detail-p"
-                    icon={faWallet}
-                  ></FontAwesomeIcon>
-                </td>
-                <td>
-                  <span className="detail-v">Price</span>
-                  <input
-                    type="text"
-                    className="detail-input"
-                    placeholder="Price"
-                  />
-                </td>
-              </tr>
               <tr className="car-detail">
                 <td style={{ color: "green" }}>
                   <FontAwesomeIcon
@@ -144,12 +139,13 @@ export default function Item() {
                   ></FontAwesomeIcon>
                 </td>
                 <td>
-                  <span className="detail-v">Brand</span>
-                  <input
+                  {!editing && <span className="detail-v">Brand</span>}
+                  {editing && <input
+                    style={{ outlineColor: 'green' }}
                     type="text"
                     className="detail-input"
                     placeholder="Brand"
-                  />
+                  />}
                 </td>
               </tr>
               <tr className="car-detail">
@@ -160,12 +156,12 @@ export default function Item() {
                   ></FontAwesomeIcon>
                 </td>
                 <td>
-                  <span className="detail-v">Milage</span>
-                  <input
+                  {!editing && <span className="detail-v">Milage</span>}
+                  {editing && <input
                     type="text"
                     className="detail-input"
                     placeholder="Milage"
-                  />
+                  />}
                 </td>
               </tr>
               <tr className="car-detail">
@@ -176,12 +172,12 @@ export default function Item() {
                   ></FontAwesomeIcon>
                 </td>
                 <td>
-                  <span className="detail-v">Model</span>
-                  <input
+                  {!editing && <span className="detail-v">Model</span>}
+                  {editing && <input
                     type="text"
                     className="detail-input"
                     placeholder="Model"
-                  />
+                  />}
                 </td>
               </tr>
               <tr className="car-detail">
@@ -192,12 +188,12 @@ export default function Item() {
                   ></FontAwesomeIcon>
                 </td>
                 <td>
-                  <span className="detail-v">Year</span>
-                  <input
+                  {!editing && <span className="detail-v">Year</span>}
+                  {editing && <input
                     type="text"
                     className="detail-input"
                     placeholder="Year"
-                  />
+                  />}
                 </td>
               </tr>
               <tr className="car-detail">
@@ -208,19 +204,24 @@ export default function Item() {
                   ></FontAwesomeIcon>
                 </td>
                 <td>
-                  <span className="detail-v">HP</span>
-                  <input
+                  {!editing && <span className="detail-v">HP</span>}
+                  {editing && <input
                     type="text"
                     className="detail-input"
                     placeholder="Horse power"
-                  />
+                  />}
                 </td>
               </tr>
             </tbody>
           </table>
 
-          <div className="offers">
-            <span className="offer-text">{selectedItem["description"]}</span>
+          <div className="description-wrap">
+            {!editing && <span className="description">{selectedItem["description"]}</span>}
+            {editing && 
+              <textarea className="description-textarea detail-input" placeholder="Description (optional)">
+
+              </textarea>
+            }
           </div>
 
           <button className="message-button">Message</button>

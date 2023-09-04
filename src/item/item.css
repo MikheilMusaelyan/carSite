@@ -85,11 +85,15 @@ h1, h5{
     user-select: none;
     -webkit-user-select: none;
 }
-
 .title{
-    margin: 0 0 15px 0;
+    padding: 0 0 15px 0;
     font-size: 35px;
     color: rgb(53, 53, 53);
+}
+.title-input{
+    display: block;
+    margin: 15px 0;
+    font-size: 20px !important
 }
 
 .price-wrap{
@@ -100,7 +104,9 @@ h1, h5{
     font-size: 19px;
     color: var(--mainColor);
 }
-
+.price-input{
+    font-size: 15px !important;
+}
 
 /* seller */
 .seller-profile{
@@ -167,7 +173,7 @@ td{
 .detail-input{
     border: 1px solid lightgrey;
     border-radius: 3px;
-    font-size: 14px;
+    font-size: 13px;
     padding: 6px 7px;
 }
 
@@ -190,7 +196,7 @@ td{
 
 
 /* description */
-.offer-text{
+.description{
     padding: 10px 15px 0px 15px;
     font-size: 13px;
     letter-spacing: .6px;
@@ -198,6 +204,13 @@ td{
     font-family: initial;
     display: block;
     color: rgb(87, 87, 87);
+}
+.description-textarea{
+    width: 100%;
+    max-width: 100%;
+    resize: vertical;
+    min-height: 60px;
+    font-size: 12px !important;
 }
 
 div::-webkit-scrollbar {
