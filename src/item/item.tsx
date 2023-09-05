@@ -10,63 +10,61 @@ import {
   faTag,
   faWallet,
 } from "@fortawesome/free-solid-svg-icons";
+import { checkInput } from "../shared";
 
 export default function Item() {
   // styles
   const [hovered, changeHovered] = useState("");
   const [selectedItem, setSelectedItem] = useState({
     id: 1,
-    price: 15,
-    milage: 0,
+    price: '',
+    milage: '',
     make: "",
     model: "",
-    year: 0,
+    year: '',
     animationType: "",
-    horsepower: 0,
-    name: "d",
-    description: `The best description
+    hp: '',
+    name: "",
+    desc: `The best description
       second line
       third line`,
     images: ["/src/assets/irownbracelet.png", "/src/assets/ironwrist2.png"],
     selectedImage: "/src/assets/irownbracelet.png",
   });
   const [editing, setEditing] = useState(true);
-
-  // refs
-  const inputRefs = {
-    nameRef: {
-      value: useRef(),
-      selected: false
+  const [editingProp, setEditingProp] = useState(null)
+  const propertyArr = [
+    {
+      name: 'milage',
+      color: 'green',
+      placeholder: 'Milage',
+      icon: faCar
     },
-    priceRef: {
-      value: useRef(),
-      selected: false
+    {
+      name: 'make',
+      color: 'red',
+      placeholder: 'Make',
+      icon: faCar
     },
-    brandRef: {
-      value: useRef(),
-      selected: false
+    {
+      name: 'model',
+      color: 'pink',
+      placeholder: 'Model',
+      icon: faTag
     },
-    milageRef: {
-      value: useRef(),
-      selected: false
+    {
+      name: 'year',
+      color: 'blue',
+      placeholder: 'Year',
+      icon: faCalendar
     },
-    modelRef: {
-      value: useRef(),
-      selected: false
+    {
+      name: 'hp',
+      color: 'brown',
+      placeholder: 'Horse Power',
+      icon: faHorseHead
     },
-    yearRef: {
-      value: useRef(),
-      selected: false
-    },
-    descRef: {
-      value: useRef(),
-      selected: false
-    },
-    hpRef: {
-      value: useRef(),
-      selected: false
-    }
-  };
+  ]
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
@@ -81,23 +79,20 @@ export default function Item() {
     };
   }, [])
 
-  // changing selected field
   function handleClickOutside(event: any) {
-    if(!editing) return
-    for (const inputName in inputRefs) {
-      inputRefs[inputName]['selected'] = false;
-      if (inputRefs[inputName]['value'].current && inputRefs[inputName]['value'].current.contains(event.target)) {
-        inputRefs[inputName]['selected'] = true;
-      }     
+    if(!editing || event.target.hasAttribute('data-name')) return
+    setEditingProp('')
+    if(event.target && event.target.tagName === 'INPUT'){
+      setEditingProp(event.target.name)      
     }
   }
 
   function renderProperty(refName: string){
-    return !editing || (editing && (!inputRefs[refName].selected && inputRefs[refName].value['length'] > 0))
+    return !editing || (editing && (editingProp != refName && checkInput(selectedItem[refName])))
   }
 
   function renderInput(refName: string){
-    return ((editing && (inputRefs[refName].selected || inputRefs[refName].value['length'] == 0)))
+    return ((editing && (!checkInput(selectedItem[refName]) || editingProp == refName)))
   }
 
   // on input change we also change values depending on their names
@@ -107,7 +102,13 @@ export default function Item() {
       ...prevFormData,
       [name]: value,
     }));
+    console.log(selectedItem)
   }
+
+  function selectInput(name: string){
+    setEditingProp(name)
+  }
+
   // styles
   const selectImage = (variation: string) => {
     setSelectedItem((prevState: any) => ({
@@ -184,10 +185,16 @@ export default function Item() {
           </div>
 
           <div className="title-wrap">
-            {true && <h1 className="title">{selectedItem["name"]}</h1>}
-            {true && 
+            {renderProperty('name') && 
+            <h1
+            data-name='property'
+            onClick={() => selectInput('name')} 
+            className="title"
+            >{selectedItem["name"]}</h1>}
+
+            {renderInput('name') && 
             <input
-            ref={inputRefs.nameRef.value}
+            value={selectedItem['name']}
             onChange={handleInputChange}
             className="title-input detail-input" 
             placeholder="Title"
@@ -196,127 +203,73 @@ export default function Item() {
           </div>
 
           <div className="price-wrap">
-            {!editing && <h1 className="price">${selectedItem["price"]?.toFixed(2)} USD</h1>}
-            {editing && 
-            <input 
-            ref={inputRefs.priceRef.value}
-            onChange={handleInputChange}
-            min={1} 
-            className="price-input detail-input" 
-            type="number" 
-            placeholder="Price"
-            />}
+            {renderProperty('price') && 
+              <h1
+              data-name='property'
+              onClick={() => selectInput('price')} 
+              className="price"
+              >{selectedItem["price"]}</h1>}
+
+              {renderInput('price') && 
+              <input
+              value={selectedItem['price']}
+              onChange={handleInputChange}
+              className="price-input detail-input" 
+              placeholder="Price"
+              name="price"
+              />}
           </div>
 
           <table className="car-details">
             <tbody>
-              <tr className="car-detail">
-                <td style={{ color: "green" }}>
-                  <FontAwesomeIcon
-                    className="detail-p"
-                    icon={faTag}
-                  ></FontAwesomeIcon>
-                </td>
-                <td>
-                  {!editing && <span className="detail-v">Brand</span>}
-                  {editing && <input
-                    ref={inputRefs.brandRef.value}
-                    onChange={handleInputChange} 
-                    style={{ outlineColor: 'green' }}
-                    type="text"
-                    className="brand-input detail-input"
-                    placeholder="Brand"
-                  />}
-                </td>
-              </tr>
-              <tr className="car-detail">
-                <td style={{ color: "red" }}>
-                  <FontAwesomeIcon
-                    className="detail-p"
-                    icon={faGauge}
-                  ></FontAwesomeIcon>
-                </td>
-                <td>
-                  {!editing && <span className="detail-v">Milage</span>}
-                  {editing && <input
-                    ref={inputRefs.milageRef.value}
-                    onChange={handleInputChange} 
-                    type="text"
-                    className="milage=input detail-input"
-                    placeholder="Milage"
-                  />}
-                </td>
-              </tr>
-              <tr className="car-detail">
-                <td style={{ color: "orangered" }}>
-                  <FontAwesomeIcon
-                    className="detail-p"
-                    icon={faCar}
-                  ></FontAwesomeIcon>
-                </td>
-                <td>
-                  {!editing && <span className="detail-v">Model</span>}
-                  {editing && <input
-                    ref={inputRefs.modelRef.value}
-                    onChange={handleInputChange} 
-                    type="text"
-                    className="model-input detail-input"
-                    placeholder="Model"
-                  />}
-                </td>
-              </tr>
-              <tr className="car-detail">
-                <td style={{ color: "blue" }}>
-                  <FontAwesomeIcon
-                    className="detail-p"
-                    icon={faCalendar}
-                  ></FontAwesomeIcon>
-                </td>
-                <td>
-                  {!editing && <span className="detail-v">Year</span>}
-                  {editing && <input
-                    ref={inputRefs.yearRef.value}
-                    onChange={handleInputChange} 
-                    type="text"
-                    className="detail-input"
-                    placeholder="Year"
-                  />}
-                </td>
-              </tr>
-              <tr className="car-detail">
-                <td style={{ color: "brown" }}>
-                  <FontAwesomeIcon
-                    className="detail-p"
-                    icon={faHorseHead}
-                  ></FontAwesomeIcon>
-                </td>
-                <td>
-                  {!editing && <span className="detail-v">HP</span>}
-                  {editing && <input
-                    ref={inputRefs.hpRef.value}
+              {propertyArr.map((prop: any, i: number) => (
+                <tr className="car-detail" key={i}>
+                  <td style={{ color: prop['color'] }}>
+                    <FontAwesomeIcon
+                      className="detail-p"
+                      icon={prop['icon']}
+                    ></FontAwesomeIcon>
+                  </td>
+                  <td>
+                    {renderProperty(prop['name']) && 
+                    <span 
+                    className="detail-v"
+                    data-name='property'
+                    onClick={() => selectInput(prop['name'])}
+                    >
+                      {selectedItem[prop['name']]}
+                    </span>
+                    }
+                    {renderInput(prop['name']) && 
+                    <input
+                    value={selectedItem[prop['name']]}
                     onChange={handleInputChange}
-                    type="text"
-                    className="detail-input"
-                    placeholder="Horse power"
-                  />}
-                </td>
-              </tr>
+                    className={`${prop['name']}-input detail-input` }
+                    placeholder={prop['placeholder']}
+                    name={prop['name']}
+                    />}
+                  </td>
+                </tr>
+              ))}
+              
             </tbody>
           </table>
 
-          <div className="description-wrap">
-            {!editing && <span className="description">{selectedItem["description"]}</span>}
+          {/* <div className="description-wrap">
+            {!editing && <span className="description">{selectedItem["desc"]}</span>}
             {editing && 
               <textarea 
               className="description-textarea detail-input" 
               placeholder="Description (optional)"
-              ref={inputRefs.descRef.value}
+              ref={inputRefs.desc.value}
               onChange={handleInputChange}
+              name="desc"
+              value={selectedItem['desc']}
               >
-
+                
               </textarea>
             }
-          </div>
+          </div> */}
 
           <button className="message-button">Message</button>
         </section>
