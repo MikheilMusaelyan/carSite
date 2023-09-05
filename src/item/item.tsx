@@ -69,10 +69,7 @@ export default function Item() {
   };
 
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "auto",
-    });
+    window.scrollTo({ top: 0, behavior: "auto" });
     selectImage(selectedItem["images"][0]);
   }, []);
 
@@ -89,12 +86,21 @@ export default function Item() {
     if(!editing) return
     for (const inputName in inputRefs) {
       inputRefs[inputName]['selected'] = false;
-      if (inputRefs[inputName]['value'].current.contains(event.target)) {
+      if (inputRefs[inputName]['value'].current && inputRefs[inputName]['value'].current.contains(event.target)) {
         inputRefs[inputName]['selected'] = true;
-      }
+      }     
     }
   }
 
+  function renderProperty(refName: string){
+    return !editing || (editing && (!inputRefs[refName].selected && inputRefs[refName].value['length'] > 0))
+  }
+
+  function renderInput(refName: string){
+    return ((editing && (inputRefs[refName].selected || inputRefs[refName].value['length'] == 0)))
+  }
+
+  // on input change we also change values depending on their names
   function handleInputChange(event: any) {
     const { name, value } = event.target;
     setSelectedItem((prevFormData) => ({
@@ -178,8 +184,8 @@ export default function Item() {
           </div>
 
           <div className="title-wrap">
-            {(!editing || editing && true) && <h1 className="title">{selectedItem["name"]}</h1>}
-            {editing && 
+            {true && <h1 className="title">{selectedItem["name"]}</h1>}
+            {true && 
             <input
             ref={inputRefs.nameRef.value}
             onChange={handleInputChange}
