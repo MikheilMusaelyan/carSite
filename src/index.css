@@ -6,6 +6,8 @@
 }
 body{
     margin: 0;
+    min-width: 280px;
+    overflow-x: hidden;
 }
 *{
     box-sizing: border-box;

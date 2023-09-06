@@ -11,6 +11,7 @@ import {
   faWallet,
 } from "@fortawesome/free-solid-svg-icons";
 import { checkInput } from "../shared";
+import Carousel from "../carousel/carousel";
 
 export default function Item() {
   // styles
@@ -68,6 +69,7 @@ export default function Item() {
   ]
   const [scrolledToProps, setScrolledToProps] = useState(false)
   const [animation, setAnimation] = useState('')
+  const [animationHappened, setAnimationHappened] = useState(false)
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
@@ -91,6 +93,7 @@ export default function Item() {
   function handleScroll(){
     const elementRect: any = carDetailsRef.current.getBoundingClientRect();
     if (elementRect['top'] <= 500) {
+      setAnimationHappened(true)
       return setAnimation('')
     }
     setAnimation(selectedItem['animation'])
@@ -198,20 +201,11 @@ export default function Item() {
     <>
       <main className="twelve">
         {/* animations */}
-        <div className="select-anim-wrap-main">
-          <div className="select-anim-wrap">
-            <h2 className="select-anim-text"> {selectedItem['animation']}</h2>
-            <div className="button-wrap">
-              <button onClick={() => changeAnimation('slidLeft')} className={`select-anim ${selectedItem['animation'] === 'slidLeft' ? 'active' : ''}`}>I</button>
-              <button onClick={() => changeAnimation('appear')} className={`select-anim ${selectedItem['animation'] === 'appear' ? 'active' : ''}`}>II</button>
-              <button onClick={() => changeAnimation('none')} className={`select-anim ${selectedItem['animation'] === 'none' ? 'active' : ''}`}>None</button>
-            </div>
-          </div>
-        </div>
 
         <section className="left">
           <div className="big-image-wrap">
-            <div className="image-wrap">
+          <Carousel />
+            {/* <div className="image-wrap">
               <img
                 className="big-image"
                 onMouseMove={zoomIn}
@@ -219,7 +213,7 @@ export default function Item() {
                 src={hovered || selectedItem["selectedImage"]}
                 alt="No image"
               />
-            </div>
+            </div> */}
           </div>
           <div className="small-images">
             {selectedItem["images"]?.map((item: string, i: number) => (
@@ -351,6 +345,18 @@ export default function Item() {
           >Message</button>
         </section>
       </main>
+      <div className="select-anim-wrap-main">
+        <div className="select-anim-wrap-fixed">
+          <div className="select-anim-wrap">
+            <h2 className="select-anim-text"> {selectedItem['animation']}</h2>
+              <div className="button-wrap">
+                <button onClick={() => changeAnimation('slidLeft')} className={`select-anim ${selectedItem['animation'] === 'slidLeft' ? 'active' : ''}`}>I</button>
+                <button onClick={() => changeAnimation('appear')} className={`select-anim ${selectedItem['animation'] === 'appear' ? 'active' : ''}`}>II</button>
+                <button onClick={() => changeAnimation('none')} className={`select-anim ${selectedItem['animation'] === 'none' ? 'active' : ''}`}>None</button>
+              </div>
+            </div>
+          </div>
+      </div>
     </>
   );
 }
