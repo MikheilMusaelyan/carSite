@@ -72,7 +72,7 @@ main{
 }
 .select-anim.active{
     background: #086dda;
-    border-radius: 9px;
+    border-radius: 10px;
 }
 .select-anim:hover{
     background: #0869d1

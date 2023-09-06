@@ -74,20 +74,26 @@ export default function Item() {
     selectImage(selectedItem["images"][0]);
 
     document.addEventListener('click', handleClickOutside);
-    document.addEventListener('scroll', handleScroll);
     handleScroll()
     // clear
     return () => { 
-      document.removeEventListener('scroll', handleScroll);
       document.removeEventListener('click', handleClickOutside);
     };
   }, [])
 
+  useEffect(() => {
+    document.addEventListener('scroll', handleScroll);
+    return () => {
+      document.removeEventListener('scroll', handleScroll);
+    };
+  }, [selectedItem])
+
   function handleScroll(){
     const elementRect: any = carDetailsRef.current.getBoundingClientRect();
     if (elementRect['top'] <= 500) {
-      setScrolledToProps(true)
+      return setAnimation('')
     }
+    setAnimation(selectedItem['animation'])
   }
 
   function handleClickOutside(event: any) {
@@ -104,9 +110,12 @@ export default function Item() {
       animation: string
     }))
     setAnimation(string)
-    setTimeout(() => {
-      setAnimation('')
-    }, 300);
+    const elementRect: any = carDetailsRef.current.getBoundingClientRect();
+    if (elementRect['top'] <= 500) {
+      setTimeout(() => {
+        setAnimation('')
+      }, 300);
+    }
   }
 
   function renderProperty(refName: string){
@@ -131,11 +140,7 @@ export default function Item() {
   }
 
   function message() {
-    // if(editing) return
-    setAnimation('slidLeft')
-    setTimeout(() => {
-      setAnimation('')
-    }, 500);
+    if(editing) return
   }
 
   // styles
@@ -149,7 +154,7 @@ export default function Item() {
       return {
         opacity: 0
       };
-    } else if (animation == '' && scrolledToProps) {
+    } else if (animation == '' ) {
       return { 
         transition: `550ms ${i * 90}ms`,
         opacity: 1,
@@ -195,7 +200,7 @@ export default function Item() {
         {/* animations */}
         <div className="select-anim-wrap-main">
           <div className="select-anim-wrap">
-            <h2 className="select-anim-text">Animations</h2>
+            <h2 className="select-anim-text"> {selectedItem['animation']}</h2>
             <div className="button-wrap">
               <button onClick={() => changeAnimation('slidLeft')} className={`select-anim ${selectedItem['animation'] === 'slidLeft' ? 'active' : ''}`}>I</button>
               <button onClick={() => changeAnimation('appear')} className={`select-anim ${selectedItem['animation'] === 'appear' ? 'active' : ''}`}>II</button>
