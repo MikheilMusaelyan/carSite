@@ -2,6 +2,7 @@ main{
     display: flex;
     padding: 30px 15px;
     position: relative;
+    overflow: hidden;
 }
 .right{
     width: 35%;
@@ -23,6 +24,60 @@ main{
     position: sticky;
     top: 0;
 }
+
+/* fixed */
+.select-anim-wrap-main{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+}
+.select-anim-wrap{
+    max-width: 600px;
+    width: 100%;
+    background: white;
+    border: 1px solid rgb(239, 239, 239);
+    box-shadow: 0 1px 3px rgb(229, 229, 229);
+    border-radius: 3px;
+}
+.select-anim-text{
+    text-align: center;
+    margin: 15px 0 20px 0;
+    color: rgb(47, 47, 47);
+}
+.button-wrap{
+    display: flex;
+    width: 100%;
+    padding: 7px;
+}
+
+.select-anim{
+    border: none !important;
+    outline: none !important;
+    padding: 12px;
+    border-radius: 4px;
+    background: var(--blue);
+    color: white;
+    border: none;
+    margin: 0 2px;
+    width: 100%;
+    height: 60px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 400ms;
+}
+.select-anim.active{
+    background: #086dda;
+    border-radius: 9px;
+}
+.select-anim:hover{
+    background: #0869d1
+}
+
 .big-image-wrap{
     display: flex;
     justify-content: center;
@@ -160,7 +215,6 @@ td{
 }
 .car-detail{
     border-bottom: 1px solid var(--lg);
-    opacity: 0;
     /* transition: opacity 500ms ease-in-out, transform 300ms ease-in; */
 }
 

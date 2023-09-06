@@ -23,7 +23,7 @@ export default function Item() {
     make: "",
     model: "",
     year: '',
-    animationType: "",
+    animation: "slidLeft",
     hp: '',
     name: "",
     desc: `The best description
@@ -72,15 +72,10 @@ export default function Item() {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
     selectImage(selectedItem["images"][0]);
-    setAnimation('slidLeft')
-    setTimeout(() => {
-      setAnimation('')
-    }, 300);
-  }, []);
 
-  useEffect(() => {
     document.addEventListener('click', handleClickOutside);
     document.addEventListener('scroll', handleScroll);
+    handleScroll()
     // clear
     return () => { 
       document.removeEventListener('scroll', handleScroll);
@@ -101,6 +96,17 @@ export default function Item() {
     if(event.target && event.target.tagName === 'INPUT'){
       setEditingProp(event.target.name)      
     }
+  }
+
+  function changeAnimation(string: string) {
+    setSelectedItem((prev: any) => ({
+      ...prev,
+      animation: string
+    }))
+    setAnimation(string)
+    setTimeout(() => {
+      setAnimation('')
+    }, 300);
   }
 
   function renderProperty(refName: string){
@@ -133,6 +139,25 @@ export default function Item() {
   }
 
   // styles
+  const animtaionPreference = (i: number) => {
+    if (animation == 'slidLeft') {
+      return {
+        transform: 'translateX(50px)',
+        opacity: 0
+      };
+    } else if (animation == 'appear') {
+      return {
+        opacity: 0
+      };
+    } else if (animation == '' && scrolledToProps) {
+      return { 
+        transition: `550ms ${i * 90}ms`,
+        opacity: 1,
+        transform: 'translate(0, 0)'
+      };
+    }
+  }
+
   const selectImage = (variation: string) => {
     setSelectedItem((prevState: any) => ({
       ...prevState,
@@ -167,6 +192,18 @@ export default function Item() {
   return (
     <>
       <main className="twelve">
+        {/* animations */}
+        <div className="select-anim-wrap-main">
+          <div className="select-anim-wrap">
+            <h2 className="select-anim-text">Animations</h2>
+            <div className="button-wrap">
+              <button onClick={() => changeAnimation('slidLeft')} className={`select-anim ${selectedItem['animation'] === 'slidLeft' ? 'active' : ''}`}>I</button>
+              <button onClick={() => changeAnimation('appear')} className={`select-anim ${selectedItem['animation'] === 'appear' ? 'active' : ''}`}>II</button>
+              <button onClick={() => changeAnimation('none')} className={`select-anim ${selectedItem['animation'] === 'none' ? 'active' : ''}`}>None</button>
+            </div>
+          </div>
+        </div>
+
         <section className="left">
           <div className="big-image-wrap">
             <div className="image-wrap">
@@ -246,29 +283,7 @@ export default function Item() {
           <table className="car-details" ref={carDetailsRef}>
             <tbody>
               {propertyArr.map((prop: any, i: number) => {
-                let style = {};
-
-                if (animation == 'slidLeft') {
-                  style = {
-                    transform: 'translateX(50px)',
-                    opacity: 0
-                  };
-                } else if (animation == 'slidBottom') {
-                  style = {
-                    transform: 'translateY(50px)',
-                    opacity: 0
-                  };
-                } else if (animation == 'appear') {
-                  style = {
-                    opacity: 0
-                  };
-                } else if (animation == '' && scrolledToProps) {
-                  style = { 
-                    transition: `550ms ${i * 90}ms`,
-                    opacity: 1,
-                    transform: 'translate(0, 0)'
-                  };
-                }
+                let style = animtaionPreference(i)
 
                 return (
                 <tr 
