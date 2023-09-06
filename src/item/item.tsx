@@ -109,6 +109,11 @@ export default function Item() {
     setEditingProp(name)
   }
 
+  function message() {
+    if(editing) return
+    
+  }
+
   // styles
   const selectImage = (variation: string) => {
     setSelectedItem((prevState: any) => ({
@@ -271,7 +276,10 @@ export default function Item() {
             }
           </div> */}
 
-          <button className="message-button">Message</button>
+          <button 
+          onClick={message} 
+          className={`message-button ${editing ? 'unhoverable-button' : ''}`}
+          >Message</button>
         </section>
       </main>
     </>

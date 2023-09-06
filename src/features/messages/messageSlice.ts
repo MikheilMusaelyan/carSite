@@ -3,7 +3,7 @@ import { createSlice, nanoid } from "@reduxjs/toolkit";
 const initialState = {
     messages: []
 }
-
+  
 export const messageSlice = createSlice({
     name: 'message',
     initialState,
@@ -24,3 +24,5 @@ export const messageSlice = createSlice({
 
 export const {addMessage, removeMessage} = messageSlice.actions
 export default messageSlice.reducer
+
+

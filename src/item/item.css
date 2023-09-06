@@ -168,7 +168,9 @@ td{
     padding: 0 7px 0 0
 }
 .detail-v{
-    font-weight: 500
+    font-weight: 500;
+    width: 100%;
+    display: block;
 }
 .detail-input{
     border: 1px solid lightgrey;
