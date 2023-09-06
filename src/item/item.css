@@ -100,44 +100,6 @@ main{
 .big-image{
     width: 100%;
 }
-.zoomed{
-    transform: scale(2);
-}
-
-/* small */
-
-.small-images{
-    min-height: 190px;
-    padding: 30px 10px 0px 10px;
-    display: flex;
-    /* justify-content: center; */
-    overflow: auto;
-}
-
-.small-image-wrap{
-    height: 130px;
-    margin: 0 5px;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 3px;
-    border: 2px solid transparent;
-    transition: all 300ms, border-color 0s;
-    box-shadow: 0 0 10px rgb(221, 220, 220);
-}
-
-.small-image-wrap.selected{
-    transform: translateY(-10px);
-    border: 2px solid var(--mainColor);
-    border-radius: 7px;
-}
-.small-image-wrap img{
-    height: 100%;
-    user-select: none;
-    -webkit-user-select: none;
-}
-
-
-
 
 /* right */
 h1, h5{

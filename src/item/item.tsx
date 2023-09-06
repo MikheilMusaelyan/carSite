@@ -16,7 +16,6 @@ import Carousel from "../carousel/carousel";
 export default function Item() {
   // styles
   const carDetailsRef = useRef(null)
-  const [hovered, changeHovered] = useState("");
   const [selectedItem, setSelectedItem] = useState({
     id: 1,
     price: '',
@@ -40,7 +39,7 @@ export default function Item() {
       name: 'milage',
       color: 'green',
       placeholder: 'Milage',
-      icon: faCar
+      icon: faGauge
     },
     {
       name: 'make',
@@ -67,13 +66,11 @@ export default function Item() {
       icon: faHorseHead
     },
   ]
-  const [scrolledToProps, setScrolledToProps] = useState(false)
   const [animation, setAnimation] = useState('')
   const [animationHappened, setAnimationHappened] = useState(false)
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
-    selectImage(selectedItem["images"][0]);
 
     document.addEventListener('click', handleClickOutside);
     handleScroll()
@@ -166,36 +163,9 @@ export default function Item() {
     }
   }
 
-  const selectImage = (variation: string) => {
-    setSelectedItem((prevState: any) => ({
-      ...prevState,
-      selectedImage: variation,
-    }));
-  };
+  
 
-  const hoverOver = (i: any) => {
-    changeHovered(i);
-  };
-
-  const hoverOut = () => {
-    changeHovered("");
-  };
-
-  const zoomIn = (event: any) => {
-    const img = event.target;
-    const rect = img.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    const offsetX = (x / rect.width) * 100;
-    const offsetY = (y / rect.height) * 100;
-    img.style.transformOrigin = `${offsetX}% ${offsetY}%`;
-    img.classList.add("zoomed");
-  };
-
-  const zoomOut = (event: any) => {
-    const img = event.target;
-    img.classList.remove("zoomed");
-  };
+  
 
   return (
     <>
@@ -204,32 +174,9 @@ export default function Item() {
 
         <section className="left">
           <div className="big-image-wrap">
-          <Carousel />
-            {/* <div className="image-wrap">
-              <img
-                className="big-image"
-                onMouseMove={zoomIn}
-                onMouseOut={zoomOut}
-                src={hovered || selectedItem["selectedImage"]}
-                alt="No image"
-              />
-            </div> */}
+            <Carousel images={selectedItem['images']} />
           </div>
-          <div className="small-images">
-            {selectedItem["images"]?.map((item: string, i: number) => (
-              <div
-                key={i}
-                className={`small-image-wrap ${
-                  selectedItem["selectedImage"] === item ? "selected" : ""
-                }`}
-                onClick={() => selectImage(item)}
-                onMouseOver={() => hoverOver(item)}
-                onMouseOut={hoverOut}
-              >
-                <img src={item} alt="No image" />
-              </div>
-            ))}
-          </div>
+          
         </section>
 
         <section className="right">
