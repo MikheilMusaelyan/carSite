@@ -33,6 +33,7 @@ main{
 }
 .image-wrap{
     min-height: 50vh;
+    height: 60vh !important;
     max-height: 70vh;
     display: flex;
     align-items: center
@@ -158,8 +159,11 @@ td{
     padding: 7px 10px 8px 10px;
 }
 .car-detail{
-    border-bottom: 1px solid var(--lg)
+    border-bottom: 1px solid var(--lg);
+    opacity: 0;
+    /* transition: opacity 500ms ease-in-out, transform 300ms ease-in; */
 }
+
 .car-detail:hover{
     background: transparent;
     cursor: initial

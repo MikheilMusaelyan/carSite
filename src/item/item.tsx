@@ -14,6 +14,7 @@ import { checkInput } from "../shared";
 
 export default function Item() {
   // styles
+  const carDetailsRef = useRef(null)
   const [hovered, changeHovered] = useState("");
   const [selectedItem, setSelectedItem] = useState({
     id: 1,
@@ -65,19 +66,34 @@ export default function Item() {
       icon: faHorseHead
     },
   ]
+  const [scrolledToProps, setScrolledToProps] = useState(false)
+  const [animation, setAnimation] = useState('')
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
     selectImage(selectedItem["images"][0]);
+    setAnimation('slidLeft')
+    setTimeout(() => {
+      setAnimation('')
+    }, 300);
   }, []);
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);
+    document.addEventListener('scroll', handleScroll);
     // clear
     return () => { 
+      document.removeEventListener('scroll', handleScroll);
       document.removeEventListener('click', handleClickOutside);
     };
   }, [])
+
+  function handleScroll(){
+    const elementRect: any = carDetailsRef.current.getBoundingClientRect();
+    if (elementRect['top'] <= 500) {
+      setScrolledToProps(true)
+    }
+  }
 
   function handleClickOutside(event: any) {
     if(!editing || event.target.hasAttribute('data-name')) return
@@ -102,7 +118,6 @@ export default function Item() {
       ...prevFormData,
       [name]: value,
     }));
-    console.log(selectedItem)
   }
 
   function selectInput(name: string){
@@ -110,8 +125,11 @@ export default function Item() {
   }
 
   function message() {
-    if(editing) return
-    
+    // if(editing) return
+    setAnimation('slidLeft')
+    setTimeout(() => {
+      setAnimation('')
+    }, 500);
   }
 
   // styles
@@ -225,10 +243,39 @@ export default function Item() {
               />}
           </div>
 
-          <table className="car-details">
+          <table className="car-details" ref={carDetailsRef}>
             <tbody>
-              {propertyArr.map((prop: any, i: number) => (
-                <tr className="car-detail" key={i}>
+              {propertyArr.map((prop: any, i: number) => {
+                let style = {};
+
+                if (animation == 'slidLeft') {
+                  style = {
+                    transform: 'translateX(50px)',
+                    opacity: 0
+                  };
+                } else if (animation == 'slidBottom') {
+                  style = {
+                    transform: 'translateY(50px)',
+                    opacity: 0
+                  };
+                } else if (animation == 'appear') {
+                  style = {
+                    opacity: 0
+                  };
+                } else if (animation == '' && scrolledToProps) {
+                  style = { 
+                    transition: `550ms ${i * 90}ms`,
+                    opacity: 1,
+                    transform: 'translate(0, 0)'
+                  };
+                }
+
+                return (
+                <tr 
+                  key={i} 
+                  style={style} 
+                  className="car-detail"
+                >
                   <td style={{ color: prop['color'] }}>
                     <FontAwesomeIcon
                       className="detail-p"
@@ -247,6 +294,7 @@ export default function Item() {
                     }
                     {renderInput(prop['name']) && 
                     <input
+                    style={{color: prop['color']}}
                     value={selectedItem[prop['name']]}
                     onChange={handleInputChange}
                     className={`${prop['name']}-input detail-input` }
@@ -255,7 +303,8 @@ export default function Item() {
                     />}
                   </td>
                 </tr>
-              ))}
+                )
+              })}
               
             </tbody>
           </table>
