@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 function CharacterLimit({ text, limit }) {
   const [truncatedText, setTruncatedText] = useState(text);
@@ -11,7 +11,7 @@ function CharacterLimit({ text, limit }) {
     }
   }, [text, limit]);
 
-  return <div>{truncatedText}</div>;
+  return truncatedText;
 }
 
 export default CharacterLimit;

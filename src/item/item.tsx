@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { animtaionPreference, checkInput } from "../shared/shared";
 import Carousel from "../carousel/carousel";
+import CharacterLimit from "../shared/characterlimit";
 
 export default function Item() {
   // styles
@@ -176,7 +177,9 @@ export default function Item() {
             data-name='property'
             onClick={() => selectInput('name')} 
             className="title"
-            >{selectedItem["name"]}</h1>}
+            >
+              <CharacterLimit text={selectedItem['title']} limit={50}/>
+            </h1>}
 
             {renderInput('name') && 
             <input
@@ -196,7 +199,8 @@ export default function Item() {
               data-name='property'
               onClick={() => selectInput('price')} 
               className="price"
-              >{selectedItem["price"]}</h1>}
+              >
+              <CharacterLimit text={selectedItem['price']} limit={10} /></h1>}
 
               {renderInput('price') && 
               <input
@@ -234,7 +238,7 @@ export default function Item() {
                     data-name='property'
                     onClick={() => selectInput(prop['name'])}
                     >
-                      {selectedItem[prop['name']]}
+                      <CharacterLimit text={selectedItem[prop['name']]} limit={50} />
                     </span>
                     }
                     {renderInput(prop['name']) && 
@@ -261,7 +265,7 @@ export default function Item() {
             data-name='property'
             onClick={() => selectInput('description')} 
             className="description"
-            >{selectedItem["description"]}</span>}
+            ><CharacterLimit text={selectedItem['description']} limit={500}/></span>}
 
             {renderInput('description') && 
             <textarea 
