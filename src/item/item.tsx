@@ -9,7 +9,7 @@ import {
   faHorseHead,
   faTag,
 } from "@fortawesome/free-solid-svg-icons";
-import { animtaionPreference, checkInput } from "../shared";
+import { animtaionPreference, checkInput } from "../shared/shared";
 import Carousel from "../carousel/carousel";
 
 export default function Item() {
