@@ -9,7 +9,7 @@ import {
   faHorseHead,
   faTag,
 } from "@fortawesome/free-solid-svg-icons";
-import { checkInput } from "../shared";
+import { animtaionPreference, checkInput } from "../shared";
 import Carousel from "../carousel/carousel";
 
 export default function Item() {
@@ -25,9 +25,7 @@ export default function Item() {
     animation: "slidLeft",
     hp: '',
     name: "",
-    description: `The best description
-      second line
-      third line`,
+    description: `The best desc`,
     images: ["/src/assets/irownbracelet.png", "/src/assets/ironwrist2.png"],
     selectedImage: "/src/assets/irownbracelet.png",
   });
@@ -35,36 +33,37 @@ export default function Item() {
   const [editingProp, setEditingProp] = useState(null)
   const propertyArr = [
     {
-      name: 'milage',
-      color: 'green',
-      placeholder: 'Milage',
+      name: 'mileage',
+      color: '#4CAF50', // Green
+      placeholder: 'Mileage',
       icon: faGauge
     },
     {
       name: 'make',
-      color: 'red',
+      color: '#E91E63', // Pink
       placeholder: 'Make',
       icon: faCar
     },
     {
       name: 'model',
-      color: 'pink',
+      color: '#2196F3', // Blue
       placeholder: 'Model',
       icon: faTag
     },
     {
       name: 'year',
-      color: 'blue',
+      color: '#FF5722', // Orange
       placeholder: 'Year',
       icon: faCalendar
     },
     {
       name: 'hp',
-      color: 'brown',
+      color: '#795548', // Brown
       placeholder: 'Horse Power',
       icon: faHorseHead
     },
-  ]
+  ];
+  
   const [animation, setAnimation] = useState('')
   const [animationHappened, setAnimationHappened] = useState(false)
 
@@ -144,27 +143,6 @@ export default function Item() {
   }
 
   // styles
-  const animtaionPreference = (i: number) => {
-    if (animation == 'slidLeft') {
-      return {
-        transform: 'translateX(50px)',
-        opacity: 0
-      };
-    } else if (animation == 'appear') {
-      return {
-        opacity: 0
-      };
-    } else if (animation == '' ) {
-      return { 
-        transition: `550ms ${i * 90}ms`,
-        opacity: 1,
-        transform: 'translate(0, 0)'
-      };
-    }
-  }
-
-  
-
   
 
   return (
@@ -180,6 +158,7 @@ export default function Item() {
         </section>
 
         <section className="right">
+          {/* profile */}
           <div className="seller-profile">
             <div className="seller-img-wrap">
               <img className="seller-img" src="/src/assets/irownbracelet.png" />
@@ -190,6 +169,7 @@ export default function Item() {
             </div>
           </div>
 
+          {/* title */}
           <div className="title-wrap">
             {renderProperty('name') && 
             <h1
@@ -205,9 +185,11 @@ export default function Item() {
             className="title-input detail-input" 
             placeholder="Title"
             name="name"
+            maxLength={50}
             />}
           </div>
 
+          {/* price */}
           <div className="price-wrap">
             {renderProperty('price') && 
               <h1
@@ -223,6 +205,7 @@ export default function Item() {
               className="price-input detail-input" 
               placeholder="Price"
               name="price"
+              type="number"
               />}
           </div>
 
@@ -230,7 +213,7 @@ export default function Item() {
           <table className="car-details" ref={carDetailsRef}>
             <tbody>
               {propertyArr.map((prop: any, i: number) => {
-                let style = animtaionPreference(i)
+                let style = animtaionPreference(i, animation)
 
                 return (
                 <tr 
@@ -256,6 +239,7 @@ export default function Item() {
                     }
                     {renderInput(prop['name']) && 
                     <input
+                    maxLength={50}
                     style={{color: prop['color']}}
                     value={selectedItem[prop['name']]}
                     onChange={handleInputChange}
@@ -267,11 +251,10 @@ export default function Item() {
                 </tr>
                 )
               })}
-              
             </tbody>
           </table>
 
-          {/* textare */}
+          {/* textarea */}
           <div className="description-wrap">
             {renderProperty('description') && 
             <span 
@@ -287,17 +270,24 @@ export default function Item() {
             onChange={handleInputChange}
             name="description"
             value={selectedItem['description']}
+            maxLength={500}
             >
             </textarea>
             }
           </div>
 
+          {/* message button */}
           <button 
           onClick={message} 
           className={`message-button ${editing ? 'unhoverable-button' : ''}`}
-          >Message</button>
+          >
+            Message
+          </button>
+
         </section>
       </main>
+      
+      {/* select animations */}
       <div className="select-anim-wrap-main">
         <div className="select-anim-wrap-fixed">
           <div className="select-anim-wrap">

@@ -24,6 +24,11 @@ button, div, input, select {
     touch-action: manipulation; /* Prevents double-tap zoom */
 }
 
+.description, h1, h2, h3, h4, span, div, p{
+    white-space: pre-line;
+    word-wrap: break-word;
+}
+
 button.disabled-button {
     background-color: #ccc;
     color: #999;

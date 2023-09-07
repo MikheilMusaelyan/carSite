@@ -27,7 +27,7 @@ main{
 
 /* fixed */
 .select-anim-wrap-main{
-    height: 172px;
+    height: 140px;
     width: 100%;
 }
 .select-anim-wrap-fixed{
@@ -43,7 +43,7 @@ main{
 .select-anim-wrap{
     max-width: 600px;
     width: 100%;
-    backdrop-filter: blur(3px);
+    background: white;
     border: 1px solid rgb(239, 239, 239);
     box-shadow: 0 1px 3px rgb(229, 229, 229);
     border-radius: 3px;
@@ -51,6 +51,7 @@ main{
 .select-anim-text{
     text-align: center;
     margin: 10px 0 15px 0;
+    font-size: 24px;
     color: rgb(47, 47, 47);
 }
 .button-wrap{
@@ -180,6 +181,7 @@ td{
     padding: 7px 10px 8px 10px;
 }
 .car-detail{
+    max-height: 50px;
     border-bottom: 1px solid var(--lg);
     /* transition: opacity 500ms ease-in-out, transform 300ms ease-in; */
 }
@@ -223,6 +225,7 @@ td{
 
 /* description */
 .description{
+    max-height: 300px;
     padding: 10px 15px 0px 15px;
     font-size: 13px;
     letter-spacing: .6px;
@@ -236,6 +239,7 @@ td{
     max-width: 100%;
     resize: vertical;
     min-height: 60px;
+    max-height: 300px;
     font-size: 12px !important;
 }
 
@@ -264,6 +268,7 @@ div::-webkit-scrollbar-thumb:hover {
     }
     .left{
         position: static;
+        min-height: 250px;
     }
     .right{
         padding: 60px 0 0 0;
