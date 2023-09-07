@@ -271,6 +271,9 @@ div::-webkit-scrollbar-thumb:hover {
     .left, .right{
         width: 100%;
     }
+    .select-anim-wrap{
+        max-width: 100%;
+    }
     .big-image-wrap{
         box-shadow: 0 3px 10px rgb(233, 233, 233);
     }

@@ -8,7 +8,6 @@ import {
   faGauge,
   faHorseHead,
   faTag,
-  faWallet,
 } from "@fortawesome/free-solid-svg-icons";
 import { checkInput } from "../shared";
 import Carousel from "../carousel/carousel";
@@ -26,7 +25,7 @@ export default function Item() {
     animation: "slidLeft",
     hp: '',
     name: "",
-    desc: `The best description
+    description: `The best description
       second line
       third line`,
     images: ["/src/assets/irownbracelet.png", "/src/assets/ironwrist2.png"],
@@ -79,6 +78,7 @@ export default function Item() {
       document.removeEventListener('click', handleClickOutside);
     };
   }, [])
+  
 
   useEffect(() => {
     document.addEventListener('scroll', handleScroll);
@@ -99,7 +99,7 @@ export default function Item() {
   function handleClickOutside(event: any) {
     if(!editing || event.target.hasAttribute('data-name')) return
     setEditingProp('')
-    if(event.target && event.target.tagName === 'INPUT'){
+    if(event.target && (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA')){
       setEditingProp(event.target.name)      
     }
   }
@@ -226,6 +226,7 @@ export default function Item() {
               />}
           </div>
 
+          {/* properties */}
           <table className="car-details" ref={carDetailsRef}>
             <tbody>
               {propertyArr.map((prop: any, i: number) => {
@@ -270,21 +271,26 @@ export default function Item() {
             </tbody>
           </table>
 
-          {/* <div className="description-wrap">
-            {!editing && <span className="description">{selectedItem["desc"]}</span>}
-            {editing && 
-              <textarea 
-              className="description-textarea detail-input" 
-              placeholder="Description (optional)"
-              ref={inputRefs.desc.value}
-              onChange={handleInputChange}
-              name="desc"
-              value={selectedItem['desc']}
-              >
-                
-              </textarea>
+          {/* textare */}
+          <div className="description-wrap">
+            {renderProperty('description') && 
+            <span 
+            data-name='property'
+            onClick={() => selectInput('description')} 
+            className="description"
+            >{selectedItem["description"]}</span>}
+
+            {renderInput('description') && 
+            <textarea 
+            className="description-textarea detail-input" 
+            placeholder="Description (optional)"
+            onChange={handleInputChange}
+            name="description"
+            value={selectedItem['description']}
+            >
+            </textarea>
             }
-          </div> */}
+          </div>
 
           <button 
           onClick={message} 
@@ -295,7 +301,7 @@ export default function Item() {
       <div className="select-anim-wrap-main">
         <div className="select-anim-wrap-fixed">
           <div className="select-anim-wrap">
-            <h2 className="select-anim-text"> {selectedItem['animation']}</h2>
+            <h2 className="select-anim-text">Select an animation</h2>
               <div className="button-wrap">
                 <button onClick={() => changeAnimation('slidLeft')} className={`select-anim ${selectedItem['animation'] === 'slidLeft' ? 'active' : ''}`}>I</button>
                 <button onClick={() => changeAnimation('appear')} className={`select-anim ${selectedItem['animation'] === 'appear' ? 'active' : ''}`}>II</button>
