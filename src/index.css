@@ -43,5 +43,5 @@ button.disabled-button {
   }
 
   .unhoverable-button{
-    cursor: not-allowed;
+    cursor: not-allowed !important;
   }

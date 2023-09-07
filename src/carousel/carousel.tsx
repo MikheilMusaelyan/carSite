@@ -7,6 +7,9 @@ export default function Carousel(props: any) {
   }, [])
 
   const zoomIn = (event: any) => {
+    if(props.animating){
+      return
+    }
     const img = event.target;
     const rect = img.getBoundingClientRect();
     const x = event.clientX - rect.left;

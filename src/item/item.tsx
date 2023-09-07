@@ -9,7 +9,7 @@ import {
   faHorseHead,
   faTag,
 } from "@fortawesome/free-solid-svg-icons";
-import { animtaionPreference, checkInput } from "../shared/shared";
+import { animtaionPreference, animtaionPreferenceFromTop, animtaionPreferenceImage, checkInput } from "../shared/shared";
 import Carousel from "../carousel/carousel";
 import CharacterLimit from "../shared/characterlimit";
 
@@ -64,36 +64,34 @@ export default function Item() {
       icon: faHorseHead
     },
   ];
-  
+  const [animating, setAnimating] = useState(false)
+
+  // anims
+  // const [hasScrolled, setHasScrolled] = useState(false);
   const [animation, setAnimation] = useState('')
-  const [animationHappened, setAnimationHappened] = useState(false)
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "auto" });
-
     document.addEventListener('click', handleClickOutside);
     handleScroll()
-    // clear
     return () => { 
       document.removeEventListener('click', handleClickOutside);
     };
   }, [])
-  
 
-  useEffect(() => {
-    document.addEventListener('scroll', handleScroll);
-    return () => {
-      document.removeEventListener('scroll', handleScroll);
-    };
-  }, [selectedItem])
+  // useEffect(() => {
+  //   document.addEventListener('scroll', handleScroll);
+  //   return () => {
+  //     document.removeEventListener('scroll', handleScroll);
+  //   };
+  // }, [selectedItem])
 
   function handleScroll(){
-    const elementRect: any = carDetailsRef.current.getBoundingClientRect();
-    if (elementRect['top'] <= 500) {
-      setAnimationHappened(true)
-      return setAnimation('')
-    }
-    setAnimation(selectedItem['animation'])
+    // if (carDetailsRef.current.getBoundingClientRect()['top'] <= 500) {
+    //   // setHasScrolled(true)
+    //   return setAnimation('')
+    // }
+    // setAnimation(selectedItem['animation'])
   }
 
   function handleClickOutside(event: any) {
@@ -109,13 +107,26 @@ export default function Item() {
       ...prev,
       animation: string
     }))
+    // set has scrolled to false, we haven't, animation hasn't yet happened, 
+    //we want another one to happen
     setAnimation(string)
-    const elementRect: any = carDetailsRef.current.getBoundingClientRect();
-    if (elementRect['top'] <= 500) {
+    setAnimating(true)
+    setTimeout(() => {
       setTimeout(() => {
-        setAnimation('')
-      }, 300);
-    }
+        setAnimating(false)
+      }, 1400);
+      setAnimation('')
+    }, 300);
+
+    // setHasScrolled(false)
+    // const elementRect: any = carDetailsRef.current.getBoundingClientRect();
+    // if (elementRect['top'] <= 500) {
+    //   setTimeout(() => {
+    //     setAnimation('')
+    //     // set has scrolled to true, we've scrolled, animation already happened
+    //     // setHasScrolled(true)
+    //   }, 300);
+    // }
   }
 
   function renderProperty(refName: string){
@@ -150,17 +161,15 @@ export default function Item() {
     <>
       <main className="twelve">
         {/* animations */}
-
         <section className="left">
-          <div className="big-image-wrap">
-            <Carousel images={selectedItem['images']} />
+          <div className="big-image-wrap" style={animtaionPreferenceImage(animation, 500)}>
+            <Carousel images={selectedItem['images']} animating={animating}/>
           </div>
-          
         </section>
 
         <section className="right">
           {/* profile */}
-          <div className="seller-profile">
+          <div className="seller-profile" style={animtaionPreferenceFromTop(animation, 200)}>
             <div className="seller-img-wrap">
               <img className="seller-img" src="/src/assets/irownbracelet.png" />
             </div>
@@ -171,14 +180,21 @@ export default function Item() {
           </div>
 
           {/* title */}
-          <div className="title-wrap">
+          <div 
+          className="title-wrap" 
+          style={
+            editing
+              ? { cursor: 'pointer', ...animtaionPreferenceFromTop(animation, 350) }
+              : animtaionPreferenceFromTop(animation, 350)
+            }
+          >
             {renderProperty('name') && 
             <h1
             data-name='property'
             onClick={() => selectInput('name')} 
             className="title"
             >
-              <CharacterLimit text={selectedItem['title']} limit={50}/>
+              <CharacterLimit text={selectedItem['name']} limit={50}/>
             </h1>}
 
             {renderInput('name') && 
@@ -193,7 +209,10 @@ export default function Item() {
           </div>
 
           {/* price */}
-          <div className="price-wrap">
+          <div className="price-wrap" style={
+              editing ? { cursor: 'pointer', ...animtaionPreferenceFromTop(animation, 350, 700) }
+              : animtaionPreferenceFromTop(animation, 350, 700)
+          }>
             {renderProperty('price') && 
               <h1
               data-name='property'
@@ -217,8 +236,8 @@ export default function Item() {
           <table className="car-details" ref={carDetailsRef}>
             <tbody>
               {propertyArr.map((prop: any, i: number) => {
-                let style = animtaionPreference(i, animation)
-
+                let style: any = animtaionPreference(i, animation)
+                
                 return (
                 <tr 
                   key={i} 
@@ -234,16 +253,17 @@ export default function Item() {
                   <td>
                     {renderProperty(prop['name']) && 
                     <span 
+                    style={editing ? {'cursor': 'pointer'} : {}}
                     className="detail-v"
                     data-name='property'
                     onClick={() => selectInput(prop['name'])}
                     >
-                      <CharacterLimit text={selectedItem[prop['name']]} limit={50} />
+                      <CharacterLimit text={selectedItem[prop['name']]} limit={20} />
                     </span>
                     }
                     {renderInput(prop['name']) && 
                     <input
-                    maxLength={50}
+                    maxLength={20}
                     style={{color: prop['color']}}
                     value={selectedItem[prop['name']]}
                     onChange={handleInputChange}
@@ -259,7 +279,7 @@ export default function Item() {
           </table>
 
           {/* textarea */}
-          <div className="description-wrap">
+          <div className="description-wrap" style={animtaionPreferenceFromTop(animation, 450, 670)}>
             {renderProperty('description') && 
             <span 
             data-name='property'
@@ -282,6 +302,7 @@ export default function Item() {
 
           {/* message button */}
           <button 
+          style={animtaionPreferenceImage(animation, 650, 750)}
           onClick={message} 
           className={`message-button ${editing ? 'unhoverable-button' : ''}`}
           >
@@ -292,7 +313,7 @@ export default function Item() {
       </main>
       
       {/* select animations */}
-      <div className="select-anim-wrap-main">
+      {!animating && <div className="select-anim-wrap-main">
         <div className="select-anim-wrap-fixed">
           <div className="select-anim-wrap">
             <h2 className="select-anim-text">Select an animation</h2>
@@ -303,7 +324,7 @@ export default function Item() {
               </div>
             </div>
           </div>
-      </div>
+      </div>}
     </>
   );
 }

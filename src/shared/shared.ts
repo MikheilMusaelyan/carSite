@@ -7,7 +7,7 @@ export function checkInput(input: string | number) {
     return false;
 }
 
-export const animtaionPreference = (i: number, animation: string) => {
+export const animtaionPreference = (i: number, animation: string, ) => {
   if (animation == 'slidLeft') {
     return {
       transform: 'translateX(50px)',
@@ -20,6 +20,48 @@ export const animtaionPreference = (i: number, animation: string) => {
   } else if (animation == '') {
     return { 
       transition: `550ms ${i * 90}ms`,
+      opacity: 1,
+      transform: 'translate(0, 0)'
+    };
+  }
+}
+
+export const animtaionPreferenceImage = (animation: string, delay: number, speed: number = 550) => {
+  console.log(animation)
+  if (animation == 'slidLeft') {
+    return {
+      transform: 'translateY(100px)',
+      opacity: 0
+    };
+  } else if (animation == 'appear') {
+    return {
+      opacity: 0
+    };
+  } else if (animation == '') {
+    return { 
+      transition: `${speed}ms ${delay}ms`,
+      opacity: 1,
+      transform: 'translate(0, 0)'
+    };
+  }
+}
+
+
+
+export const animtaionPreferenceFromTop = (animation: string, delay: number, speed: number = 500) => {
+  console.log(animation)
+  if (animation == 'slidLeft') {
+    return {
+      transform: 'translateY(-40px)',
+      opacity: 0
+    };
+  } else if (animation == 'appear') {
+    return {
+      opacity: 0
+    };
+  } else if (animation == '') {
+    return { 
+      transition: `${speed}ms ${delay}ms ease-out`,
       opacity: 1,
       transform: 'translate(0, 0)'
     };
