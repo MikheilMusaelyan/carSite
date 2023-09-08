@@ -7,7 +7,7 @@ export default function Card({item}) {
     <>
         <li className='card-li'>
             <Link to="/car/1" style={{ textDecoration: 'none', color: 'initial' }}>
-            <section>
+            <section className='section'>
                 <div className="item-img-wrap">
                     <img className="item-img" src={item?.images[0] || ''} /> 
                 </div>

@@ -1,13 +1,22 @@
-import { useEffect } from 'react'
 import './carousel.css'
-
+import { useEffect } from 'react';
 export default function Carousel(props: any) {
   useEffect(() => {
-    console.log(props.images)
-  }, [])
+    // Prevent pinch-to-zoom on touch devices
+    const preventPinchZoom = (event: any) => {
+      event.preventDefault();
+    };
 
+    document.addEventListener('touchmove', preventPinchZoom, { passive: false });
+
+    return () => {
+      // Clean up the event listener when the component unmounts
+      document.removeEventListener('touchmove', preventPinchZoom);
+    };
+  }, []);
   const zoomIn = (event: any) => {
-    if(props.animating){
+    event.preventDefault();
+    if(props?.animating){
       return
     }
     const img = event.target;
@@ -30,12 +39,14 @@ export default function Carousel(props: any) {
     <div id="carouselExample" className="carousel slide">
         <div className="carousel-inner">
           {props.images.map((image: string, index: number) => (
-            <div className="carousel-item active" key={index}>
-              <img
-              onMouseMove={zoomIn}
-              onMouseOut={zoomOut}
-              src={image}
-              className="d-block w-100" alt="No Image" />
+            <div className={`${index == 1 ? 'active': ''} carousel-item`} key={index}>
+                <img
+                onMouseMove={zoomIn}
+                onMouseOut={zoomOut}
+                onTouchStart={zoomIn}
+                onTouchEnd={zoomOut}
+                src={image}
+                className="d-block myimage" alt="No Image" />
             </div>
           ))}
         </div>

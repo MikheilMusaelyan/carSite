@@ -9,6 +9,11 @@
     width: 300px;
     box-shadow: 0 2px 7px rgb(230, 230, 230);
 }
+.card-li:hover{
+    background: rgb(243, 243, 243);
+    box-shadow: 0 1px 7px rgb(201, 201, 201);
+
+}
 .bottom-wrap{
     padding: 0 15px 20px 15px;
 }
@@ -22,17 +27,17 @@
     width: 100%;
     mix-blend-mode: multiply;
 }
-section{
+.section{
     cursor: pointer;
     overflow: hidden;
 }
 .price{
-    font-size: 14px !important;
+    font-size: 14px;
 }
 .name{
     font-weight: bold;
 }
-section span{
+.section span{
     padding-bottom: 5px;
     display: block;
     font-size: 15px;
@@ -58,25 +63,12 @@ h5{
 }
 
 .shopnow{
+    margin: 0;
+    font-size: 18px;
     cursor: pointer;
     color: white;
     width: max-content;
     position: relative;
-}
-.shopnow::after{
-    content: '';
-    width: 0;
-    opacity: 0;
-    transition: 400ms;
-    height: 2.3px;
-    background: rgb(69, 69, 69);
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-}
-.shopnow:hover.shopnow::after{
-    width: 105%;
-    opacity: 1;
 }
 
 @media screen and (max-width: 550px) {

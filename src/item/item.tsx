@@ -7,17 +7,17 @@ import {
   faCar,
   faGauge,
   faHorseHead,
+  faMessage,
   faTag,
 } from "@fortawesome/free-solid-svg-icons";
 import { animtaionPreference, animtaionPreferenceFromTop, animtaionPreferenceImage, checkInput } from "../shared/shared";
 import Carousel from "../carousel/carousel";
 import CharacterLimit from "../shared/characterlimit";
-import { useParams } from "react-router-dom";
+// import { useParams } from "react-router-dom";
 
 export default function Item() {
   // styles
   const carDetailsRef = useRef()
-  const main = useRef(null)
   const [selectedItem, setSelectedItem] = useState({
     id: 1,
     price: '',
@@ -29,7 +29,7 @@ export default function Item() {
     hp: '',
     name: "",
     description: `The best desc`,
-    images: ["/src/assets/irownbracelet.png", "/src/assets/ironwrist2.png"],
+    images: ["https://clipartcraft.com/images/people-clipart-tall-man.png", "../assets/irownbracelet.png", "/src/assets/ironwrist2.png"],
     selectedImage: "/src/assets/irownbracelet.png",
   });
   const [editing, setEditing] = useState(true);
@@ -67,13 +67,14 @@ export default function Item() {
     },
   ];
   const [animating, setAnimating] = useState(false)
-  let { id } = useParams();
+  // let { id } = useParams();
 
   // anims
   // const [hasScrolled, setHasScrolled] = useState(false);
   const [animation, setAnimation] = useState('')
 
   useEffect(() => {
+    getItemData()
     window.scrollTo({ top: 0, behavior: "auto" });
     document.addEventListener('click', handleClickOutside);
     handleScroll()
@@ -90,7 +91,7 @@ export default function Item() {
 
     //-------
 
-    
+    setEditing(true)
   }
 
   // useEffect(() => {
@@ -233,7 +234,9 @@ export default function Item() {
               onClick={() => selectInput('price')} 
               className="price"
               >
-              <CharacterLimit text={selectedItem['price']} limit={10} /></h1>}
+                $
+                <CharacterLimit text={selectedItem['price']} limit={10} />
+              </h1>}
 
               {renderInput('price') && 
               <input
@@ -320,6 +323,7 @@ export default function Item() {
           onClick={message} 
           className={`message-button ${editing ? 'unhoverable-button' : ''}`}
           >
+            <FontAwesomeIcon icon={faMessage} style={{fontSize: '16px', paddingRight: '8px', transform: 'translateY(.5px)'}}/>
             Message
           </button>
 

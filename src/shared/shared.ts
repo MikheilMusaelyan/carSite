@@ -19,7 +19,7 @@ export const animtaionPreference = (i: number, animation: string, ) => {
     };
   } else if (animation == '') {
     return { 
-      transition: `550ms ${i * 90}ms`,
+      transition: `transform 550ms ${i * 90}ms, opacity 550ms ${i * 90}ms`,
       opacity: 1,
       transform: 'translate(0, 0)'
     };
@@ -40,7 +40,7 @@ export const animtaionPreferenceImage = (animation: string, delay: number, speed
     };
   } else if (animation == '') {
     return { 
-      transition: `${speed}ms ${delay}ms`,
+      transition: `transform ${speed}ms ${delay}ms, opacity ${speed}ms ${delay}ms`,
       opacity: 1,
       transform: 'translate(0, 0)'
     };
@@ -63,7 +63,7 @@ export const animtaionPreferenceFromTop = (animation: string, delay: number, spe
     };
   } else if (animation == '') {
     return { 
-      transition: `${speed}ms ${delay}ms ease-out`,
+      transition: `transform ${speed}ms ${delay}ms ease-out, opacity ${speed}ms ${delay}ms ease-out`,
       opacity: 1,
       transform: 'translate(0, 0)'
     };

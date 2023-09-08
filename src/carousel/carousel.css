@@ -4,3 +4,27 @@
 .carousel{
     width: 100%;
 }
+.carousel-item.active{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+}
+.myimage{
+    max-height: 800px;
+    min-height: 400px;
+    margin: auto;
+}
+
+@media screen and (max-width: 800px){
+    .myimage{
+        max-height: 400px;
+        min-height: 400px;
+    }    
+}
+@media screen and (max-width: 500px){
+    .myimage{
+        max-height: 250px;
+        min-height: 250px;
+    }    
+}

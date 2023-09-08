@@ -11,12 +11,11 @@ main{
 }
 .left{
     width: 65%;
-    /* height: 95vh; */
-    max-height: 800px;
-    min-height: 400px;
     height: max-content;
     display: flex;
     flex-direction: column;
+    max-height: 800px;
+    min-height: 400px;
     /* justify-content: space-between; */
 }
 
@@ -109,8 +108,8 @@ h1, h5{
     -webkit-user-select: none;
 }
 .title{
-    padding: 0 0 15px 0;
-    font-size: 35px;
+    padding: 0 0 10px 0;
+    font-size: 42px;
     color: rgb(53, 53, 53);
 }
 .title-input{
@@ -124,7 +123,7 @@ h1, h5{
 }
 
 .price{
-    font-size: 19px;
+    font-size: 19px !important;
     color: var(--mainColor);
 }
 .price-input{
@@ -169,7 +168,7 @@ h1, h5{
 .car-details{
     list-style-type: none;
     padding: 0;
-    margin: 25px 0 15px;
+    margin: 10px 0 15px;
     border: 1px solid var(--lg);
     border-bottom: none;
     border-radius: 5px;
@@ -265,13 +264,14 @@ div::-webkit-scrollbar-thumb:hover {
     main{
         flex-direction: column;
         align-items: center;
+        padding: 15px;
     }
     .left{
         position: static;
         min-height: 250px;
     }
     .right{
-        padding: 60px 0 0 0;
+        padding: 20px 0 0 0;
     }
     .left, .right{
         width: 100%;
@@ -283,11 +283,15 @@ div::-webkit-scrollbar-thumb:hover {
         box-shadow: 0 3px 10px rgb(233, 233, 233);
     }
     .title{
-        font-size: 42px;
+        font-size: 30px;
         line-height: initial;
+        margin: 0;
     }
     .small-images{
         padding-top: 40px;
+    }
+    .price{
+        margin: 0;
     }
 }
 
