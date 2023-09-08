@@ -43,7 +43,7 @@ export default function Carousel(props: any) {
                 <img
                 onMouseMove={zoomIn}
                 onMouseOut={zoomOut}
-                onTouchStart={zoomIn}
+                onTouchMove={zoomIn}
                 onTouchEnd={zoomOut}
                 src={image}
                 className="d-block myimage" alt="No Image" />
