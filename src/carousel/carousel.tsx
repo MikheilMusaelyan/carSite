@@ -1,21 +1,18 @@
 import './carousel.css'
-import { useState, useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 export default function Carousel(props: any) {
-  const [x, setX] = useState(null)
-  const [y, setY] = useState(null)
-
+  const myImage = useRef(null)
   useEffect(() => {
-    // Prevent pinch-to-zoom on touch devices
     document.addEventListener('touchmove', preventPinchZoom, { passive: false });
-
     return () => {
-      // Clean up the event listener when the component unmounts
       document.removeEventListener('touchmove', preventPinchZoom);
     };
   }, []);
 
   function preventPinchZoom(event: any){
-    event.preventDefault()
+    if(event.target.tagName == 'IMG'){
+      event.preventDefault()
+    }
   }
 
   const zoomIn = (event: any) => {
@@ -24,7 +21,7 @@ export default function Carousel(props: any) {
     }
     const img = event.target;
     const rect = img.getBoundingClientRect();
-    const touch = event.touches[0];
+    const touch = event?.touches?.length ? event?.touches[0] : null ;
     const xi = (touch ? touch.clientX : event.clientX) - rect.left;
     const yi = (touch ? touch.clientY : event.clientY) - rect.top;
     img.style.transformOrigin = `${(xi / rect.width) * 100}% ${(yi / rect.height) * 100}%`;
@@ -43,6 +40,7 @@ export default function Carousel(props: any) {
           {props.images.map((image: string, index: number) => (
             <div className={`${index == 1 ? 'active': ''} carousel-item`} key={index}>
                 <img
+                ref={myImage}
                 onMouseMove={zoomIn}
                 onMouseOut={zoomOut}
                 onTouchMove={zoomIn}
