@@ -35,6 +35,7 @@ export const animtaionPreferenceImage = (animation: string, delay: number, speed
     };
   } else if (animation == 'appear') {
     return {
+      transform: 'scale(0.7)',
       opacity: 0
     };
   } else if (animation == '') {
@@ -57,6 +58,7 @@ export const animtaionPreferenceFromTop = (animation: string, delay: number, spe
     };
   } else if (animation == 'appear') {
     return {
+      transform: 'scale(0.7)',
       opacity: 0
     };
   } else if (animation == '') {

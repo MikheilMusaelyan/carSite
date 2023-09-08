@@ -1,16 +1,17 @@
 import './App.css'
 import Navbar from './navbar/navbar'
 import Item from './item/item'
-import { BrowserRouter as Router, Routes } from 'react-router-dom'
+import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
+import Home from './home/home'
 
 function App() {
   return (
     <>
       <Navbar />
-      <Item />
       <Router>
         <Routes>
-            {/* <Route path='/' element={<Navbar />}></Route> */}
+          <Route path="/" element={<Home />} />
+          <Route path="/car/:id" element={<Item />} />
         </Routes>
       </Router>
     </>

@@ -1,61 +1,32 @@
-import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import './card.css'
+import CharacterLimit from '../../shared/characterlimit'
 
-export default function Card() {
-
-    const [items, setItems] = useState([
-        {
-            id: 1,
-            price: '',
-            milage: '',
-            make: "",
-            model: "",
-            year: '',
-            animation: "slidLeft",
-            hp: '',
-            name: "",
-            description: `The best desc`,
-            images: ["/src/assets/irownbracelet.png", "/src/assets/ironwrist2.png"],
-            selectedImage: "/src/assets/irownbracelet.png",
-        },
-        {
-            id: 2,
-            price: 30,
-            milage: '',
-            make: "",
-            model: "",
-            year: '',
-            animation: "slidLeft",
-            hp: '',
-            name: "",
-            description: `The best desc`,
-            images: ["/src/assets/ironwrist2.png", "/src/assets/irownbracelet.png"],
-            selectedImage: "/src/assets/irownbracelet.png",
-          }
-    ])
+export default function Card({item}) {
   return (
     <>
-        <ul>
-            {items.map((item: any) => (
-                <li>
-                    <Link to="/home" />
-                    <section>
-                        <div className="item-img-wrap">
-                            <img className="item-img" src={item?.images[0] || ''} /> 
-                        </div>
-                        <div className="bottom-wrap">
-                            <div className="span-wrap">
-                                <span className="name">{item?.name}</span>
-                                <span className="price">${item.price.toFixed(2)}</span>
-                            </div>
-                            <div className="shopnow-wrap">
-                                <h5 className="shopnow">SHOP NOW</h5>
-                            </div>
-                        </div>
-                    </section>
-                </li>
-            ))}
-        </ul>
+        <li className='card-li'>
+            <Link to="/car/1" style={{ textDecoration: 'none', color: 'initial' }}>
+            <section>
+                <div className="item-img-wrap">
+                    <img className="item-img" src={item?.images[0] || ''} /> 
+                </div>
+                <div className="bottom-wrap">
+                    <div className="span-wrap">
+                        <span className="name">
+                            <CharacterLimit text={item?.name} limit={50} />
+                        </span>
+                        <span className="price">
+                            <CharacterLimit text={`$${item?.price?.toFixed(2)}`} limit={50} />
+                        </span>
+                    </div>
+                    <div className="shopnow-wrap">
+                        <h5 className="shopnow">View</h5>
+                    </div>
+                </div>
+            </section>
+            </Link>
+        </li>
     </>
   )
 }

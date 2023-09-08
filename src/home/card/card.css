@@ -1,0 +1,87 @@
+.card-li{
+    display: block;
+    padding: 0 0 0 0;
+    overflow: hidden;
+    border-radius: 2px;
+    margin-bottom: 18px;
+    margin: 0 15px 45px 15px;
+    min-width: 300px;
+    width: 300px;
+    box-shadow: 0 2px 7px rgb(230, 230, 230);
+}
+.bottom-wrap{
+    padding: 0 15px 20px 15px;
+}
+.item-img-wrap{
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+    max-height: 350px;
+}
+.item-img{
+    width: 100%;
+    mix-blend-mode: multiply;
+}
+section{
+    cursor: pointer;
+    overflow: hidden;
+}
+.price{
+    font-size: 14px !important;
+}
+.name{
+    font-weight: bold;
+}
+section span{
+    padding-bottom: 5px;
+    display: block;
+    font-size: 15px;
+}
+h5, span{
+    word-wrap: break-word;
+    color: rgb(69, 69, 69);
+}
+h5{
+    margin: 0;
+}
+.shopnow-wrap{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #007bff;
+    padding: 9px 10px;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+.shopnow-wrap:hover{
+    background-color: #0056b3;
+}
+
+.shopnow{
+    cursor: pointer;
+    color: white;
+    width: max-content;
+    position: relative;
+}
+.shopnow::after{
+    content: '';
+    width: 0;
+    opacity: 0;
+    transition: 400ms;
+    height: 2.3px;
+    background: rgb(69, 69, 69);
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+.shopnow:hover.shopnow::after{
+    width: 105%;
+    opacity: 1;
+}
+
+@media screen and (max-width: 550px) {
+    .f-t-wrap{
+        display: flex;
+        justify-content: center;
+    }
+}

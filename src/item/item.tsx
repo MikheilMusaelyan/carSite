@@ -12,10 +12,12 @@ import {
 import { animtaionPreference, animtaionPreferenceFromTop, animtaionPreferenceImage, checkInput } from "../shared/shared";
 import Carousel from "../carousel/carousel";
 import CharacterLimit from "../shared/characterlimit";
+import { useParams } from "react-router-dom";
 
 export default function Item() {
   // styles
-  const carDetailsRef = useRef(null)
+  const carDetailsRef = useRef()
+  const main = useRef(null)
   const [selectedItem, setSelectedItem] = useState({
     id: 1,
     price: '',
@@ -65,6 +67,7 @@ export default function Item() {
     },
   ];
   const [animating, setAnimating] = useState(false)
+  let { id } = useParams();
 
   // anims
   // const [hasScrolled, setHasScrolled] = useState(false);
@@ -78,6 +81,17 @@ export default function Item() {
       document.removeEventListener('click', handleClickOutside);
     };
   }, [])
+
+  function getItemData(){
+    // const left = reference.offsetLeft
+    // const top = reference.offsetTop 
+    // const width = reference.clientWidth
+    // const height = reference.clientHeight
+
+    //-------
+
+    
+  }
 
   // useEffect(() => {
   //   document.addEventListener('scroll', handleScroll);
