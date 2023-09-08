@@ -29,7 +29,7 @@ export default function Item() {
     hp: '',
     name: "",
     description: `The best desc`,
-    images: ["https://clipartcraft.com/images/people-clipart-tall-man.png", "../assets/irownbracelet.png", "/src/assets/ironwrist2.png"],
+    images: ["https://miro.medium.com/max/3840/1*xMuIOwjliGUPjkzukeWKfw.jpeg", "https://miro.medium.com/max/3840/1*xMuIOwjliGUPjkzukeWKfw.jpeg", "/src/assets/ironwrist2.png"],
     selectedImage: "/src/assets/irownbracelet.png",
   });
   const [editing, setEditing] = useState(true);

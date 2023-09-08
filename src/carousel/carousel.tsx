@@ -1,12 +1,11 @@
 import './carousel.css'
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 export default function Carousel(props: any) {
+  const [x, setX] = useState(null)
+  const [y, setY] = useState(null)
+
   useEffect(() => {
     // Prevent pinch-to-zoom on touch devices
-    const preventPinchZoom = (event: any) => {
-      event.preventDefault();
-    };
-
     document.addEventListener('touchmove', preventPinchZoom, { passive: false });
 
     return () => {
@@ -14,18 +13,21 @@ export default function Carousel(props: any) {
       document.removeEventListener('touchmove', preventPinchZoom);
     };
   }, []);
+
+  function preventPinchZoom(event: any){
+    event.preventDefault()
+  }
+
   const zoomIn = (event: any) => {
-    event.preventDefault();
-    if(props?.animating){
-      return
+    if (props?.animating) {
+      return;
     }
     const img = event.target;
     const rect = img.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-    const offsetX = (x / rect.width) * 100;
-    const offsetY = (y / rect.height) * 100;
-    img.style.transformOrigin = `${offsetX}% ${offsetY}%`;
+    const touch = event.touches[0];
+    const xi = (touch ? touch.clientX : event.clientX) - rect.left;
+    const yi = (touch ? touch.clientY : event.clientY) - rect.top;
+    img.style.transformOrigin = `${(xi / rect.width) * 100}% ${(yi / rect.height) * 100}%`;
     img.classList.add("zoomed");
   };
 
@@ -47,6 +49,7 @@ export default function Carousel(props: any) {
                 onTouchEnd={zoomOut}
                 src={image}
                 className="d-block myimage" alt="No Image" />
+                
             </div>
           ))}
         </div>
