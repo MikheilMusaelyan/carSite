@@ -1,5 +1,20 @@
+import { useEffect, useRef } from 'react'
 import './landingpage.css'
 export default function Landingpage() {
+    const imageRef = useRef(null)
+
+    useEffect(() => {
+        scrollAnim()
+    }, [])
+
+    function scrollAnim() {
+        let scrollSpeed = -0.1
+        window.addEventListener('scroll', () => {
+          const scrollPos = window.scrollY * scrollSpeed;
+          imageRef.current.style.transform = `translateY(${scrollPos}px)`;
+        });
+    }
+
   return (
     <>
         <main className="landing-page">
@@ -12,7 +27,7 @@ export default function Landingpage() {
             </div>
             <section className="l-text-wrap l-left">
                 <div className="l-text">
-                    <h1 className="l-h1">
+                    <h1 className="l-h1" ref={imageRef}>
                         Find Your Dream Car
                     </h1>
                     <span className="l-span">
@@ -20,7 +35,7 @@ export default function Landingpage() {
                     </span>
                 </div>
             </section>
-            <section className="l-text-wrap l-right">
+            <section className="l-text-wrap l-right" >
                 {/* <div className="bubble right-bubble">
                     <div className="bubble-before"></div>
                 </div> */}
