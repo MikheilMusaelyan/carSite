@@ -63,3 +63,9 @@ nav {
     font-size: 15px;
     justify-content: center;
 }
+
+@media screen and (max-width: 500px){
+    .nav-li{
+        padding: 0 30px;
+    }
+}

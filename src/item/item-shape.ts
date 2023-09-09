@@ -3,7 +3,7 @@ export class ItemShape {
     public id: number,
     public name: string,
     public price: number,
-    public milage: number,
+    public mileage: number,
     public make: number,
     public model: string,
     public year: number,

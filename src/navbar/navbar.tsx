@@ -1,4 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './navbar.css'
+import { faMessage, faPerson } from '@fortawesome/free-solid-svg-icons'
 export default function Navbar() {
   return (
     <>
@@ -7,10 +9,16 @@ export default function Navbar() {
                 <span className='logo'>LOGO</span>
             </a>
             <ul className="main-navbar">
-                <li className='nav-li'><a className='nav-a'></a></li>
-                <li className='nav-li'><a className='nav-a'>About</a></li>
-                <li className='nav-li'><a className='nav-a'>Services</a></li>
-                <li className='nav-li'><a className='nav-a'>Contact</a></li> 
+                <li className='nav-li'>
+                  <a className='nav-a'>
+                    <FontAwesomeIcon icon={faPerson} />
+                  </a>
+                </li>
+                <li className='nav-li'>
+                  <a className='nav-a'>
+                    <FontAwesomeIcon icon={faMessage} />
+                  </a>
+                </li> 
             </ul>
         </nav>
     </>
