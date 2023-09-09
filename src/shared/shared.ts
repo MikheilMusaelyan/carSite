@@ -48,7 +48,6 @@ export const animtaionPreferenceImage = (animation: string, delay: number,  anim
 
 
 export const animtaionPreferenceFromTop = (animation: string, delay: number, animFigured: boolean, speed: number = 500) => {
-  console.log(animation)
   if (animation == 'slidLeft') {
     return {
       transform: 'translateY(-40px)',

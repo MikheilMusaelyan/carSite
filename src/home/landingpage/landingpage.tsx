@@ -11,7 +11,9 @@ export default function Landingpage() {
         let scrollSpeed = -0.1
         window.addEventListener('scroll', () => {
           const scrollPos = window.scrollY * scrollSpeed;
-          imageRef.current.style.transform = `translateY(${scrollPos}px)`;
+          if(imageRef?.current){
+            imageRef.current.style.transform = `translateY(${scrollPos}px)`;
+          }
         });
     }
 
@@ -20,7 +22,6 @@ export default function Landingpage() {
         <main className="landing-page">
             <div className="bubble-wrap"></div>
             <div className="bubble right-bubble">
-                <div className="bubble-before right-bubble-before"></div>
             </div>
             <div className="bubble left-bubble">
                 <div className="bubble-before"></div>

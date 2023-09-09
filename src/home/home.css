@@ -2,7 +2,7 @@
     display: flex;
     list-style-type: none;
     margin: 0;
-    padding: 30px 30px;
+    padding: 30px;
     flex-wrap: wrap;
 }
 .recent-listings{
@@ -10,4 +10,22 @@
     color: var(--blue);
     font-weight: bold;
     font-size: 45px;
+}
+
+@media screen and (max-width: 750px){
+    .ul{
+        padding: 15px;
+        justify-content: center;
+    }
+    .recent-listings{
+        text-align: center;
+        font-size: 38px;
+        padding: 50px 15px 30px 15px;
+    } 
+}
+@media screen and (max-width: 550px){
+    .ul{
+        align-items: center;
+        flex-direction: column;
+    }
 }

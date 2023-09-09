@@ -7,6 +7,7 @@
 body{
     margin: 0;
     min-width: 280px;
+    max-width: 1800px;
     overflow-x: hidden;
 }
 *{
@@ -33,9 +34,8 @@ input, textarea{
 }
 
 button.disabled-button {
-    background-color: #ccc;
-    color: #878787;
-    opacity: 0.6; 
+    background-color: #dedddd;
+    color: rgb(164, 164, 164);
     cursor: not-allowed !important;
   }
   

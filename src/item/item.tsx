@@ -18,6 +18,7 @@ import {
 } from "../shared/shared";
 import Carousel from "../carousel/carousel";
 import CharacterLimit from "../shared/characterlimit";
+import AddImage from "./AddImage/AddImage";
 // import { useParams } from "react-router-dom";
 
 export default function Item() {
@@ -75,7 +76,7 @@ export default function Item() {
       icon: faHorseHead,
     },
   ];
-  const [animating, setAnimating] = useState(false);
+  const [animating, setAnimating] = useState(true);
   const [animFound, setAnimFound] = useState(false);
   // let { id } = useParams();
 
@@ -88,7 +89,7 @@ export default function Item() {
       setTimeout(() => {
         setAnimFound(true);
         changeAnimation(selectedItem["animation"], false);
-      }, 5000);
+      }, 500);
     }
 
     // auto scroll
@@ -176,19 +177,31 @@ export default function Item() {
       <main className="twelve">
         {/* animations */}
         <section className="left">
-          <div
-            className="big-image-wrap"
-            style={animtaionPreferenceImage(animation, 500, animFound)}
-          >
-            <Carousel images={selectedItem["images"]} animating={animating} />
-          </div>
+          {
+            (selectedItem['images'].length != 0) &&
+            <div
+              className="big-image-wrap"
+              style={animtaionPreferenceImage(animation, 500, animFound)}
+            >
+              <Carousel images={selectedItem["images"]} animating={animating} />
+            </div>
+          }
+          {
+            editing && 
+            <AddImage />
+          }
         </section>
 
         <section className="right">
           {/* profile */}
           <div
             className="seller-profile"
-            style={animtaionPreferenceFromTop(animation, 200, animFound)}
+            style={
+              {
+                ...animtaionPreferenceFromTop(animation, 200, animFound),
+                'cursor': editing ? 'not-allowed' : 'pointer'
+              }
+            }
           >
             <div className="seller-img-wrap">
               <img className="seller-img" src="/src/assets/irownbracelet.png" />
@@ -368,12 +381,15 @@ export default function Item() {
         </section>
       </main>
 
+      
       {/* select animations */}
-      {!animating && (
+      {(editing && animating == false) && (
         <div className="select-anim-wrap-main">
           <div className="select-anim-wrap-fixed">
             <div className="select-anim-wrap">
-              <h2 className="select-anim-text">Select an animation</h2>
+              <h2 className="select-anim-text">
+                Select an animation
+              </h2>
               <div className="button-wrap">
                 <button
                   onClick={() => changeAnimation("slidLeft")}
