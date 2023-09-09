@@ -7,7 +7,7 @@ export function checkInput(input: string | number) {
     return false;
 }
 
-export const animtaionPreference = (i: number, animation: string, ) => {
+export const animtaionPreference = (i: number, animation: string, animFigured: boolean) => {
   if (animation == 'slidLeft') {
     return {
       transform: 'translateX(50px)',
@@ -17,17 +17,16 @@ export const animtaionPreference = (i: number, animation: string, ) => {
     return {
       opacity: 0
     };
-  } else if (animation == '') {
+  } else if (animation == '' && animFigured) {
     return { 
-      transition: `transform 550ms ${i * 90}ms, opacity 550ms ${i * 90}ms`,
+      transition: `transform 550ms ${i * 90}ms, opacity 550ms ${i * 130}ms`,
       opacity: 1,
       transform: 'translate(0, 0)'
     };
   }
 }
 
-export const animtaionPreferenceImage = (animation: string, delay: number, speed: number = 550) => {
-  console.log(animation)
+export const animtaionPreferenceImage = (animation: string, delay: number,  animFigured: boolean, speed: number = 550) => {
   if (animation == 'slidLeft') {
     return {
       transform: 'translateY(100px)',
@@ -35,10 +34,9 @@ export const animtaionPreferenceImage = (animation: string, delay: number, speed
     };
   } else if (animation == 'appear') {
     return {
-      transform: 'scale(0.7)',
       opacity: 0
     };
-  } else if (animation == '') {
+  } else if (animation == '' && animFigured) {
     return { 
       transition: `transform ${speed}ms ${delay}ms, opacity ${speed}ms ${delay}ms`,
       opacity: 1,
@@ -49,7 +47,7 @@ export const animtaionPreferenceImage = (animation: string, delay: number, speed
 
 
 
-export const animtaionPreferenceFromTop = (animation: string, delay: number, speed: number = 500) => {
+export const animtaionPreferenceFromTop = (animation: string, delay: number, animFigured: boolean, speed: number = 500) => {
   console.log(animation)
   if (animation == 'slidLeft') {
     return {
@@ -58,10 +56,9 @@ export const animtaionPreferenceFromTop = (animation: string, delay: number, spe
     };
   } else if (animation == 'appear') {
     return {
-      transform: 'scale(0.7)',
       opacity: 0
     };
-  } else if (animation == '') {
+  } else if (animation == '' && animFigured) {
     return { 
       transition: `transform ${speed}ms ${delay}ms ease-out, opacity ${speed}ms ${delay}ms ease-out`,
       opacity: 1,

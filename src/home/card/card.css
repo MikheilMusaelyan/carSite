@@ -5,7 +5,7 @@
     border-radius: 2px;
     margin-bottom: 18px;
     margin: 0 15px 45px 15px;
-    min-width: 300px;
+    min-width: 270px;
     width: 300px;
     box-shadow: 0 2px 7px rgb(230, 230, 230);
 }
@@ -31,10 +31,10 @@
     cursor: pointer;
     overflow: hidden;
 }
-.price{
+.card-price{
     font-size: 14px;
 }
-.name{
+.card-name{
     font-weight: bold;
 }
 .section span{

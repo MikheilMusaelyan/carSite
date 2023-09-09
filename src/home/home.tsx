@@ -69,7 +69,8 @@ export default function Home() {
     return (
         <>
             <Landingpage />
-            <ul>
+            <h1 className="recent-listings">Recent Listings</h1>
+            <ul className="ul">
                 {items.map((item: any) => (
                     <Card item={item} key={item.id}/>
                 ))}

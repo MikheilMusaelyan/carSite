@@ -34,17 +34,12 @@ input, textarea{
 
 button.disabled-button {
     background-color: #ccc;
-    color: #999;
-    cursor: not-allowed;
+    color: #878787;
     opacity: 0.6; 
-    pointer-events: none; 
+    cursor: not-allowed !important;
   }
   
   button.disabled-button:hover {
-    background-color: #ccc;
-    color: #999
-  }
-
-  .unhoverable-button{
-    cursor: not-allowed !important;
+    background-color: #bdbdbd;
+    color: #6d6d6d
   }

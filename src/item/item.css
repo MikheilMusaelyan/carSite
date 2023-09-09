@@ -223,6 +223,15 @@ td{
 
 
 /* description */
+.description-wrap,
+.seller-profile, 
+.title-wrap,
+.price-wrap,
+.car-detail,
+.message-button,
+.big-image-wrap{
+    opacity: 0;
+}
 .description{
     max-height: 300px;
     padding: 10px 15px 0px 15px;

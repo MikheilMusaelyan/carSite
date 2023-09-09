@@ -13,10 +13,10 @@ export default function Card({item}) {
                 </div>
                 <div className="bottom-wrap">
                     <div className="span-wrap">
-                        <span className="name">
+                        <span className="card-name">
                             <CharacterLimit text={item?.name} limit={50} />
                         </span>
-                        <span className="price">
+                        <span className="card-price">
                             <CharacterLimit text={`$${item?.price?.toFixed(2)}`} limit={50} />
                         </span>
                     </div>

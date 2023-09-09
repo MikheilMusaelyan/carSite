@@ -67,46 +67,33 @@ export default function Item() {
     },
   ];
   const [animating, setAnimating] = useState(false)
+  const [animFound, setAnimFound] = useState(false)
   // let { id } = useParams();
 
   // anims
-  // const [hasScrolled, setHasScrolled] = useState(false);
   const [animation, setAnimation] = useState('')
 
   useEffect(() => {
     getItemData()
+    if(selectedItem['animation'] !== ''){
+      setTimeout(() => {
+        setAnimFound(true)
+        changeAnimation(selectedItem['animation'], false)
+      }, 5000);
+    }
+
+    // auto scroll
     window.scrollTo({ top: 0, behavior: "auto" });
+
+    // click
     document.addEventListener('click', handleClickOutside);
-    handleScroll()
     return () => { 
       document.removeEventListener('click', handleClickOutside);
     };
   }, [])
 
   function getItemData(){
-    // const left = reference.offsetLeft
-    // const top = reference.offsetTop 
-    // const width = reference.clientWidth
-    // const height = reference.clientHeight
-
-    //-------
-
     setEditing(true)
-  }
-
-  // useEffect(() => {
-  //   document.addEventListener('scroll', handleScroll);
-  //   return () => {
-  //     document.removeEventListener('scroll', handleScroll);
-  //   };
-  // }, [selectedItem])
-
-  function handleScroll(){
-    // if (carDetailsRef.current.getBoundingClientRect()['top'] <= 500) {
-    //   // setHasScrolled(true)
-    //   return setAnimation('')
-    // }
-    // setAnimation(selectedItem['animation'])
   }
 
   function handleClickOutside(event: any) {
@@ -117,14 +104,17 @@ export default function Item() {
     }
   }
 
-  function changeAnimation(string: string) {
-    setSelectedItem((prev: any) => ({
-      ...prev,
-      animation: string
-    }))
-    // set has scrolled to false, we haven't, animation hasn't yet happened, 
-    //we want another one to happen
+  function changeAnimation(string: string, changing: boolean = true) {
+    if(changing){
+      setSelectedItem((prev: any) => ({
+        ...prev,
+        animation: string
+      }))
+    }
     setAnimation(string)
+    if(string == ''){
+      return setAnimating(false)
+    }
     setAnimating(true)
     setTimeout(() => {
       setTimeout(() => {
@@ -132,16 +122,6 @@ export default function Item() {
       }, 1400);
       setAnimation('')
     }, 300);
-
-    // setHasScrolled(false)
-    // const elementRect: any = carDetailsRef.current.getBoundingClientRect();
-    // if (elementRect['top'] <= 500) {
-    //   setTimeout(() => {
-    //     setAnimation('')
-    //     // set has scrolled to true, we've scrolled, animation already happened
-    //     // setHasScrolled(true)
-    //   }, 300);
-    // }
   }
 
   function renderProperty(refName: string){
@@ -170,21 +150,19 @@ export default function Item() {
   }
 
   // styles
-  
-
   return (
     <>
       <main className="twelve">
         {/* animations */}
         <section className="left">
-          <div className="big-image-wrap" style={animtaionPreferenceImage(animation, 500)}>
+          <div className="big-image-wrap" style={animtaionPreferenceImage(animation, 500, animFound)}>
             <Carousel images={selectedItem['images']} animating={animating}/>
           </div>
         </section>
 
         <section className="right">
           {/* profile */}
-          <div className="seller-profile" style={animtaionPreferenceFromTop(animation, 200)}>
+          <div className="seller-profile" style={animtaionPreferenceFromTop(animation, 200, animFound)}>
             <div className="seller-img-wrap">
               <img className="seller-img" src="/src/assets/irownbracelet.png" />
             </div>
@@ -199,8 +177,8 @@ export default function Item() {
           className="title-wrap" 
           style={
             editing
-              ? { cursor: 'pointer', ...animtaionPreferenceFromTop(animation, 350) }
-              : animtaionPreferenceFromTop(animation, 350)
+              ? { cursor: 'pointer', ...animtaionPreferenceFromTop(animation, 350, animFound) }
+              : animtaionPreferenceFromTop(animation, 350, animFound)
             }
           >
             {renderProperty('name') && 
@@ -225,8 +203,8 @@ export default function Item() {
 
           {/* price */}
           <div className="price-wrap" style={
-              editing ? { cursor: 'pointer', ...animtaionPreferenceFromTop(animation, 350, 700) }
-              : animtaionPreferenceFromTop(animation, 350, 700)
+              editing ? { cursor: 'pointer', ...animtaionPreferenceFromTop(animation, 350, animFound, 1000) }
+              : animtaionPreferenceFromTop(animation, 350, animFound, 1000)
           }>
             {renderProperty('price') && 
               <h1
@@ -253,7 +231,7 @@ export default function Item() {
           <table className="car-details" ref={carDetailsRef}>
             <tbody>
               {propertyArr.map((prop: any, i: number) => {
-                let style: any = animtaionPreference(i, animation)
+                let style: any = animtaionPreference(i, animation, animFound)
                 
                 return (
                 <tr 
@@ -296,7 +274,7 @@ export default function Item() {
           </table>
 
           {/* textarea */}
-          <div className="description-wrap" style={animtaionPreferenceFromTop(animation, 450, 670)}>
+          <div className="description-wrap" style={animtaionPreferenceFromTop(animation, 450, animFound, 670)}>
             {renderProperty('description') && 
             <span 
             data-name='property'
@@ -319,9 +297,9 @@ export default function Item() {
 
           {/* message button */}
           <button 
-          style={animtaionPreferenceImage(animation, 650, 750)}
+          style={animtaionPreferenceImage(animation, 650, animFound, 750)}
           onClick={message} 
-          className={`message-button ${editing ? 'unhoverable-button' : ''}`}
+          className={`message-button ${editing ? 'disabled-button' : ''}`}
           >
             <FontAwesomeIcon icon={faMessage} style={{fontSize: '16px', paddingRight: '8px', transform: 'translateY(.5px)'}}/>
             Message
@@ -338,7 +316,7 @@ export default function Item() {
               <div className="button-wrap">
                 <button onClick={() => changeAnimation('slidLeft')} className={`select-anim ${selectedItem['animation'] === 'slidLeft' ? 'active' : ''}`}>I</button>
                 <button onClick={() => changeAnimation('appear')} className={`select-anim ${selectedItem['animation'] === 'appear' ? 'active' : ''}`}>II</button>
-                <button onClick={() => changeAnimation('none')} className={`select-anim ${selectedItem['animation'] === 'none' ? 'active' : ''}`}>None</button>
+                <button onClick={() => changeAnimation('')} className={`select-anim ${selectedItem['animation'] === '' ? 'active' : ''}`}>None</button>
               </div>
             </div>
           </div>
