@@ -3,14 +3,14 @@ export default function Navbar() {
   return (
     <>
         <nav>
-            <a className="logo" >
-                <img src="" className="logoimg"/>
+            <a className="logo-wrap" >
+                <span className='logo'>LOGO</span>
             </a>
-            <ul className="navbar">
-                <li><a></a></li>
-                <li><a>About</a></li>
-                <li><a>Services</a></li>
-                <li><a>Contact</a></li> 
+            <ul className="main-navbar">
+                <li className='nav-li'><a className='nav-a'></a></li>
+                <li className='nav-li'><a className='nav-a'>About</a></li>
+                <li className='nav-li'><a className='nav-a'>Services</a></li>
+                <li className='nav-li'><a className='nav-a'>Contact</a></li> 
             </ul>
         </nav>
     </>

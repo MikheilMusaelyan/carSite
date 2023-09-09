@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import Card from "./card/card"
 import './home.css'
+import Landingpage from "./landingpage/landingpage"
 
 export default function Home() {
     const [items, setItems] = useState([
@@ -64,9 +65,10 @@ export default function Home() {
                 selectedImage: "/src/assets/irownbracelet.png",
               }
         ])
-    })
+    }, [])
     return (
         <>
+            <Landingpage />
             <ul>
                 {items.map((item: any) => (
                     <Card item={item} key={item.id}/>
