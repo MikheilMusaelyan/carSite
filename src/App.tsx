@@ -5,6 +5,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
 import Home from './home/home'
 import {useEffect} from 'react'
 import Profile from './profile/profile'
+import Messages from './messages/messages'
 
 function App() {
   useEffect(() => {
@@ -25,9 +26,10 @@ function App() {
     <>
       <Router>
         <Navbar />
+        <Messages />
         <Routes>
           <Route path="/profile" element={<Profile />} />
-          <Route path="/" element={<Home />} />
+          <Route path="/dd" element={<Home />} />
           <Route path="/car/:id" element={<Item />} />
         </Routes>
       </Router>
