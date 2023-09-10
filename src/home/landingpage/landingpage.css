@@ -150,7 +150,7 @@
 
 
 @media screen and (max-width: 800px){
-    main{
+    .landing-page{
         justify-content: center;
     }
     .l-text{

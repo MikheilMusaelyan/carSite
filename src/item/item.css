@@ -272,7 +272,7 @@ div::-webkit-scrollbar-thumb:hover {
 }
 
 @media screen and (max-width: 800px){
-    main{
+    .item-main{
         flex-direction: column;
         align-items: center;
         padding: 15px;

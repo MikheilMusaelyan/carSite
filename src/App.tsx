@@ -26,10 +26,11 @@ function App() {
     <>
       <Router>
         <Navbar />
-        <Messages />
+        
         <Routes>
+          <Route path='/messages' element={<Messages />}></Route>
           <Route path="/profile" element={<Profile />} />
-          <Route path="/dd" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route path="/car/:id" element={<Item />} />
         </Routes>
       </Router>

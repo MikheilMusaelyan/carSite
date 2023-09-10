@@ -1,48 +1,43 @@
 import { useState, useEffect, useRef } from 'react';
+import './messages.css'
+import { useDispatch, useSelector } from 'react-redux';
+import { addMessage } from '../features/messages/messageSlice';
 
 function Messages() {
+  const messages = useSelector((state: any) => state.messages);
+  const dispatch = useDispatch();
 
-  const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
   const messageScroll = useRef(null);
 
   useEffect(() => {
     scrollToBottom();
-
     // service.gotMessage.subscribe((message: any) => {
     //   pushToMessages('them', message);
     // });
-
-    // service.sendAll.subscribe(() => {
-    //   sendToMichael();
-    // });
-
-    // setTimeout(() => {
-    //   service.gotMessage.next("Hey there, I'm Lisa. \nWhat can I help you with? :)");
-    // }, 7000);
 
     return () => {
       // Unsubscribe from observables if needed
     };
   }, []);
 
-  const sendMessage = () => {
+  useEffect(() => {
+    scrollToBottom()
+  }, [messages])
+
+  const sendMessage = (event: any) => {
+    event.preventDefault();
     if (!message) {
       return;
     }
-
-    // service.sendMessage(message);
-    pushToMessages('me', message);
+    // Dispatch the action to add a message to Redux state
+    pushToMessages({sender: 'me', message: message})
     setMessage('');
   };
 
-  const pushToMessages = (sender: any, message: any) => {
-    setMessages([...messages, { sender, message }]);
+  const pushToMessages = (message: any) => {
+    dispatch(addMessage(message as any));
     scrollToBottom();
-  };
-
-  const sendToMichael = () => {
-    // service.sendToMichael(messages);
   };
 
   const scrollToBottom = () => {
@@ -52,7 +47,7 @@ function Messages() {
   };
 
   return (
-    <main>
+    <main className='messages-main-wrap'>
       <div className="wrap-messages">
         <div className="messages" ref={messageScroll}>
           {messages.map((message, index) => (
@@ -65,18 +60,15 @@ function Messages() {
                   ? 'message-wrap-left'
                   : ''
               } ${
-                index === 0 || messages[index - 1].sender !== message.sender
+                messages[index-1]?.sender != message?.sender
                   ? 'first-message'
                   : ''
               } ${
-                index < messages.length - 1 &&
-                messages[index + 1].sender === message.sender &&
-                messages[index - 1].sender === message.sender
+                messages[index + 1]?.sender == message?.sender && messages[index-1]?.sender == message.sender
                   ? 'my-middle-message'
                   : ''
               } ${
-                index === messages.length - 1 ||
-                messages[index - 1].sender !== message.sender
+                messages[index-1]?.sender == message?.sender && messages[index+1]?.sender != message?.sender 
                   ? 'my-last-message'
                   : ''
               }`}
@@ -91,6 +83,7 @@ function Messages() {
       <form onSubmit={sendMessage}>
         <div className="inputholder">
           <input
+            typeof='submit'
             className="input"
             max='200'
             type="text"

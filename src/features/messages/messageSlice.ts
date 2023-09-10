@@ -1,7 +1,34 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState = {
-    messages: []
+    messages: [
+        {
+            sender: 'them',
+            message: 'hi'
+        },
+        {
+            sender: 'them',
+            message: 'hi'
+        },
+        {
+            sender: 'me',
+            message: 'hi'
+        },
+        {
+            sender: 'me',
+            message: 'hi'
+        },
+        {
+            sender: 'them',
+            message: 'hi'
+        },
+        {
+            sender: 'me',
+            message: 'hi'
+        }
+    ],
+    people: [],
+    notification: {}
 }
   
 export const messageSlice = createSlice({
@@ -9,20 +36,18 @@ export const messageSlice = createSlice({
     initialState,
     reducers: {
         addMessage: (state: any, action: any) => {
-            const message = {
-                id: nanoid(),
-                text: action.payload
+            console.log(action.payload)
+            let messageCopy = [...state.messages]
+            messageCopy.push(action.payload)
+            return {
+                ...state,
+                messages: messageCopy
             }
-            state.messages.push(message)
         },
-        removeMessage: (state: any, action) => {
-            state.messages = state.messages.filter((message: any) => 
-            message.id !== action.payload)
-        }
     }
 })
 
-export const {addMessage, removeMessage} = messageSlice.actions
+export const {addMessage} = messageSlice.actions
 export default messageSlice.reducer
 
 

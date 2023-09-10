@@ -2,7 +2,9 @@
     --black: rgb(53, 53, 53);
     --blue: #007bff;
     --minitext-color: rgb(124, 124, 124);
-    --lg: #ececec
+    --lg: #ececec;
+    --pink: rgb(255,58,96);
+    --messageblue: rgb(92,80,255)
 }
 body{
     margin: 0;
