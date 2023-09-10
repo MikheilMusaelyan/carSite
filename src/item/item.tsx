@@ -171,6 +171,14 @@ export default function Item() {
     if (editing) return;
   }
 
+  const handleChildImageChange = (childImages: any) => {
+    setSelectedItem((prev: any) => ({
+      ...prev,
+      images: childImages
+    }));
+    console.log(selectedItem['images'])
+  };
+
   // styles
   return (
     <>
@@ -187,8 +195,8 @@ export default function Item() {
             </div>
           }
           {
-            editing && 
-            <AddImage />
+            editing && animating == false &&
+            <AddImage onImageChange={handleChildImageChange} />
           }
         </section>
 

@@ -65,3 +65,20 @@ export const animtaionPreferenceFromTop = (animation: string, delay: number, ani
     };
   }
 }
+
+export const handleFileInputChange = (event: any) => {
+  const selectedImages = event.target.files;
+  const imageTypes = ["image/png", "image/jpeg", "image/jpg"];
+  const validImages = [];
+
+  // Loop through selected files and filter valid image types
+  for (let i = 0; i < selectedImages.length; i++) {
+    const selectedImageFile = selectedImages[i];
+    if (imageTypes.includes(selectedImageFile.type)) {
+      const imageURL = URL.createObjectURL(selectedImageFile);
+      validImages.push(imageURL);
+    }
+  }
+  
+  return validImages.slice(0, 5)
+}
