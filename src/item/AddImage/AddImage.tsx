@@ -14,7 +14,6 @@ export default function AddImage({ onImageChange }) {
     }
     const newImages = [...images, ...handleFileInputChange(event)];
     setImages(newImages)
-
     onImageChange(images)
   }
 

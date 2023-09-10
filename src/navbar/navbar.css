@@ -15,25 +15,28 @@ nav {
 
 .nav-li {
     cursor: pointer;
-    padding: 0 40px;
     height: 60px;
-    display: flex;
-    align-items: center;
-    transition: 300ms;
+    
 }
 
-.nav-li:hover{
+.nav-a:hover{
     background: rgb(240, 240, 240);
 }
-.nav-li:hover .nav-a {
+.nav-a:hover {
     color: black;
 }
 
 .nav-a {
+    display: flex;
+    align-items: center;
+    transition: 300ms;
     text-decoration: none;
     font-size: 16px;
-    color: var(--blue);
+    color: var(--blue) !important;
     font-weight: 500;
+    height: 100%;
+    padding: 0 40px;
+    text-decoration: none !important;
 }
 
 

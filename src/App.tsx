@@ -23,8 +23,8 @@ function App() {
   }, []);
   return (
     <>
-      <Navbar />
       <Router>
+        <Navbar />
         <Routes>
           <Route path="/profile" element={<Profile />} />
           <Route path="/" element={<Home />} />
