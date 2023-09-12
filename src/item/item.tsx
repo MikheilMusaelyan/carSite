@@ -16,7 +16,7 @@ import {
   animtaionPreferenceImage,
   checkInput,
 } from "../shared/shared";
-import Carousel from "../carousel/carousel";
+import Carousel from "./carousel/carousel";
 import CharacterLimit from "../shared/characterlimit";
 import AddImage from "./AddImage/AddImage";
 // import { useParams } from "react-router-dom";
@@ -176,7 +176,6 @@ export default function Item() {
       ...prev,
       images: childImages
     }));
-    console.log(selectedItem['images'])
   };
 
   // styles
@@ -196,7 +195,7 @@ export default function Item() {
           }
           {
             editing && animating == false &&
-            <AddImage onImageChange={handleChildImageChange} />
+            <AddImage parentImages={selectedItem["images"]} onImageChange={handleChildImageChange} />
           }
         </section>
 

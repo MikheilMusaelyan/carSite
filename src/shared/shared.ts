@@ -72,13 +72,12 @@ export const handleFileInputChange = (event: any) => {
   const validImages = [];
 
   // Loop through selected files and filter valid image types
-  for (let i = 0; i < selectedImages.length; i++) {
+  for (let i = 0; i < Math.min(selectedImages.length, 10); i++) {
     const selectedImageFile = selectedImages[i];
     if (imageTypes.includes(selectedImageFile.type)) {
       const imageURL = URL.createObjectURL(selectedImageFile);
       validImages.push(imageURL);
     }
   }
-  
-  return validImages.slice(0, 5)
+  return validImages
 }

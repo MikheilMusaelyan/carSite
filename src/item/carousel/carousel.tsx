@@ -35,11 +35,10 @@ export default function Carousel(props: any) {
 
   return (
     <>
-    
     <div id="carouselExample" className="carousel slide">
   <div className="carousel-inner">
   {props.images.map((image: string, index: number) => (
-            <div className={`${index == 1 ? 'active': ''} carousel-item`} key={index}>
+            <div className={`${index == 0 ? 'active': ''} carousel-item`} key={index}>
                 <img
                 ref={myImage}
                 onMouseMove={zoomIn}

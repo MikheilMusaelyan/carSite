@@ -2,26 +2,27 @@ import { useState, useRef } from 'react';
 import { handleFileInputChange } from '../../shared/shared';
 import './AddImage.css'
 
-export default function AddImage({ onImageChange }) {
-  const [images, setImages] = useState([]);
+export default function AddImage({ parentImages, onImageChange }) {
+  const [images, setImages] = useState(parentImages);
   const fileInputRef = useRef(null);
 
   // Function to handle the file input change event
   
   const handleImages = (event: any) => {
-    if(images.length > 4){
-      return 
-    }
-    const newImages = [...images, ...handleFileInputChange(event)];
-    setImages(newImages)
-    onImageChange(images)
+    const imgs = handleFileInputChange(event);
+    const maxToAdd = 10 - images.length;
+    if (maxToAdd <= 0) return
+    imgs.splice(10 - images.length);
+    const newImages = [...images, ...imgs];
+    setImages(newImages);
+    onImageChange(newImages);
   }
 
   const handleRemoveImage = (index: any) => {
     const updatedImages = [...images];
     updatedImages.splice(index, 1);
     setImages(updatedImages);
-    onImageChange(images)
+    onImageChange(updatedImages)
   };
 
   // Function to trigger the file input click
