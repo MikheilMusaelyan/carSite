@@ -7,7 +7,9 @@ export default function Navbar() {
   return (
     <nav>
       <a className="logo-wrap">
-        <span className='logo'>LOGO</span>
+        <Link to="/messages" className='nav-a'>
+          <span className='logo'>LOGO</span>
+        </Link>
       </a>
       <ul className="main-navbar">
         <li className='nav-li'>
