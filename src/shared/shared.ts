@@ -81,3 +81,4 @@ export const handleFileInputChange = (event: any) => {
   }
   return validImages
 }
+

@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 export default function Navbar() {
   return (
     <nav>
-      <a className="logo-wrap">
+      <span className="logo-wrap">
         <Link to="/messages" className='nav-a'>
           <span className='logo'>LOGO</span>
         </Link>
-      </a>
+      </span>
       <ul className="main-navbar">
         <li className='nav-li'>
           <Link to="/person" className='nav-a'>

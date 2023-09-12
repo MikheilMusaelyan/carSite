@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import './messages.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { addMessage } from '../features/messages/messageSlice';
+import FriendsLeft from './friends-left/friends-left';
 
 function Messages() {
   const messages = useSelector((state: any) => state.messages);
@@ -9,17 +10,20 @@ function Messages() {
 
   const [message, setMessage] = useState('');
   const messageScroll = useRef(null);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
     scrollToBottom();
-    // service.gotMessage.subscribe((message: any) => {
-    //   pushToMessages('them', message);
-    // });
-
+    
+    window.addEventListener('resize', handleResize);
     return () => {
-      // Unsubscribe from observables if needed
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  const handleResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
 
   useEffect(() => {
     scrollToBottom()
@@ -47,53 +51,71 @@ function Messages() {
   };
 
   return (
-    <main className='messages-main-wrap'>
-      <div className="wrap-messages">
-        <div className="messages" ref={messageScroll}>
-          {messages.map((message, index) => (
-            <div
-              key={index}
-              className={`message-wrap ${
-                message.sender === 'me'
-                  ? 'message-wrap-right'
-                  : message.sender === 'them'
-                  ? 'message-wrap-left'
-                  : ''
-              } ${
-                messages[index-1]?.sender != message?.sender
-                  ? 'first-message'
-                  : ''
-              } ${
-                messages[index + 1]?.sender == message?.sender && messages[index-1]?.sender == message.sender
-                  ? 'my-middle-message'
-                  : ''
-              } ${
-                messages[index-1]?.sender == message?.sender && messages[index+1]?.sender != message?.sender 
-                  ? 'my-last-message'
-                  : ''
-              }`}
-            >
-              <div className="message">
-                <span className="message-span">{message.message}</span>
+    <main className='messages-main-wrap-main main-main'>
+      {
+        windowWidth > 800 && 
+        <div className='friends-wrap-main'>
+          <div className="friends-wrap">
+            <FriendsLeft />
+          </div>
+        </div>
+      }
+      <div className="messages-main-wrap" 
+        style={
+          windowWidth <= 800 ? {'width' : '100%'} : {'width' : 'calc(100% - 340px)'}
+        }
+      >
+        <div className="wrap-messages">
+          <div className="messages" ref={messageScroll}>
+            {messages.map((message: any, index: number) => (
+              <div
+                key={index}
+                className={`message-wrap ${
+                  message.sender === 'me'
+                    ? 'message-wrap-right'
+                    : message.sender === 'them'
+                    ? 'message-wrap-left'
+                    : ''
+                } ${
+                  messages[index-1]?.sender != message?.sender
+                    ? 'first-message'
+                    : ''
+                } ${
+                  messages[index + 1]?.sender == message?.sender && messages[index-1]?.sender == message.sender
+                    ? 'my-middle-message'
+                    : ''
+                } ${
+                  messages[index-1]?.sender == message?.sender && messages[index+1]?.sender != message?.sender 
+                    ? 'my-last-message'
+                    : ''
+                }`}
+              >
+                <div className="message">
+                  <span className="message-span">{message.message}</span>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
+        <form onSubmit={sendMessage} className='message-form'
+          style={
+            windowWidth <= 800 ? {'width' : '100%'} : {'width' : 'calc(100% - 340px)'}
+          }
+        >
+          <div className="inputholder">
+            <input
+              typeof='submit'
+              className="message-input"
+              max='200'
+              type="text"
+              value={message}
+              onChange={(e) => setMessage(e.target.value)}
+              placeholder="Type your message"
+              required
+            />
+          </div>
+        </form>
       </div>
-      <form onSubmit={sendMessage} className='message-form'>
-        <div className="inputholder">
-          <input
-            typeof='submit'
-            className="message-input"
-            max='200'
-            type="text"
-            value={message}
-            onChange={(e) => setMessage(e.target.value)}
-            placeholder="Type your message"
-            required
-          />
-        </div>
-      </form>
     </main>
   );
 }

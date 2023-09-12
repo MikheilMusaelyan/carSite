@@ -1,0 +1,191 @@
+.contacts-wrapper-main{
+    padding: 10px 15px 77px 10px;
+    background: white;
+    border-radius: 30px;
+    margin-right: 20px;
+    width: max-content !important;
+    height: 100%;
+    overflow: hidden;
+}
+.contacts-wrapper{
+    width: max-content !important;
+    height: 100% !important;
+    max-height: calc(1000px - 205px);
+    overflow: auto;
+    padding-right: 15px;
+    min-width: 300px;
+}
+.contact-wrapper{
+    border-radius: 10px;
+    transition: 350ms 50ms;
+    padding: 0 10px 0 18px;
+    margin: 18px 0 0 0;
+    cursor: pointer;
+}
+.contact{
+    transition: 300ms;
+    padding: 10px 0 12px 0;
+    border-bottom: 1px solid rgb(233, 231, 231); 
+    max-width: 280px !important;
+}
+
+
+.contact-wrapper:hover .contact{
+    border-bottom: 1px solid transparent;
+}
+.contact-wrapper:hover{
+    background: rgb(240, 240, 240);
+    border-radius: 15px;
+}
+
+/* contacts text */
+.contacts-text-wrap{
+    display: flex;
+    align-items: center;
+    margin: 0 22px 0 4px;
+    /* padding: 0 18px 15px 14px; */
+    padding: 0 18px 5px 14px;
+    /* border-bottom: 1px solid rgb(233, 231, 231); */
+}
+.contacts-text,
+.contactsIcon{
+    color: rgb(93, 0, 255);
+}
+.contactsIcon{
+    margin: 3px 5px 0 0;
+}
+.border-bottom{
+    margin-left: 7px;
+    width: calc(100% - 22px);
+    border-top: 1px solid rgb(244, 244, 244);
+}
+
+
+.img-name-wrap{
+    display: flex;
+    align-items: center;
+}
+/* image */
+.img-wrap{
+    border-radius: 50%;
+}
+.img-wrap{
+    position: relative;
+}
+.friend-active-alert {
+    width: 15px;
+    height: 15px;
+    border: 3px solid white;
+}
+
+.name-status-wrap{
+    margin: auto auto auto 18px;
+}
+.profilePic-wrap{
+    display: grid;
+    place-content: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.profilePic{
+    height: 45px;
+}
+.profilePic-wrap{
+    box-shadow: 0 3px 35px #e5e5e5;
+}
+
+/* text */
+
+.status-text{
+    margin: 0;
+    color: gray;
+    font-weight: 200;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+.name-text{
+    font-size: 19px;
+    margin: 0;
+}
+.name-text,
+.status-text {
+    display: block !important;
+}
+.name-status-wrap{
+    max-width: calc(100% - 85px);
+}
+
+/* scrollbar */
+.contacts-wrapper::-webkit-scrollbar {
+    width: 7px;
+    cursor: pointer;
+    border-radius: 10px;
+}
+
+.contacts-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.contacts-wrapper::-webkit-scrollbar-thumb {
+    background: #0d6efd;
+    border-radius: 10px;
+}
+
+.contacts-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #0661eb;
+    cursor: pointer;
+}
+
+/* no frinds */
+.no-friends-wrap{
+    padding-top: 20px;
+    width: 280px;
+}
+.no-friends-wrap h3{
+    width: 100%;
+    text-align: center;
+    font-weight: normal;
+}
+
+.no-image{
+    width: 45px;
+    height: 45px;
+    display: grid;
+    place-content: center;
+    background: rgb(232, 232, 232);
+}
+.no-image-icon{
+    font-size: 20px;
+    color: #0e7ff8;
+}
+.pointerEvents{
+    pointer-events: none !important;
+}
+
+@media screen and (max-width: 1000px) {
+    .contacts-wrapper-main,
+    .contacts-wrapper,
+    .no-friends-wrap{
+        width: 100% !important;
+    }
+    .contacts-text-wrap{
+        margin: 0;
+        padding-left: 50px;
+    }
+    .contacts-wrapper {
+        padding-right: 0;
+        min-width: initial !important;
+    }
+    .contacts-wrapper-main{
+        padding-right: 10px;
+        border-radius: 0;
+    }
+    .contact{
+        max-width: initial !important;
+    }
+}
+

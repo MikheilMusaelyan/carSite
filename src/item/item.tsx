@@ -181,7 +181,7 @@ export default function Item() {
   // styles
   return (
     <>
-      <main className="item-main">
+      <main className="item-main main-main">
         {/* animations */}
         <section className="left">
           {

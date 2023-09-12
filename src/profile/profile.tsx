@@ -26,7 +26,7 @@ export default function Profile(props: any) {
   
 
   return (
-    <main className='cart-main'>
+    <main className='cart-main main-main'>
       <h1 className="recent-listings">Recent Listings</h1>
       <ul className="ul">
         <Card item={cartItem}/>

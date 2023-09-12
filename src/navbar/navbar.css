@@ -1,7 +1,9 @@
 nav {
+    z-index: 10;
+    position: relative;
     padding: 0 15px;
     display: flex;
-    box-shadow: 0 4px 10px rgb(243, 243, 243);
+    box-shadow: 0 3px 10px rgb(247 244 244);
 }
 
 .main-navbar {

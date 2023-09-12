@@ -1,15 +1,16 @@
 *{
     box-sizing: border-box;
 }
-.messages-main-wrap{
+.messages-main-wrap-main{
+    overflow: hidden;
     display: flex;
-    flex-direction: column;
     justify-content: space-between;
+    height: calc(100svh - 60px);
 }
 .messages{
     overflow: auto;
     height: 100%;
-    padding: 0 10px 10px 10px;
+    padding: 10px 15px 10px 20px;
     scroll-behavior: smooth;
     height: calc(100svh - 136px);
 }
@@ -80,7 +81,6 @@
     background-color: white;
     bottom: 0;
     padding: 15px;
-    box-shadow: 0 0 10px rgb(229, 229, 229);
 }
 .inputholder{
     box-shadow: 0 0.5px 6px #dddbdb;
@@ -96,21 +96,40 @@
     border-radius: 15px;
 }
 
-/* WebKit-based browsers (Chrome, Safari) */
-/* Track */
+.friends-wrap-main{
+    width: 340px;
+    height: 100%;
+    box-shadow: 0 0 10px rgb(237, 237, 237);
+    position: relative;
+    background-color: white;
+    z-index: 2;
+}
+.friends-wrap{
+    height: 100%;
+}
+
+@media screen and (max-width: 800px){
+    .messages{
+        padding: 10px;
+    }
+    .message-form{
+        box-shadow: 0 0 10px rgb(238 237 237);
+    }
+}
+
+/* 
+
 ::-webkit-scrollbar {
-    width: 6px; /* Adjust the width as needed */
+    width: 6px; 
   }
   
-  /* Thumb */
   ::-webkit-scrollbar-thumb {
     background-color: #dedede;
-    border-radius: 10px; /* Round the thumb corners, adjust as needed */
+    border-radius: 10px; 
   }
   
-  /* Track (optional) */
   ::-webkit-scrollbar-track {
     border-radius: 10px;
-    background-color: #f0f0f0; /* Adjust the background color as needed */
+    background-color: #f0f0f0;
   }
-  
+   */

@@ -19,7 +19,7 @@ export default function Landingpage() {
 
   return (
     <>
-        <main className="landing-page">
+        <main className="landing-page main-main">
             <div className="bubble-wrap"></div>
             <div className="bubble right-bubble">
             </div>
