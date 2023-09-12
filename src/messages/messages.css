@@ -11,11 +11,7 @@
     padding-right: 10px;
     scroll-behavior: smooth;
 }
-.wrap-messages{
-    padding: 15px;
-    height: calc(100% - 67px);
-}
-span{
+.message-span{
     display: inline-block;
     word-wrap: break-word;
 }
@@ -70,11 +66,13 @@ span{
     font-weight: bold;
     font-size: 15px;
     line-height: 19px;
+    padding: 15px;
+    height: calc(100% - 67px)
 }
 
 
 
-form{
+.message-form{
     padding: 15px;
     box-shadow: 0 0 10px rgb(229, 229, 229);
 }
@@ -82,7 +80,7 @@ form{
     box-shadow: 0 0.5px 6px #dddbdb;
     border-radius: 15px;
 }
-input{
+.message-input{
     width: 100%;
     border: none;
     outline: none;
