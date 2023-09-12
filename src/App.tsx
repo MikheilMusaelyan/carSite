@@ -11,9 +11,9 @@ import { useSelector } from 'react-redux'
 
 function App() {
   const [messageState, setMessageState] = useState('closed');
-  let animationTimeout = null
-  let animationCloseTimeout = null
-  const message = useSelector((state: any) => state.message);
+  let animationTimeoutRef = useRef(null)
+  let animationCloseTimeoutRef = useRef(null)
+  const message = useSelector((state: any) => state.notification.message);
 
   useEffect(() => {
     handleMessages(message)
@@ -26,12 +26,17 @@ function App() {
 
     setMessageState('closed')
     
-    clearTimeout(animationTimeout);
-    clearTimeout(animationCloseTimeout)
+    if (animationTimeoutRef.current) {
+      clearTimeout(animationTimeoutRef.current);
+    }
+    if (animationCloseTimeoutRef.current) {
+      clearTimeout(animationCloseTimeoutRef.current);
+    }
+  
       
-    animationTimeout = setTimeout(() => {
+    animationTimeoutRef.current = setTimeout(() => {
       setMessageState('open');
-      animationCloseTimeout = setTimeout(() => {
+      animationCloseTimeoutRef.current = setTimeout(() => {
         console.log('closed')
         setMessageState('closed');
       }, 1200);
@@ -55,7 +60,7 @@ function App() {
     <>
       <div 
       className={`n-messages ${messageState == 'closed' ? 'transLeft' : ''}`}>
-        <div className="n-tag" style={message?.error ? {'color' : 'red'} : {}}></div>
+        <div className="n-tag" style={message?.error ? {'background' : 'red'} : {}}></div>
         <span className="n-message-text-wrap">
           <div className="n-message-text">{message?.text}</div>
         </span>

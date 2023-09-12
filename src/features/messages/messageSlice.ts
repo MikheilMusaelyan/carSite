@@ -1,7 +1,6 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 import { getData } from "../../shared/service";
 import axios from "axios";
-import { setMessage } from "./notificationSlice";
 
 const initialState = {
     messages: [

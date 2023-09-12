@@ -5,9 +5,9 @@ const initialState = {
   message: {
     error: false,
     text: '',
-    sender: '',
+    senderName: '',
     senderPic: '',
-    userId: 1
+    senderId: 1
   },
 };
 
@@ -28,5 +28,5 @@ export const notificationSlice = createSlice({
   },
 });
 
-export const { setMessage } = notificationSlice.actions;
+export const { setMessage } = notificationSlice.actions
 export default notificationSlice.reducer;

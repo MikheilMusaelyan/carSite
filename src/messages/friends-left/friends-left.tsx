@@ -4,6 +4,7 @@ import { useState } from "react";
 import './friends-left.css'
 import { useDispatch } from "react-redux";
 import { openUpMessages } from "../../features/messages/messageSlice";
+import { setMessage } from "../../features/messages/notificationSlice";
 
 export default function FriendsLeft(props: any) {
   const [myFriends, setMyFriends] = useState([
@@ -43,6 +44,7 @@ export default function FriendsLeft(props: any) {
 
   const getMessages = (i: number) => {
     dispatch(openUpMessages(i as any))
+    dispatch(setMessage({error: true, text: 'dada'}))
   }
 
   return (

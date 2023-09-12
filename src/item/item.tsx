@@ -219,7 +219,7 @@ export default function Item() {
   }
 
   function message() {
-    if (editing) return;
+    if (editing || animating) return;
   }
 
   const handleChildImageChange = (childImages: any) => {
@@ -425,7 +425,7 @@ export default function Item() {
           <button
             style={animtaionPreferenceImage(animation, 650, animFound, 750)}
             onClick={message}
-            className={`message-button ${editing ? "disabled-button" : ""}`}
+            className={`message-button ${editing && !animating ? "disabled-button" : ""}`}
           >
             <FontAwesomeIcon
               icon={faMessage}

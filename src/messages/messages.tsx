@@ -5,7 +5,7 @@ import { addMessage } from '../features/messages/messageSlice';
 import FriendsLeft from './friends-left/friends-left';
 
 function Messages() {
-  const messages = useSelector((state: any) => state.messages);
+  const messages = useSelector((state: any) => state.message.messages);
   const dispatch = useDispatch();
 
   const [message, setMessage] = useState('');
@@ -23,7 +23,6 @@ function Messages() {
   }, []);
 
   useEffect(() => {
-    console.log(messages)
     scrollToBottom();
     setIsHidden(true);
 
