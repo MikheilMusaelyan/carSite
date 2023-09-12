@@ -74,6 +74,7 @@ function Messages() {
               }`}
             >
               <div className="message">
+                
                 <span className="message-span">{message.message}</span>
               </div>
             </div>
