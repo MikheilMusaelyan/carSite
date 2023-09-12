@@ -49,7 +49,7 @@ export default function Carousel(props: any) {
                 className="d-block myimage" alt="No Image" />
                 
             </div>
-          ))}
+    ))}
   </div>
   <button className="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
     <span className="carousel-control-prev-icon" aria-hidden="true"></span>

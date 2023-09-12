@@ -33,8 +33,9 @@ export default function AddImage({ parentImages, onImageChange }) {
   return (
     <div className='addImage-main'>
       <div className="addImage-main-relative">
-      <button className='addImage-button' onClick={handleUploadButtonClick}>Upload</button>
-
+      <button className='addImage-button' onClick={handleUploadButtonClick}>
+        {images.length <= 0 ? "Uplaod at least 1 image" : 'Upload'}
+      </button>
           {images.map((image: string, index: number) => (
             <div key={index} className='addImage-image-wrap'>
               <img className='addImage-image' src={image} alt={`Uploaded ${index}`} />

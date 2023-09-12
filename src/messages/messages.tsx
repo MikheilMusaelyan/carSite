@@ -11,6 +11,7 @@ function Messages() {
   const [message, setMessage] = useState('');
   const messageScroll = useRef(null);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [isHidden, setIsHidden] = useState(true);
 
   useEffect(() => {
     scrollToBottom();
@@ -20,6 +21,21 @@ function Messages() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  useEffect(() => {
+    console.log(messages)
+    scrollToBottom();
+    setIsHidden(true);
+
+    const timeout = setTimeout(() => {
+      setIsHidden(false);
+    }, 300);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+    // ... other useEffect dependencies ...
+  }, [messages]);
 
   const handleResize = () => {
     setWindowWidth(window.innerWidth);
@@ -51,7 +67,7 @@ function Messages() {
   };
 
   return (
-    <main className='messages-main-wrap-main'>
+    <main className={`messages-main-wrap-main`}>
       {
         windowWidth > 800 && 
         <div className='friends-wrap-main'>
@@ -62,12 +78,14 @@ function Messages() {
       }
       <div className="messages-main-wrap" 
         style={
-          windowWidth <= 800 ? {'width' : '100%'} : {'width' : 'calc(100% - 340px)'}
+          windowWidth <= 800
+          ? { width: '100%', ...(isHidden ? { opacity: 0, transition: '' } : { opacity: 1, transition: '300ms' }) }
+          : { width: 'calc(100% - 340px)',...(isHidden ? { opacity: 0, transition: '' } : { opacity: 1, transition: '300ms' }) }
         }
       >
         <div className="wrap-messages">
           {
-            messages.length <= 0 &&
+            messages?.length <= 0 &&
             <div className='nothing-div'>
               <span className='nothing-span'>
                 No messages yet
@@ -75,7 +93,7 @@ function Messages() {
             </div>
           }
           {
-            messages.length > 0 &&
+            messages?.length > 0 &&
             <div className="messages" ref={messageScroll}>
               {messages.map((message: any, index: number) => (
                 <div
@@ -109,7 +127,7 @@ function Messages() {
           }
         </div>
         {
-          messages.length > 0 && 
+          messages?.length > 0 && 
           <form onSubmit={sendMessage} className='message-form'
             style={
               windowWidth <= 800 ? {'width' : '100%'} : {'width' : 'calc(100% - 340px)'}

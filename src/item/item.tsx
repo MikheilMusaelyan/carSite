@@ -40,8 +40,7 @@ export default function Item() {
       "https://miro.medium.com/max/3840/1*xMuIOwjliGUPjkzukeWKfw.jpeg",
       "https://miro.medium.com/max/3840/1*xMuIOwjliGUPjkzukeWKfw.jpeg",
       "/src/assets/ironwrist2.png",
-    ],
-    selectedImage: "/src/assets/irownbracelet.png",
+    ]
   });
   const [editing, setEditing] = useState(true);
   const [editingProp, setEditingProp] = useState(null);
@@ -79,13 +78,12 @@ export default function Item() {
   ];
   const [animating, setAnimating] = useState(true);
   const [animFound, setAnimFound] = useState(false);
-  const [validated, setValidated] = useState(false)
   // let { id } = useParams();
 
   useEffect(() =>   {
     // setValidated(
-      // selectedItem['price'] != '' &&
-      // selectedItem['mileage'] != '' &&
+    // selectedItem['price'] != '' &&
+    // selectedItem['mileage'] != '' &&
     //   id: 1,
     // price: "",
     // mileage: "",
@@ -107,16 +105,32 @@ export default function Item() {
 
   // anims
   const [animation, setAnimation] = useState("");
+  const [validated, setValidated] = useState(false)
 
   useEffect(() => {
-    getItemData();
+    setValidated(
+      checkInput(selectedItem['name']) &&
+      checkInput(selectedItem['price']) &&
+      checkInput(selectedItem['mileage']) &&
+      checkInput(selectedItem['make']) &&
+      checkInput(selectedItem['model']) &&
+      checkInput(selectedItem['year']) &&
+      checkInput(selectedItem['hp']) &&
+      selectedItem['images'].length > 0 &&
+      checkInput(selectedItem['model']) 
+    )
+  }, [selectedItem])
+
+  useEffect(() => {
+    setEditing(true);
+
     if (selectedItem["animation"] !== "") {
       setTimeout(() => {
         setAnimFound(true);
         changeAnimation(selectedItem["animation"], false);
       }, 500);
     }
-
+    
     // auto scroll
     window.scrollTo({ top: 0, behavior: "auto" });
 
@@ -126,10 +140,6 @@ export default function Item() {
       document.removeEventListener("click", handleClickOutside);
     };
   }, []);
-
-  function getItemData() {
-    setEditing(true);
-  }
 
   function handleClickOutside(event: any) {
     if (!editing || event.target.hasAttribute("data-name")) return;
@@ -179,7 +189,6 @@ export default function Item() {
   function handleInputChange(event: any) {
     const { name, value } = event.target;
     const inputType = event.nativeEvent.inputType
-
     if (event.nativeEvent.inputType === 'deleteContentBackward') {
       setSelectedItem((prevFormData) => ({
         ...prevFormData,
@@ -187,7 +196,7 @@ export default function Item() {
       }));
       return;
     }
-  
+
     if (name === "price" || name === "mileage" || name === "year" || name === "hp") {
       if(!isNumber(value) || inputType === 'insertLineBreak'){
         return 
@@ -225,12 +234,10 @@ export default function Item() {
     <>
       <main className="item-main main-main">
         {/* animations */}
-        {selectedItem['description'] !== '' && <div className="save-button">
-          Save
-        </div>}
+        {validated && <button className="save-button">Save</button>}
         <section className="left">
           {
-            (!editing || (animating && editing) && selectedItem['images'].length != 0) &&
+            ((!editing || (animating && editing)) && selectedItem['images'].length != 0) &&
             <div
               className="big-image-wrap"
               style={animtaionPreferenceImage(animation, 500, animFound)}
@@ -333,7 +340,7 @@ export default function Item() {
                 className="price-input detail-input"
                 placeholder="Price"
                 name="price"
-                type="number"
+                type="text"
               />
             )}
           </div>

@@ -27,6 +27,8 @@
     top: 0;
 }
 .save-button{
+    border: none !important;
+    outline: none !important;
     position: fixed;
     top: 75px;
     right: 15px;

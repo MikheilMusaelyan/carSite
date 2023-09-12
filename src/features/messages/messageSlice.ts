@@ -1,4 +1,7 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { getData } from "../../shared/service";
+import axios from "axios";
+import { setMessage } from "./notificationSlice";
 
 const initialState = {
     messages: [
@@ -28,7 +31,8 @@ const initialState = {
         }
     ],
     people: [],
-    notification: {}
+    notification: {},
+    messagesLoading: false
 }
   
 export const messageSlice = createSlice({
@@ -36,7 +40,6 @@ export const messageSlice = createSlice({
     initialState,
     reducers: {
         addMessage: (state: any, action: any) => {
-            console.log(action.payload)
             let messageCopy = [...state.messages]
             messageCopy.push(action.payload)
             return {
@@ -44,10 +47,14 @@ export const messageSlice = createSlice({
                 messages: messageCopy
             }
         },
+        openUpMessages: (state: any, action: any) => {
+            return {
+                ...state,
+                messages: getData(action.payload)
+            }
+        }
     }
 })
 
-export const {addMessage} = messageSlice.actions
+export const {addMessage, openUpMessages} = messageSlice.actions
 export default messageSlice.reducer
-
-

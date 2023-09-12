@@ -2,6 +2,8 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 import './friends-left.css'
+import { useDispatch } from "react-redux";
+import { openUpMessages } from "../../features/messages/messageSlice";
 
 export default function FriendsLeft(props: any) {
   const [myFriends, setMyFriends] = useState([
@@ -37,12 +39,18 @@ export default function FriendsLeft(props: any) {
         nickname: 'Datoie'
     }
   ])
+  const dispatch = useDispatch()
+
+  const getMessages = (i: number) => {
+    dispatch(openUpMessages(i as any))
+  }
 
   return (
     <div className="contacts-wrapper-main" id="mainDiv">
       <div className="contacts-wrapper">
         {myFriends.map((friend: any, index: number) => (
           <div
+            onClick={() => getMessages(index)}
             className="contact-wrapper"
             key={index}
           >

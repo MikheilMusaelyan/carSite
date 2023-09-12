@@ -6,24 +6,60 @@ import Home from './home/home'
 import {useEffect} from 'react'
 import Profile from './profile/profile'
 import Messages from './messages/messages'
+import {useRef, useState} from 'react'
+import { useSelector } from 'react-redux'
 
 function App() {
+  const [messageState, setMessageState] = useState('closed');
+  let animationTimeout = null
+  let animationCloseTimeout = null
+  const message = useSelector((state: any) => state.message);
+
   useEffect(() => {
-    // Add the viewport meta tag dynamically
+    handleMessages(message)
+  }, [message])
+
+  function handleMessages(message: any){
+    if(message?.text?.trim(' ') == '' || message?.text?.length == 0){
+      return
+    }
+
+    setMessageState('closed')
+    
+    clearTimeout(animationTimeout);
+    clearTimeout(animationCloseTimeout)
+      
+    animationTimeout = setTimeout(() => {
+      setMessageState('open');
+      animationCloseTimeout = setTimeout(() => {
+        console.log('closed')
+        setMessageState('closed');
+      }, 1200);
+    }, 350)
+    
+  }
+
+  useEffect(() => {
     const viewportMeta = document.createElement('meta');
     viewportMeta.name = 'viewport';
     viewportMeta.content = 'width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no';
 
-    // Append the meta tag to the document head
     document.head.appendChild(viewportMeta);
 
-    // Clean up by removing the meta tag when the component unmounts
     return () => {
       document.head.removeChild(viewportMeta);
     };
   }, []);
+
   return (
     <>
+      <div 
+      className={`n-messages ${messageState == 'closed' ? 'transLeft' : ''}`}>
+        <div className="n-tag" style={message?.error ? {'color' : 'red'} : {}}></div>
+        <span className="n-message-text-wrap">
+          <div className="n-message-text">{message?.text}</div>
+        </span>
+     </div>
       <Router>
         <Navbar />
         

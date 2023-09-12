@@ -2,8 +2,7 @@ export function checkInput(input: string | number) {
   if (typeof input === 'number') {
     return input > 0;
   } else if (typeof input === 'string') {
-    console.log('string')
-    return input.trim();
+    return input.trim() != '';
   }
   return false;
 }

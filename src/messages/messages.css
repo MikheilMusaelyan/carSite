@@ -6,8 +6,10 @@
     display: flex;
     height: calc(100svh - 60px);
 }
+
 .messages-main-wrap{
     max-width: 1400px;
+    opacity: 0;
 }
 .nothing-div{
     height: calc(100svh - 60px);
