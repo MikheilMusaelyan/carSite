@@ -74,6 +74,7 @@ function Messages() {
               }`}
             >
               <div className="message">
+
                 
                 <span className="message-span">{message.message}</span>
               </div>
@@ -81,11 +82,11 @@ function Messages() {
           ))}
         </div>
       </div>
-      <form onSubmit={sendMessage} className='message-form'>
+      <form onSubmit={sendMessage}>
         <div className="inputholder">
           <input
             typeof='submit'
-            className="message-input"
+            className="input"
             max='200'
             type="text"
             value={message}
