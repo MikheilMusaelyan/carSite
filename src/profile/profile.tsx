@@ -23,6 +23,7 @@ export default function Profile(props: any) {
       selectedImage: "/src/assets/irownbracelet.png",
     }
   )
+  
 
   return (
     <main className='cart-main'>
