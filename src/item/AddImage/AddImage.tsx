@@ -33,8 +33,9 @@ export default function AddImage({ parentImages, onImageChange }) {
   return (
     <div className='addImage-main'>
       <div className="addImage-main-relative">
+      <button className='addImage-button' onClick={handleUploadButtonClick}>Upload</button>
 
-          {images.map((image, index) => (
+          {images.map((image: string, index: number) => (
             <div key={index} className='addImage-image-wrap'>
               <img className='addImage-image' src={image} alt={`Uploaded ${index}`} />
               <div className="addImage-remove" onClick={() => handleRemoveImage(index)}>
@@ -42,7 +43,6 @@ export default function AddImage({ parentImages, onImageChange }) {
               </div>
             </div>
           ))}
-          <button className='addImage-button' onClick={handleUploadButtonClick}>Upload</button>
           <input
             type="file"
             ref={fileInputRef}

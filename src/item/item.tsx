@@ -185,7 +185,7 @@ export default function Item() {
         {/* animations */}
         <section className="left">
           {
-            (selectedItem['images'].length != 0) &&
+            (!editing || (animating && editing) && selectedItem['images'].length != 0) &&
             <div
               className="big-image-wrap"
               style={animtaionPreferenceImage(animation, 500, animFound)}

@@ -11,9 +11,10 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    justify-content: center;
     padding: 10px;
     overflow: auto;
-    max-height: 800px;
+    max-height: 550px;
 }
 .addImage-button,
 .addImage-image-wrap{
@@ -67,4 +68,10 @@
 .message-button:hover{
     background: #0869d1;
     box-shadow: 0 0 10px rgb(245, 245, 245);
+}
+
+@media screen and (max-width: 800px) {
+    .addImage-main-relative{
+        max-height: 250px;
+    }
 }
