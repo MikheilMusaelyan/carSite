@@ -1,14 +1,18 @@
+.contacts-wrapper-main,
+.contacts-wrapper,
+.no-friends-wrap{
+    width: 100% !important;
+}
+
 .contacts-wrapper-main{
-    padding: 10px 15px 77px 10px;
+    padding: 30px 18px 77px 10px;
     background: white;
     border-radius: 30px;
     margin-right: 20px;
-    width: max-content !important;
     height: 100%;
     overflow: hidden;
 }
 .contacts-wrapper{
-    width: max-content !important;
     height: 100% !important;
     max-height: calc(1000px - 205px);
     overflow: auto;
@@ -21,6 +25,9 @@
     padding: 0 10px 0 18px;
     margin: 18px 0 0 0;
     cursor: pointer;
+}
+.contact-wrapper:first-child{
+    margin-top: 0;
 }
 .contact{
     transition: 300ms;
@@ -167,21 +174,15 @@
 }
 
 @media screen and (max-width: 1000px) {
-    .contacts-wrapper-main,
-    .contacts-wrapper,
-    .no-friends-wrap{
-        width: 100% !important;
-    }
+    
     .contacts-text-wrap{
         margin: 0;
         padding-left: 50px;
     }
     .contacts-wrapper {
-        padding-right: 0;
         min-width: initial !important;
     }
     .contacts-wrapper-main{
-        padding-right: 10px;
         border-radius: 0;
     }
     .contact{

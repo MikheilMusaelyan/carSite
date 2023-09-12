@@ -15,6 +15,7 @@ import {
   animtaionPreferenceFromTop,
   animtaionPreferenceImage,
   checkInput,
+  isNumber,
 } from "../shared/shared";
 import Carousel from "./carousel/carousel";
 import CharacterLimit from "../shared/characterlimit";
@@ -78,7 +79,31 @@ export default function Item() {
   ];
   const [animating, setAnimating] = useState(true);
   const [animFound, setAnimFound] = useState(false);
+  const [validated, setValidated] = useState(false)
   // let { id } = useParams();
+
+  useEffect(() =>   {
+    // setValidated(
+      // selectedItem['price'] != '' &&
+      // selectedItem['mileage'] != '' &&
+    //   id: 1,
+    // price: "",
+    // mileage: "",
+    // make: "",
+    // model: "",
+    // year: "",
+    // animation: "slidLeft",
+    // hp: "",
+    // name: "",
+    // description: `The best desc`,
+    // images: [
+    //   "https://miro.medium.com/max/3840/1*xMuIOwjliGUPjkzukeWKfw.jpeg",
+    //   "https://miro.medium.com/max/3840/1*xMuIOwjliGUPjkzukeWKfw.jpeg",
+    //   "/src/assets/ironwrist2.png",
+    // ],
+    // selectedImage: "/src/assets/irownbracelet.png",
+    // )
+  }, [selectedItem])
 
   // anims
   const [animation, setAnimation] = useState("");
@@ -132,7 +157,7 @@ export default function Item() {
     setTimeout(() => {
       setTimeout(() => {
         setAnimating(false);
-      }, 1400);
+      }, 1900);
       setAnimation("");
     }, 300);
   }
@@ -153,15 +178,32 @@ export default function Item() {
   // on input change we also change values depending on their names
   function handleInputChange(event: any) {
     const { name, value } = event.target;
-    const val = parseFloat(value)
-    if ((name == "price" || name == "mileage" || name == "year" || name == "hp") && isNaN(val)) {
+    const inputType = event.nativeEvent.inputType
+
+    if (event.nativeEvent.inputType === 'deleteContentBackward') {
+      setSelectedItem((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
       return;
     }
-    setSelectedItem((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
+  
+    if (name === "price" || name === "mileage" || name === "year" || name === "hp") {
+      if(!isNumber(value) || inputType === 'insertLineBreak'){
+        return 
+      }
+      setSelectedItem((prevFormData) => ({
+        ...prevFormData,
+        [name]: Math.abs(Number(value))
+      }));
+    } else {
+      setSelectedItem((prevFormData) => ({
+        ...prevFormData,
+        [name]: value,
+      }));
+    }
   }
+  
 
   function selectInput(name: string) {
     setEditingProp(name);
@@ -183,6 +225,9 @@ export default function Item() {
     <>
       <main className="item-main main-main">
         {/* animations */}
+        {selectedItem['description'] !== '' && <div className="save-button">
+          Save
+        </div>}
         <section className="left">
           {
             (!editing || (animating && editing) && selectedItem['images'].length != 0) &&

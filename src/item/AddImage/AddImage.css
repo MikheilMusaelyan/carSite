@@ -11,10 +11,16 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    justify-content: center;
     padding: 10px;
     overflow: auto;
     max-height: 550px;
+}
+.addImage-main-relative::-webkit-scrollbar-track, 
+.addImage-main-relative::-webkit-scrollbar {
+     visibility: hidden; 
+     width: 0px; 
+     background: transparent; 
+     display: none; 
 }
 .addImage-button,
 .addImage-image-wrap{

@@ -4,8 +4,19 @@
 .messages-main-wrap-main{
     overflow: hidden;
     display: flex;
-    justify-content: space-between;
     height: calc(100svh - 60px);
+}
+.messages-main-wrap{
+    max-width: 1400px;
+}
+.nothing-div{
+    height: calc(100svh - 60px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nothing-span{
+    font-size: 20px;
 }
 .messages{
     overflow: auto;
@@ -46,7 +57,6 @@
     border-radius: 15px 15px 15px 3px;
     background: var(--blue);
 }
-
 
 .message-wrap{
     margin-bottom: 1.5px;

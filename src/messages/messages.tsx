@@ -51,7 +51,7 @@ function Messages() {
   };
 
   return (
-    <main className='messages-main-wrap-main main-main'>
+    <main className='messages-main-wrap-main'>
       {
         windowWidth > 800 && 
         <div className='friends-wrap-main'>
@@ -66,55 +66,69 @@ function Messages() {
         }
       >
         <div className="wrap-messages">
-          <div className="messages" ref={messageScroll}>
-            {messages.map((message: any, index: number) => (
-              <div
-                key={index}
-                className={`message-wrap ${
-                  message.sender === 'me'
-                    ? 'message-wrap-right'
-                    : message.sender === 'them'
-                    ? 'message-wrap-left'
-                    : ''
-                } ${
-                  messages[index-1]?.sender != message?.sender
-                    ? 'first-message'
-                    : ''
-                } ${
-                  messages[index + 1]?.sender == message?.sender && messages[index-1]?.sender == message.sender
-                    ? 'my-middle-message'
-                    : ''
-                } ${
-                  messages[index-1]?.sender == message?.sender && messages[index+1]?.sender != message?.sender 
-                    ? 'my-last-message'
-                    : ''
-                }`}
-              >
-                <div className="message">
-                  <span className="message-span">{message.message}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <form onSubmit={sendMessage} className='message-form'
-          style={
-            windowWidth <= 800 ? {'width' : '100%'} : {'width' : 'calc(100% - 340px)'}
+          {
+            messages.length <= 0 &&
+            <div className='nothing-div'>
+              <span className='nothing-span'>
+                No messages yet
+              </span>
+            </div>
           }
-        >
-          <div className="inputholder">
-            <input
-              typeof='submit'
-              className="message-input"
-              max='200'
-              type="text"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              placeholder="Type your message"
-              required
-            />
-          </div>
-        </form>
+          {
+            messages.length > 0 &&
+            <div className="messages" ref={messageScroll}>
+              {messages.map((message: any, index: number) => (
+                <div
+                  key={index}
+                  className={`message-wrap ${
+                    message.sender === 'me'
+                      ? 'message-wrap-right'
+                      : message.sender === 'them'
+                      ? 'message-wrap-left'
+                      : ''
+                  } ${
+                    messages[index-1]?.sender != message?.sender
+                      ? 'first-message'
+                      : ''
+                  } ${
+                    messages[index + 1]?.sender == message?.sender && messages[index-1]?.sender == message.sender
+                      ? 'my-middle-message'
+                      : ''
+                  } ${
+                    messages[index-1]?.sender == message?.sender && messages[index+1]?.sender != message?.sender 
+                      ? 'my-last-message'
+                      : ''
+                  }`}
+                >
+                  <div className="message">
+                    <span className="message-span">{message.message}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          }
+        </div>
+        {
+          messages.length > 0 && 
+          <form onSubmit={sendMessage} className='message-form'
+            style={
+              windowWidth <= 800 ? {'width' : '100%'} : {'width' : 'calc(100% - 340px)'}
+            }
+          >
+            <div className="inputholder">
+              <input
+                typeof='submit'
+                className="message-input"
+                max='200'
+                type="text"
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                placeholder="Type your message"
+                required
+              />
+            </div>
+          </form>
+        }
       </div>
     </main>
   );

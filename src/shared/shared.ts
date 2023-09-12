@@ -1,11 +1,15 @@
 export function checkInput(input: string | number) {
-    if (typeof input === 'number') {
-      return input > 0;
-    } else if (typeof input === 'string') {
-      return input.trim();
-    }
-    return false;
+  if (typeof input === 'number') {
+    return input > 0;
+  } else if (typeof input === 'string') {
+    console.log('string')
+    return input.trim();
+  }
+  return false;
 }
+
+export function isNumber(n: any) { return !isNaN(parseFloat(n)) && !isNaN(n - 0) }
+
 
 export const animtaionPreference = (i: number, animation: string, animFigured: boolean) => {
   if (animation == 'slidLeft') {
