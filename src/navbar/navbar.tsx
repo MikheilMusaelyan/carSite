@@ -13,7 +13,7 @@ export default function Navbar() {
       </span>
       <ul className="main-navbar">
         <li className='nav-li'>
-          <Link to="/person" className='nav-a'>
+          <Link to="/profile/1" className='nav-a'>
             <FontAwesomeIcon icon={faPerson} />
           </Link>
         </li>

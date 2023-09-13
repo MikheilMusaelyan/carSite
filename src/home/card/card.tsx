@@ -1,11 +1,24 @@
 import { Link } from 'react-router-dom'
 import './card.css'
 import CharacterLimit from '../../shared/characterlimit'
+import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export default function Card({item}) {
+export default function Card({item, editable = false}) {
   return (
     <>
         <li className='card-li'>
+            {
+                editable && 
+                <div className="abs-li">
+                    <button className='abs-button abs-delete'>
+                        <FontAwesomeIcon icon={faTrash} className='abs-icon'/>
+                    </button>
+                    <button className='abs-button abs-edit'>
+                        <FontAwesomeIcon icon={faEdit} className='abs-icon'/>
+                    </button>
+                </div>
+            }
             <Link to="/car/1" style={{ textDecoration: 'none', color: 'initial' }}>
             <section className='section'>
                 <div className="item-img-wrap">
@@ -20,9 +33,9 @@ export default function Card({item}) {
                             <CharacterLimit text={`$${item?.price?.toFixed(2)}`} limit={50} />
                         </span>
                     </div>
-                    <div className="shopnow-wrap">
-                        <h5 className="shopnow">View</h5>
-                    </div>
+                    <button className="shopnow-wrap">
+                        <div className="shopnow">View</div>
+                    </button>
                 </div>
             </section>
             </Link>

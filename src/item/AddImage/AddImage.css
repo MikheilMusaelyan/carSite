@@ -70,7 +70,7 @@
     font-size: 16px;
     max-width: initial !important;
 }
-.message-button:hover{
+.addImage-button:hover{
     background: #0869d1;
     box-shadow: 0 0 10px rgb(245, 245, 245);
 }
