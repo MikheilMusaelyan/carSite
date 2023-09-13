@@ -39,13 +39,26 @@ export default function Profile(props: any) {
     fileInputRef.current.click();
   };
 
+  const cardEdit = (editedItem) => {
+    console.log(editedItem)
+    // Implement your edit logic here and update the 'items' state
+    // For example, you can open a modal for editing and update the item in the array.
+  };
+
+  const cardRemove = (removedItem) => {
+    console.log(removedItem)
+
+    // Implement your delete logic here and update the 'items' state
+    // For example, filter out the item from the array.
+  };
+
   return (
     <main className='p-cart-main main-main'>
 
       <div className="profile-wrap-main">
         <div className="p-left-side">
           <div className="p-seller-img-wrap">
-            <img className="p-seller-img" src="/src/assets/irownbracelet.png" />
+            <img className="p-seller-img" src={image || "/src/assets/irownbracelet.png"} />
             <input
               type="file"
               ref={fileInputRef}
@@ -72,7 +85,7 @@ export default function Profile(props: any) {
 
       <div className="listings-wrap">
         <ul className="ul ul-profile">
-          <Card item={cartItem} editable={true}/>
+          <Card editCard={cardEdit} removeCard={cardRemove} item={cartItem} editable={true}/>
         </ul>
       </div>
     </main>

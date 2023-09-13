@@ -4,17 +4,21 @@ import CharacterLimit from '../../shared/characterlimit'
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-export default function Card({item, editable = false}) {
+export default function Card({item, editable = false, editCard, removeCard}) {
   return (
     <>
         <li className='card-li'>
             {
                 editable && 
                 <div className="abs-li">
-                    <button className='abs-button abs-delete'>
+                    <button className='abs-button abs-delete'
+                        onClick={() => removeCard(item.id)}
+                    >
                         <FontAwesomeIcon icon={faTrash} className='abs-icon'/>
                     </button>
-                    <button className='abs-button abs-edit'>
+                    <button className='abs-button abs-edit'
+                        onClick={() => editCard(item)}
+                    >
                         <FontAwesomeIcon icon={faEdit} className='abs-icon'/>
                     </button>
                 </div>
