@@ -152,6 +152,7 @@
 @media screen and (max-width: 800px){
     .landing-page{
         justify-content: center;
+        flex-direction: column;
     }
     .l-text{
         padding: 0 15px;

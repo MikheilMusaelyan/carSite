@@ -8,6 +8,7 @@ import Profile from './profile/profile'
 import Messages from './messages/messages'
 import {useRef, useState} from 'react'
 import { useSelector } from 'react-redux'
+import Login from './login/login'
 
 function App() {
   const [messageState, setMessageState] = useState('closed');
@@ -69,7 +70,8 @@ function App() {
         <Navbar />
         
         <Routes>
-          <Route path='/messages' element={<Messages />}></Route>
+          <Route path='/login' element={<Login />} />
+          <Route path='/messages' element={<Messages />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/" element={<Home />} />
           <Route path="/car/:id" element={<Item />} />
