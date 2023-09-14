@@ -1,10 +1,12 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
-import messageReducer from './features/messages/messageSlice'
-import notificationReducer from './features/messages/notificationSlice'
+import messageReducer from './features/messageSlice'
+import notificationReducer from './features/notificationSlice'
+import loginReducer from './features/loginSlice'
 
 const rootReducer = combineReducers({
     message: messageReducer,
-    notification: notificationReducer, 
+    notification: notificationReducer,
+    login: loginReducer
 });
   
 

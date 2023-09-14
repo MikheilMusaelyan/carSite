@@ -1,6 +1,5 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
-import { getData } from "../../shared/service";
-import axios from "axios";
+import { getData } from "../shared/service";
 
 const initialState = {
     messages: [

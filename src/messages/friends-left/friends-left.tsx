@@ -1,51 +1,52 @@
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
-import './friends-left.css'
+import "./friends-left.css";
 import { useDispatch } from "react-redux";
-import { openUpMessages } from "../../features/messages/messageSlice";
-import { setMessage } from "../../features/messages/notificationSlice";
+import { openUpMessages } from "../../features/messageSlice";
+import { setMessage } from "../../features/notificationSlice";
 
 export default function FriendsLeft(props: any) {
   const [myFriends, setMyFriends] = useState([
     {
-        profilePic: '',
-        nickname: 'Datoie'
+      profilePic: "",
+      nickname: "Datoie",
     },
     {
-        profilePic: '',
-        nickname: 'Datoie'
+      profilePic: "",
+      nickname: "Datoie",
     },
     {
-        profilePic: '',
-        nickname: 'Datoie'
+      profilePic: "",
+      nickname: "Datoie",
     },
     {
-        profilePic: '',
-        nickname: 'Datoie'
+      profilePic: "",
+      nickname: "Datoie",
     },
     {
-        profilePic: '',
-        nickname: 'Datoie'
-    },{
-        profilePic: '',
-        nickname: 'Datoie'
+      profilePic: "",
+      nickname: "Datoie",
     },
     {
-        profilePic: '',
-        nickname: 'Datoie'
+      profilePic: "",
+      nickname: "Datoie",
     },
     {
-        profilePic: '',
-        nickname: 'Datoie'
-    }
-  ])
-  const dispatch = useDispatch()
+      profilePic: "",
+      nickname: "Datoie",
+    },
+    {
+      profilePic: "",
+      nickname: "Datoie",
+    },
+  ]);
+  const dispatch = useDispatch();
 
   const getMessages = (i: number) => {
-    dispatch(openUpMessages(i as any))
-    dispatch(setMessage({error: true, text: 'dada'}))
-  }
+    dispatch(openUpMessages(i as any));
+    dispatch(setMessage({ error: true, text: "dada" }));
+  };
 
   return (
     <div className="contacts-wrapper-main" id="mainDiv">
@@ -61,20 +62,21 @@ export default function FriendsLeft(props: any) {
                 <div className="img-wrap">
                   {/* {friend.connected && <div className="friend-active-alert"></div>} */}
                   <div className="profilePic-wrap">
-                    {
-                        friend.profilePic != '' && 
-                        <img
-                          className="profilePic"
-                          src={friend.profilePic || ''}
-                          alt="Profile Pic"
+                    {friend.profilePic != "" && (
+                      <img
+                        className="profilePic"
+                        src={friend.profilePic || ""}
+                        alt="Profile Pic"
+                      />
+                    )}
+                    {friend.profilePic == "" && (
+                      <div className="no-image">
+                        <FontAwesomeIcon
+                          icon={faUser}
+                          className="no-image-icon"
                         />
-                    }
-                    {
-                        friend.profilePic == '' && 
-                        <div className="no-image">
-                            <FontAwesomeIcon icon={faUser} className="no-image-icon" />
-                        </div>
-                    }
+                      </div>
+                    )}
                   </div>
                 </div>
                 <div className="name-status-wrap">
@@ -90,7 +92,6 @@ export default function FriendsLeft(props: any) {
             <h3>No Contacts Yet</h3>
           </div>
         )}
-
       </div>
       <div className="border-bottom"></div>
     </div>

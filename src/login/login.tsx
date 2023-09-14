@@ -1,6 +1,20 @@
+import { useState } from 'react';
 import './login.css'
+import * as Yup from 'yup';
+
 
 export default function Login() {
+    const [SignUp, setSignUp] = useState(true)
+    const validationSchema = Yup.object().shape({
+        username: Yup.string().required('Username is required'),
+        password: Yup.string().required('Password is required'),
+        confirmPassword: SignUp
+          ? Yup.string()
+              .oneOf([Yup.ref('password'), null], 'Passwords must match')
+              .required('Confirm Password is required')
+          : null,
+      });
+      
     return (
         <div className="login-main">
             <div className="login-container">
@@ -11,11 +25,20 @@ export default function Login() {
                 </div>
                 <div className="login-form">
                     <form className='form'>
-                        <h2 className="login-h2">Login</h2>
-                        <input type="text" placeholder="Username" required />
-                        <input type="password" placeholder="Password" required />
-                        <button type="submit" className='message-button login-button'>Login</button>
-                        <a className="signup">Sign up</a>
+                        <h2 className="login-h2">{SignUp ? 'Sign Up' : 'Login'}</h2>
+                        <input type="text" placeholder="Username" />
+                        <input type="password" placeholder="Password" />
+                        {SignUp && <input type="password" placeholder="Confirm" />}
+                        <button 
+                            type="button" 
+                            className='message-button login-button'>
+                            {SignUp ? 'Sign Up' : 'Login'}
+                        </button>
+                        <a 
+                            onClick={() => setSignUp(!SignUp)}
+                            className="signup">
+                            Sign Up
+                        </a>
                     </form>
                 </div>
             </div>
