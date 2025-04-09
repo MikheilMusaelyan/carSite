@@ -52,7 +52,7 @@ export default function Home() {
       <h1 className="recent-listings">Recent Listings</h1>
       <ul className="ul">
         {items.map((item: any) => (
-          <Card item={item} key={item.id} />
+          <Card item={item} removeCard={() => false} editCard={() => false} key={item.id} />
         ))}
       </ul>
     </>

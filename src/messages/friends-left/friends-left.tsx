@@ -1,13 +1,12 @@
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
 import "./friends-left.css";
 import { useDispatch } from "react-redux";
 import { openUpMessages } from "../../features/messageSlice";
 import { setMessage } from "../../features/notificationSlice";
 
-export default function FriendsLeft(props: any) {
-  const [myFriends, setMyFriends] = useState([
+export default function FriendsLeft() {
+  const myFriends = [
     {
       profilePic: "",
       nickname: "John",
@@ -40,7 +39,7 @@ export default function FriendsLeft(props: any) {
       profilePic: "",
       nickname: "John",
     },
-  ]);
+  ];
   const dispatch = useDispatch();
 
   const getMessages = (i: number) => {

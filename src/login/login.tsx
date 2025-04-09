@@ -1,19 +1,19 @@
 import { useState } from 'react';
 import './login.css'
-import * as Yup from 'yup';
+// import * as Yup from 'yup';
 
 
 export default function Login() {
     const [SignUp, setSignUp] = useState(true)
-    const validationSchema = Yup.object().shape({
-        username: Yup.string().required('Username is required'),
-        password: Yup.string().required('Password is required'),
-        confirmPassword: SignUp
-          ? Yup.string()
-              .oneOf([Yup.ref('password'), null], 'Passwords must match')
-              .required('Confirm Password is required')
-          : null,
-      });
+    // const validationSchema = Yup.object().shape({
+    //     username: Yup.string().required('Username is required'),
+    //     password: Yup.string().required('Password is required'),
+    //     confirmPassword: SignUp
+    //       ? Yup.string()
+    //           .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    //           .required('Confirm Password is required')
+    //       : null,
+    //   });
       
     return (
         <div className="login-main">
