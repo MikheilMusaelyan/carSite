@@ -3,11 +3,11 @@ export function getData(id: number){
         return [
             {
                 sender: 'them',
-                message: '1'
+                message: 'Greetings'
             },
             {
                 sender: 'me',
-                message: 'dsa'
+                message: 'How are you'
             }
         ]
     }
@@ -18,7 +18,7 @@ export function getData(id: number){
         },
         {
             sender: 'them',
-            message: 'bb'
+            message: 'Hello'
         }
     ]
 }

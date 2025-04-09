@@ -7,63 +7,43 @@ export default function Home() {
   const [items, setItems] = useState([
     {
       id: 1,
-      price: 10,
+      price: 12,
       mileage: "",
       make: "",
       model: "",
       year: "",
       animation: "slidLeft",
       hp: "",
-      name: "no nae",
-      description: `The best desc`,
-      images: ["/src/assets/irownbracelet.png", "/src/assets/ironwrist2.png"],
-      selectedImage: "/src/assets/irownbracelet.png",
-    },
-    {
-      id: 2,
-      price: 30,
-      mileage: "",
-      make: "",
-      model: "",
-      year: "",
-      animation: "slidLeft",
-      hp: "",
-      name: "123",
-      description: `The best desc`,
-      images: ["/src/assets/ironwrist2.png", "/src/assets/irownbracelet.png"],
-      selectedImage: "/src/assets/irownbracelet.png",
-    },
+      name: "Honda",
+      description: ``,
+      images: [
+        "https://i.insider.com/5f3fec4c42f43f001ddfe52f?width=700",
+        "https://vehicle-images.dealerinspire.com/b519-11001857/2HGFE4F86SH324098/779f4ca8fdc3f0e96a38a4daeba78a53.jpg",
+        "https://www.heraldnet.com/wp-content/uploads/2019/10/18935367_web1_M3-Cars-edh-191014-1024x682.jpg"
+      ],
+      selectedImage: "https://i.insider.com/5f3fec4c42f43f001ddfe52f?width=700",
+    }
   ]);
   useEffect(() => {
     setItems([
       {
         id: 1,
-        price: 10,
-        mileage: "",
-        make: "",
-        model: "",
-        year: "",
-        animation: "slidLeft",
-        hp: "",
-        name: "no nae",
-        description: `The best desc`,
-        images: ["/src/assets/irownbracelet.png", "/src/assets/ironwrist2.png"],
-        selectedImage: "/src/assets/irownbracelet.png",
-      },
-      {
-        id: 2,
-        price: 30,
-        mileage: "",
-        make: "",
-        model: "",
-        year: "",
-        animation: "slidLeft",
-        hp: "",
-        name: "123",
-        description: `The best desc`,
-        images: ["/src/assets/ironwrist2.png", "/src/assets/irownbracelet.png"],
-        selectedImage: "/src/assets/irownbracelet.png",
-      },
+      price: 12,
+      mileage: "",
+      make: "",
+      model: "",
+      year: "",
+      animation: "slidLeft",
+      hp: "",
+      name: "Honda",
+      description: ``,
+      images: [
+        "https://i.insider.com/5f3fec4c42f43f001ddfe52f?width=700",
+        "https://vehicle-images.dealerinspire.com/b519-11001857/2HGFE4F86SH324098/779f4ca8fdc3f0e96a38a4daeba78a53.jpg",
+        "https://www.heraldnet.com/wp-content/uploads/2019/10/18935367_web1_M3-Cars-edh-191014-1024x682.jpg"
+      ],
+      selectedImage: "https://i.insider.com/5f3fec4c42f43f001ddfe52f?width=700",
+      }
     ]);
   }, []);
   return (

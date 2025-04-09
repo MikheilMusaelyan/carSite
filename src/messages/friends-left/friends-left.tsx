@@ -10,42 +10,42 @@ export default function FriendsLeft(props: any) {
   const [myFriends, setMyFriends] = useState([
     {
       profilePic: "",
-      nickname: "Datoie",
+      nickname: "John",
     },
     {
       profilePic: "",
-      nickname: "Datoie",
+      nickname: "John",
     },
     {
       profilePic: "",
-      nickname: "Datoie",
+      nickname: "John",
     },
     {
       profilePic: "",
-      nickname: "Datoie",
+      nickname: "John",
     },
     {
       profilePic: "",
-      nickname: "Datoie",
+      nickname: "John",
     },
     {
       profilePic: "",
-      nickname: "Datoie",
+      nickname: "John",
     },
     {
       profilePic: "",
-      nickname: "Datoie",
+      nickname: "John",
     },
     {
       profilePic: "",
-      nickname: "Datoie",
+      nickname: "John",
     },
   ]);
   const dispatch = useDispatch();
 
   const getMessages = (i: number) => {
     dispatch(openUpMessages(i as any));
-    dispatch(setMessage({ error: true, text: "dada" }));
+    dispatch(setMessage({ error: true, text: "Error UI" }));
   };
 
   return (

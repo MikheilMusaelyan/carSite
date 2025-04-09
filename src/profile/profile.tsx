@@ -17,14 +17,14 @@ export default function Profile(props: any) {
       year: "",
       animation: "slidLeft",
       hp: "",
-      name: "name",
-      description: `The best desc`,
+      name: "Car",
+      description: ``,
       images: [
-        "https://miro.medium.com/max/3840/1*xMuIOwjliGUPjkzukeWKfw.jpeg",
-        "https://miro.medium.com/max/3840/1*xMuIOwjliGUPjkzukeWKfw.jpeg",
-        "/src/assets/ironwrist2.png",
+        "https://i.insider.com/5f3fec4c42f43f001ddfe52f?width=700",
+        "https://vehicle-images.dealerinspire.com/b519-11001857/2HGFE4F86SH324098/779f4ca8fdc3f0e96a38a4daeba78a53.jpg",
+        "https://www.heraldnet.com/wp-content/uploads/2019/10/18935367_web1_M3-Cars-edh-191014-1024x682.jpg"
       ],
-      selectedImage: "/src/assets/irownbracelet.png",
+      selectedImage: "https://i.insider.com/5f3fec4c42f43f001ddfe52f?width=700",
     }
   )
   const [image, setImage] = useState(null)
@@ -70,7 +70,7 @@ export default function Profile(props: any) {
             </div>
           </div>
           <div className="p-seller-name-wrap">
-            <span className="p-seller-name">Dato</span>
+            <span className="p-seller-name">John</span>
             <span className="p-listing-count">35 Listings</span>
           </div>
         </div>

@@ -7,7 +7,7 @@ export default function Navbar() {
   return (
     <nav>
       <span className="logo-wrap">
-        <Link to="/messages" className='nav-a'>
+        <Link to="/" className='nav-a'>
           <span className='logo'>LOGO</span>
         </Link>
       </span>
@@ -18,7 +18,7 @@ export default function Navbar() {
           </Link>
         </li>
         <li className='nav-li'>
-          <Link to="/car/1" className='nav-a'>
+          <Link to="/messages" className='nav-a'>
             <FontAwesomeIcon icon={faMessage} />
           </Link>
         </li>

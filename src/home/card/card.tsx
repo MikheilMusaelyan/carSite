@@ -38,7 +38,7 @@ export default function Card({item, editable = false, editCard, removeCard}) {
                         </span>
                     </div>
                     <button className="shopnow-wrap">
-                        <div className="shopnow">View</div>
+                        <div className="shopnow">Edit</div>
                     </button>
                 </div>
             </section>
