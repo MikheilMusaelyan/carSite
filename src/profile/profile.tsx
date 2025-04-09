@@ -5,9 +5,9 @@ import { useRef, useState } from 'react'
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { handleFileInputChange } from '../shared/shared';
 
-export default function Profile(props: any) {
+export default function Profile() {
   const fileInputRef = useRef(null)
-  const [cartItem, set] = useState(
+  const cartItem = 
     {
       id: 1,
       price: 12,
@@ -26,7 +26,6 @@ export default function Profile(props: any) {
       ],
       selectedImage: "https://i.insider.com/5f3fec4c42f43f001ddfe52f?width=700",
     }
-  )
   const [image, setImage] = useState(null)
   
   const handleImages = (event: any) => {
