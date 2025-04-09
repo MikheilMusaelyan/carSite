@@ -264,7 +264,7 @@ export default function Item() {
             }
           >
             <div className="seller-img-wrap">
-              <img className="seller-img" src="/src/assets/irownbracelet.png" />
+              <img className="seller-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTugGK9j-9h5_GoIWKVFC4m2yg-Sxs-N50A-w&s" />
             </div>
             <div className="seller-name-wrap">
               <span className="seller-name">John</span>

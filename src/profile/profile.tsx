@@ -57,7 +57,7 @@ export default function Profile() {
       <div className="profile-wrap-main">
         <div className="p-left-side">
           <div className="p-seller-img-wrap">
-            <img className="p-seller-img" src={image || "/src/assets/irownbracelet.png"} />
+            <img className="p-seller-img" src={image || "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTugGK9j-9h5_GoIWKVFC4m2yg-Sxs-N50A-w&s"} />
             <input
               type="file"
               ref={fileInputRef}
